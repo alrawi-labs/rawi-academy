@@ -1,23 +1,106 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --border-color: #e5edf5;
+  /* ------------------------------ */
+  /* Brand / Primary                */
+  /* ------------------------------ */
+  --color-primary: #8059e8;
+  --color-primary-hover: #6e48e0;
+  --color-primary-light: #eeedfe; /* açık mor - badge, hover bg vb. için */
+
+  --color-primary-alt: #533afd;
+  --color-primary-alt-hover: #4229e0;
+
+  --color-outline-hover: #302d8d;
+
+  /* Login / özel CTA turuncusu */
+  --color-orange: #f26522;
+  --color-orange-bg-hover: #fff4ee;
+
+  /* ------------------------------ */
+  /* Neutral scale (metinler, arka planlar, border'lar) */
+  /* ------------------------------ */
+  --color-neutral-900: #09090b; /* başlıklar, koyu metin */
+  --color-neutral-700: #3f3f52; /* paragraf metni */
+  --color-neutral-500: #5f6b85; /* ikincil metin, şirket isimleri */
+  --color-neutral-400: #7a7f94; /* soluk metin, alt başlık */
+  --color-neutral-300: #b9b4ce; /* nokta ayraçlar, ince detaylar */
+  --color-neutral-200: #e4e7ed; /* border, divider */
+  --color-neutral-100: #f7f8fc; /* section arka planı */
+  --color-neutral-0: #ffffff;
+
+  /* ------------------------------ */
+  /* Accent (hero'daki gradient şeritler) */
+  /* ------------------------------ */
+  --color-accent-teal: #5eead4;
+  --color-accent-orange: #fdba74;
+  --color-accent-purple: #a78bfa;
+  --color-accent-pink: #f0a8e0;
+
+  /* ------------------------------ */
+  /* Visual (hero'daki gradient şeritler) */
+  /* ------------------------------ */
+  --color--visual-teal: #00d2be;
+  --color--visual-orange: #fd7900;
+  --color--visual-purple: #5e46ff;
+  --color--visual-pink: #ff2daa;
+
+  /* ------------------------------ */
+  /* Semantic aliases               */
+  /* ------------------------------ */
+  --background: var(--color-neutral-0);
+  --foreground: var(--color-neutral-900);
+  --border-color: var(--color-neutral-200);
 }
 
 @theme inline {
+  /* Semantic */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border-color);
+
+  /* Brand */
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-light: var(--color-primary-light);
+
+  --color-primary-alt: var(--color-primary-alt);
+  --color-primary-alt-hover: var(--color-primary-alt-hover);
+
+  --color-outline-hover: var(--color-outline-hover);
+
+  --color-orange: var(--color-orange);
+  --color-orange-bg-hover: var(--color-orange-bg-hover);
+
+  /* Secondary = koyu metin / başlık rengi olarak kullanıyoruz */
+  --color-secondary: var(--color-neutral-900);
+  --color-secondary-muted: var(--color-neutral-700);
+
+  /* Neutral scale doğrudan erişilebilir olsun */
+  --color-neutral-900: var(--color-neutral-900);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-100: var(--color-neutral-100);
+
+  /* Accent */
+  --color-accent-purple: #8946ff; /* koyu mor, eskiden #A78BFA */
+  --color-accent-violet: #b88cff; /* açık violet - yeni token */
+  --color-accent-blue: #5b95ff; /* mavi - yeni token */
+  --color-accent-teal: #18e5fb;
+
   --font-sans: var(--font-thmanyah-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-*,
-*::before,
-*::after {
-  border-color: var(--border-color);
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--border-color);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,8 +116,12 @@ body {
   font-family: var(--font-thmanyah-sans), sans-serif;
 }
 
-.font-thmanyah-display { font-family: var(--font-thmanyah-display), sans-serif; }
-.font-thmanyah-text    { font-family: var(--font-thmanyah-text), sans-serif; }
-.font-thmanyah-sans    { font-family: var(--font-thmanyah-sans), sans-serif; }
-
-
+.font-thmanyah-display {
+  font-family: var(--font-thmanyah-display), sans-serif;
+}
+.font-thmanyah-text {
+  font-family: var(--font-thmanyah-text), sans-serif;
+}
+.font-thmanyah-sans {
+  font-family: var(--font-thmanyah-sans), sans-serif;
+}
