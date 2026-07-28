@@ -45,13 +45,16 @@ rawi-academy/
 │   │   ├── components/
 │   │   │   ├── ui/
 │   │   │   │   └── button.tsx          Shared Button component (variant/size/border/icon)
+│   │   │   ├── Icons/
+│   │   │   │   └── GoogleIcon.tsx      Google "G" mark for the Hero's alt sign-in button
 │   │   │   ├── HeroGlassBars.tsx       Ribbon graphic behind the hero
 │   │   │   ├── MarqueeStrip.tsx        Trusted-by / stats marquee
 │   │   │   ├── Globe.tsx               Rotating globe illustration (Languages card)
 │   │   │   ├── CyclingWord.tsx         Word-cycling animated text
-│   │   │   └── subjects/               Subject cards for the four pillars
-│   │   │       ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg
-│   │   │       ├── QuranSunnahCard.tsx       القرآن والسنة — tafsir + memorization mockup over photo bg
+│   │   │   ├── AbstractRibbonBackground.tsx  Token-driven SVG ribbon bg (alternative to photo bg — not currently wired into any card)
+│   │   │   └── courses/                Subject cards for the four pillars
+│   │   │       ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg (bg-5.png)
+│   │   │       ├── QuranSunnahCard.tsx       القرآن والسنة — solid (non-glass) tafsir + memorization mockup over photo bg (bg-19.png)
 │   │   │       ├── LanguagesCard.tsx         اللغات — glass video panel, globe, flashcard stack
 │   │   │       ├── MathCard.tsx              الرياضيات — chalkboard, geometry proof, plot, photo bg
 │   │   │       ├── FollowCard.tsx            متابعة — weekly progress mockup, brand gradient bg
@@ -63,12 +66,16 @@ rawi-academy/
 │   │   │       └── LanguageFlashcardStack.tsx Rotating stack of language flashcards
 │   │   └── sections/
 │   │       ├── Navbar.tsx              Transparent, absolute-positioned navbar
-│   │       └── Hero.tsx                Landing hero section
+│   │       ├── Hero.tsx                Landing hero section
+│   │       ├── CoursesSection.tsx      Intro paragraph + 2-col grid of the four subject cards
+│   │       ├── FAQSection.tsx          Asymmetric FAQ (sticky heading + accordion list)
+│   │       └── Footer.tsx              Dark closing section
 │   ├── globals.css                     Design tokens, theme mapping, font wiring
 │   ├── layout.tsx                      Root layout · dir="rtl" · font loading
 │   └── page.tsx                        Home page
 ├── public/
-│   └── backgrounds/                    Photo backgrounds used by subject cards (bg-13.png, bg-18.png, bg-19.png …)
+│   ├── backgrounds/                    Photo backgrounds used by subject cards (bg-5.png, bg-13.png, bg-18.png, bg-19.png …)
+│   └── logos/                          Logo marks (navbar, footer)
 ├── package.json
 └── tsconfig.json
 ```
@@ -91,8 +98,8 @@ Tokens are defined in `globals.css` under `:root` and mapped into Tailwind via `
 | `--color-primary-alt` | `#533AFD` | Secondary CTA color (nav actions, alt buttons) |
 | `--color-primary-alt-hover` | `#4229E0` | Primary-alt hover state |
 | `--color-outline-hover` | `#302D8D` | Outline-button hover (text + border) |
-| `--color-cta-orange` | `#F26522` | Login / standalone text-action button |
-| `--color-cta-orange-bg-hover` | `#FFF4EE` | Hover background for the orange button |
+| `--color-orange` | `#F26522` | Login / standalone text-action button |
+| `--color-orange-bg-hover` | `#FFF4EE` | Hover background for the orange button |
 
 **Neutral scale**
 
@@ -107,16 +114,16 @@ Tokens are defined in `globals.css` under `:root` and mapped into Tailwind via `
 | `--color-neutral-100` | `#F7F8FC` | Section backgrounds |
 | `--color-neutral-0` | `#FFFFFF` | Base surface |
 
-**Accent (hero ribbon gradient)**
+**Accent (logo-derived)**
 
 | Token | Value |
 |:--|:--|
-| `--color-accent-teal` | `#5EEAD4` |
-| `--color-accent-orange` | `#FDBA74` |
-| `--color-accent-purple` | `#A78BFA` |
-| `--color-accent-pink` | `#F0A8E0` |
+| `--color-accent-purple` | `#8946FF` |
+| `--color-accent-violet` | `#B88CFF` |
+| `--color-accent-blue` | `#5B95FF` |
+| `--color-accent-teal` | `#18E5FB` |
 
-> The logo mark itself uses more saturated tones than the current UI accents (deep violet `#8946FF`, light violet `#B88CFF`, blue `#5B95FF`, turquoise `#18E5FB`). The accent tokens above are a softened, pastel derivation used for the hero ribbon and background flourishes — not a 1:1 match to the logo. Worth reconciling if full brand consistency with the logo is a goal later.
+> These are reconciled with the logo mark's saturated tones (previously a softer pastel set — see Known Issues for the leftover unused tokens from that earlier version).
 
 ### Typography
 
@@ -129,6 +136,8 @@ Self-hosted via `next/font/local` — no external font requests, zero layout shi
 | **Thmanyah Serif Text** | Long-form body copy | `.font-thmanyah-text` |
 
 > Licensed by Thmanyah, sourced from [font.thmanyah.com](https://font.thmanyah.com). See the accompanying `LICENSE.pdf` before any extended commercial use.
+
+> Font sizes are currently set as one-off `text-[Npx]` values per component. A semantic scale (`text-hero`, `text-h2`, `text-h3`, `text-lead`, `text-body`, `text-caption`, `text-micro`) is planned — see Roadmap.
 
 <br>
 
@@ -153,19 +162,28 @@ Shared button/link component used across the site instead of one-off `<a>`/`<but
 Fully transparent, `position: absolute` navbar meant to sit over the hero, built with the shared `Button` component for its actions. Rendered once in `layout.tsx` so it persists across every page.
 
 **`Hero.tsx`**
-Opening section with a stat line, a two-tone display headline, primary/alt CTAs (via `Button`), and a trusted-by marquee strip. Includes an SVG ribbon built from the same four shapes as the logo mark.
+Opening section with a stat line, a two-tone display headline, primary/outline CTAs (via `Button`, the outline variant paired with `GoogleIcon`), and a trusted-by marquee strip. Includes an SVG ribbon (`HeroGlassBars`) built from the same four shapes as the logo mark.
 
-### Subject Cards (`src/components/subjects/`)
+**`CoursesSection.tsx`**
+Intro paragraph (two-tone, bold lead-in + muted continuation) followed by a 2-column grid of the four subject cards.
 
-Each of the four pillars gets a dedicated, visually distinct card. All share the same outer shell — `bg-white`, `border-[#E4E7ED]`, `rounded-lg`, `shadow-sm`, a title row with an `Expand` icon button — but differ inside based on which background treatment they use:
+**`FAQSection.tsx`**
+Asymmetric two-column layout instead of a centered accordion: a sticky heading block on one side, an accordion list on the other. Question badges reuse the Arabic verse-marker motif from `QuranSunnahCard` (Arabic-Indic numerals in a circular badge) instead of a generic plus/chevron icon. Answers reveal with a self-drawing underline (`scaleX` from the trailing edge) on open.
 
-| Card | Background | Notable pieces |
-|:--|:--|:--|
-| `ProgrammingCard` | Photo (`bg-19.png`) | Glass code-editor window (macOS dots, syntax highlighting, `Tab` hint), glass "مسار البرمجة" progress panel |
-| `QuranSunnahCard` | Photo (`bg-13.png`) | Tafsir mockup window, phone-frame memorization mockup with radial progress |
-| `LanguagesCard` | Photo (`bg-18.png`), extends into the title area | `Globe`, `LanguageFlashcardStack`, glass video-call panel with `CyclingWord` headline |
-| `MathCard` | Photo (`bg-18.png`), extends into the title area | `ChalkboardSteps`, `GeometryProofCard`, `MathPlot`, `BridgeSentence`, guide-line/grain SVG overlays |
-| `FollowCard` | Brand gradient (mint → blue → violet → orchid → coral → orange) | Weekly progress ring + 7-day bar chart mockup |
+**`Footer.tsx`**
+Dark (`neutral-900`) closing section, intentionally breaking from the light theme used everywhere else. Asymmetric top row (logo + tagline vs. a single CTA), four link columns, and custom inline SVG social icons (`lucide-react` no longer ships brand/logo icons, so Instagram/Twitter/YouTube are hand-drawn minimal outlines using `currentColor`).
+
+### Subject Cards (`src/components/courses/`)
+
+Each of the four pillars gets a dedicated, visually distinct card. Card shells share `rounded-lg`, `shadow-sm`, and a title row with an `Expand` icon button, but differ in background treatment and whether the floating panels are glass or solid:
+
+| Card | Background | Panel style | Notable pieces |
+|:--|:--|:--|:--|
+| `ProgrammingCard` | Photo (`bg-5.png`) | Glass (`bg-white/40 backdrop-blur-xl`) | Glass code-editor window (macOS dots, syntax highlighting, `Tab` hint), glass "مسار البرمجة" progress panel |
+| `QuranSunnahCard` | Photo (`bg-19.png`) | Solid (`bg-neutral-0`) | Tafsir mockup window, phone-frame memorization mockup with radial progress |
+| `LanguagesCard` | Photo (`bg-18.png`), extends into the title area | Glass | `Globe`, `LanguageFlashcardStack`, glass video-call panel with `CyclingWord` headline |
+| `MathCard` | Photo (`bg-18.png`), extends into the title area | Glass | `ChalkboardSteps`, `GeometryProofCard`, `MathPlot`, `BridgeSentence`, guide-line/grain SVG overlays |
+| `FollowCard` | Brand gradient (mint → blue → violet → orchid → coral → orange) | Solid | Weekly progress ring + 7-day bar chart mockup |
 
 **Glassmorphism pattern** — used for any panel that floats over a photo or gradient background (`ChalkboardSteps`, `GeometryProofCard`, the code editor and progress panel in `ProgrammingCard`, the video panel in `LanguagesCard`):
 ```
@@ -175,16 +193,32 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 
 **Photo backgrounds** live in `public/backgrounds/` and are applied via `bg-cover bg-center` + `backgroundImage`. When a card's title should read as part of the photo rather than sit on a separate white strip, the background is set on the *outermost* card container instead of the inner content wrapper.
 
+**`AbstractRibbonBackground`** — a token-driven SVG alternative to photo backgrounds (diagonal ribbon bands built from `--color-accent-*` gradients + a subtle framer-motion drift), built to remove reliance on stock photography. Not currently used by any card — `ProgrammingCard` reverted to a photo background (`bg-5.png`).
+
+<br>
+
+## Known Issues / Cleanup
+
+- `--color-accent-orange` and `--color-accent-pink` still exist in `:root` but were never mapped into `@theme inline` — dead tokens from the pre-reconciliation palette, safe to remove.
+- New `--visual-*` tokens (`--color--visual-teal/orange/purple/pink`) have a naming typo (double dash: `--color--visual-*` instead of `--color-visual-*`) and aren't yet mapped into `@theme inline`. Pending a follow-up pass.
+- Off-palette hardcoded hex values with no matching token: `#FD9120`, `#C23B82`, `#F386C4`, `#6E6584`, `#8B87A3` (all in `ProgrammingCard`), `#22C1A0` (in `QuranSunnahCard`). Decision pending on whether to formalize these as tokens.
+
 <br>
 
 ## Roadmap
 
 - [x] Subject cards (Programming, Quran & Sunnah, Languages, Math, Follow)
+- [x] Courses section (intro + grid)
+- [x] FAQ section
+- [x] Footer
 - [ ] Remaining landing sections (testimonials, pricing)
-- [ ] Footer
 - [ ] Scroll-aware navbar (background/border fade-in past the hero)
 - [ ] Mobile layouts for all sections
-- [ ] Reconcile accent palette with the exact logo gradient tones
+- [ ] Fix naming + wire `--visual-*` tokens into `@theme inline`
+- [ ] Tokenize the font-size scale (`text-hero`, `text-h2`, `text-h3`, …)
+- [ ] Resolve off-palette hex values in `ProgrammingCard` / `QuranSunnahCard`
+- [ ] Decide `FollowCard` background direction (keep gradient vs. switch to `AbstractRibbonBackground`)
+- [ ] Remove unused `accent-orange` / `accent-pink` tokens
 
 <br>
 
