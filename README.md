@@ -44,7 +44,11 @@ rawi-academy/
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── ui/
-│   │   │   │   └── button.tsx          Shared Button component (variant/size/border/icon)
+│   │   │   │   ├── Button.tsx          Shared Button component (variant/size/border/icon)
+│   │   │   │   ├── NavLink.tsx         Shared nav link (plain / chevron / dropdown panel)
+│   │   │   │   └── SectionLede.tsx     Section intro block (lead + sub + body, all optional)
+│   │   │   ├── layout/
+│   │   │   │   └── SectionContainer.tsx  Content-width wrapper (max-w-7xl + horizontal padding)
 │   │   │   ├── Icons/
 │   │   │   │   └── GoogleIcon.tsx      Google "G" mark for the Hero's alt sign-in button
 │   │   │   ├── HeroGlassBars.tsx       Ribbon graphic behind the hero
@@ -54,7 +58,7 @@ rawi-academy/
 │   │   │   ├── AbstractRibbonBackground.tsx  Token-driven SVG ribbon bg (alternative to photo bg — not currently wired into any card)
 │   │   │   └── courses/                Subject cards for the four pillars
 │   │   │       ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg (bg-5.png)
-│   │   │       ├── QuranSunnahCard.tsx       القرآن والسنة — solid (non-glass) tafsir + memorization mockup over photo bg (bg-19.png)
+│   │   │       ├── QuranSunnahCard.tsx       القرآن والسنة — solid (non-glass) tafsir + memorization mockup over photo bg (bg-19.png); composed of local BrowserMockup/PhoneMockup sub-components
 │   │   │       ├── LanguagesCard.tsx         اللغات — glass video panel, globe, flashcard stack
 │   │   │       ├── MathCard.tsx              الرياضيات — chalkboard, geometry proof, plot, photo bg
 │   │   │       ├── FollowCard.tsx            متابعة — weekly progress mockup, brand gradient bg
@@ -67,7 +71,7 @@ rawi-academy/
 │   │   └── sections/
 │   │       ├── Navbar.tsx              Transparent, absolute-positioned navbar
 │   │       ├── Hero.tsx                Landing hero section
-│   │       ├── CoursesSection.tsx      Intro paragraph + 2-col grid of the four subject cards
+│   │       ├── CoursesSection.tsx      SectionContainer + SectionLede intro + 2-col grid of the four subject cards
 │   │       ├── FAQSection.tsx          Asymmetric FAQ (sticky heading + accordion list)
 │   │       └── Footer.tsx              Dark closing section
 │   ├── globals.css                     Design tokens, theme mapping, font wiring
@@ -137,7 +141,7 @@ Self-hosted via `next/font/local` — no external font requests, zero layout shi
 
 > Licensed by Thmanyah, sourced from [font.thmanyah.com](https://font.thmanyah.com). See the accompanying `LICENSE.pdf` before any extended commercial use.
 
-> Font sizes are currently set as one-off `text-[Npx]` values per component. A semantic scale (`text-hero`, `text-h2`, `text-h3`, `text-lead`, `text-body`, `text-caption`, `text-micro`) is planned — see Roadmap.
+> Font sizes are being migrated to a semantic scale (`text-hero`, `text-h2`, `text-h3`, `text-h3-sm`, `text-lead`, `text-body`, `text-caption`, `text-micro`) — already in use via `SectionLede` and `Button`. Remaining components still use one-off `text-[Npx]` values pending migration (see Roadmap).
 
 <br>
 
@@ -149,29 +153,38 @@ The entire project is RTL by default — `dir="rtl"` and `lang="ar"` are set onc
 
 ## Components
 
-**`Button` (`src/components/ui/button.tsx`)**
-Shared button/link component used across the site instead of one-off `<a>`/`<button>` markup. Props:
+**`Button` (`src/components/ui/Button.tsx`)**
+Shared button/link component used across the site instead of one-off `<a>`/`<button>` markup. Renders as an `<a>` when `href` is passed, a `<button>` otherwise — no separate `as` prop needed. Props:
 - `variant`: `"primary"` · `"primary-alt"` · `"outline"` · `"orange"`
 - `size`: `"sm"` · `"md"` · `"lg"`
 - `border`: overrides each variant's default border behavior
-- `icon` / `iconPosition`: custom icon, defaults to a leading arrow on `primary` / `primary-alt`
+- `icon` / `iconPosition`: custom icon, defaults to a leading chevron on `primary` / `primary-alt`
 - `fullWidth`: stretches to 100% width
 - `href`: renders an `<a>` when present, a `<button>` otherwise
 
+**`NavLink` (`src/components/ui/NavLink.tsx`)**
+Shared navigation link used in both the navbar and footer. Handles three states out of the box: a plain link, a link with a rotating chevron, and a link with a glassmorphic dropdown panel (`items` prop). Colors are controlled entirely via `context` (`"navbar"` | `"footer"`) — never passed manually through `className`, keeping navbar/footer link styling centralized.
+
+**`SectionLede` (`src/components/ui/SectionLede.tsx`)**
+Reusable section intro block combining an emphasized `lead` statement, a muted `sub` line, and an optional separate `body` paragraph. All three props are optional and render independently — e.g. passing only `body` renders just the body paragraph with no lead/sub block at all.
+
+**`SectionContainer` (`src/components/layout/SectionContainer.tsx`)**
+Reusable content-width wrapper (`max-w-7xl mx-auto px-10`) used inside top-level `<section>` elements. Centralizes horizontal constraint only — background color, vertical spacing (`pt-*`), and `dir` are left on the parent `<section>` so each section can vary independently without fighting the container.
+
 **`Navbar.tsx`**
-Fully transparent, `position: absolute` navbar meant to sit over the hero, built with the shared `Button` component for its actions. Rendered once in `layout.tsx` so it persists across every page.
+Fully transparent, `position: absolute` navbar meant to sit over the hero, built with the shared `Button` and `NavLink` components. Rendered once in `layout.tsx` so it persists across every page.
 
 **`Hero.tsx`**
 Opening section with a stat line, a two-tone display headline, primary/outline CTAs (via `Button`, the outline variant paired with `GoogleIcon`), and a trusted-by marquee strip. Includes an SVG ribbon (`HeroGlassBars`) built from the same four shapes as the logo mark.
 
 **`CoursesSection.tsx`**
-Intro paragraph (two-tone, bold lead-in + muted continuation) followed by a 2-column grid of the four subject cards.
+`SectionContainer` wrapping a `SectionLede` intro (two-tone, bold lead-in + muted continuation) followed by a 2-column grid of the four subject cards.
 
 **`FAQSection.tsx`**
 Asymmetric two-column layout instead of a centered accordion: a sticky heading block on one side, an accordion list on the other. Question badges reuse the Arabic verse-marker motif from `QuranSunnahCard` (Arabic-Indic numerals in a circular badge) instead of a generic plus/chevron icon. Answers reveal with a self-drawing underline (`scaleX` from the trailing edge) on open.
 
 **`Footer.tsx`**
-Dark (`neutral-900`) closing section, intentionally breaking from the light theme used everywhere else. Asymmetric top row (logo + tagline vs. a single CTA), four link columns, and custom inline SVG social icons (`lucide-react` no longer ships brand/logo icons, so Instagram/Twitter/YouTube are hand-drawn minimal outlines using `currentColor`).
+Dark (`neutral-900`) closing section, intentionally breaking from the light theme used everywhere else. Asymmetric top row (logo + tagline vs. a single CTA), four link columns built with `NavLink` (`context="footer"`), and custom inline SVG social icons (`lucide-react` no longer ships brand/logo icons, so Instagram/Twitter/YouTube are hand-drawn minimal outlines using `currentColor`).
 
 ### Subject Cards (`src/components/courses/`)
 
@@ -180,7 +193,7 @@ Each of the four pillars gets a dedicated, visually distinct card. Card shells s
 | Card | Background | Panel style | Notable pieces |
 |:--|:--|:--|:--|
 | `ProgrammingCard` | Photo (`bg-5.png`) | Glass (`bg-white/40 backdrop-blur-xl`) | Glass code-editor window (macOS dots, syntax highlighting, `Tab` hint), glass "مسار البرمجة" progress panel |
-| `QuranSunnahCard` | Photo (`bg-19.png`) | Solid (`bg-neutral-0`) | Tafsir mockup window, phone-frame memorization mockup with radial progress |
+| `QuranSunnahCard` | Photo (`bg-19.png`) | Solid (`bg-neutral-0`) | `BrowserMockup` (tafsir window, local sub-component) + `PhoneMockup` (memorization view with radial progress ring, local sub-component) |
 | `LanguagesCard` | Photo (`bg-18.png`), extends into the title area | Glass | `Globe`, `LanguageFlashcardStack`, glass video-call panel with `CyclingWord` headline |
 | `MathCard` | Photo (`bg-18.png`), extends into the title area | Glass | `ChalkboardSteps`, `GeometryProofCard`, `MathPlot`, `BridgeSentence`, guide-line/grain SVG overlays |
 | `FollowCard` | Brand gradient (mint → blue → violet → orchid → coral → orange) | Solid | Weekly progress ring + 7-day bar chart mockup |
@@ -194,6 +207,8 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 **Photo backgrounds** live in `public/backgrounds/` and are applied via `bg-cover bg-center` + `backgroundImage`. When a card's title should read as part of the photo rather than sit on a separate white strip, the background is set on the *outermost* card container instead of the inner content wrapper.
 
 **`AbstractRibbonBackground`** — a token-driven SVG alternative to photo backgrounds (diagonal ribbon bands built from `--color-accent-*` gradients + a subtle framer-motion drift), built to remove reliance on stock photography. Not currently used by any card — `ProgrammingCard` reverted to a photo background (`bg-5.png`).
+
+**Local sub-components** — some cards break their JSX into small, file-local functions (e.g. `BrowserMockup` / `PhoneMockup` inside `QuranSunnahCard.tsx`) purely for readability. These stay local as long as they're only used within that one card; if a future card needs the same mockup, it should be extracted into its own file under `components/ui/` rather than duplicated.
 
 <br>
 
@@ -211,14 +226,16 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 - [x] Courses section (intro + grid)
 - [x] FAQ section
 - [x] Footer
+- [x] Shared `SectionContainer` / `SectionLede` components for section intros
 - [ ] Remaining landing sections (testimonials, pricing)
 - [ ] Scroll-aware navbar (background/border fade-in past the hero)
 - [ ] Mobile layouts for all sections
 - [ ] Fix naming + wire `--visual-*` tokens into `@theme inline`
-- [ ] Tokenize the font-size scale (`text-hero`, `text-h2`, `text-h3`, …)
+- [ ] Finish migrating remaining components off one-off `text-[Npx]` values onto the semantic font-size scale
 - [ ] Resolve off-palette hex values in `ProgrammingCard` / `QuranSunnahCard`
 - [ ] Decide `FollowCard` background direction (keep gradient vs. switch to `AbstractRibbonBackground`)
 - [ ] Remove unused `accent-orange` / `accent-pink` tokens
+- [ ] Extract `PhoneMockup` / `BrowserMockup` from `QuranSunnahCard` into shared components if reused by another subject card
 
 <br>
 
