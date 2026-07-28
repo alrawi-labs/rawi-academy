@@ -27,13 +27,6 @@ type NavLinkProps = {
   context?: "navbar" | "footer";
 
   /**
-   * Whether this link should render a dropdown chevron and,
-   * if `items` are provided, an interactive dropdown panel on hover.
-   * @default false
-   */
-  hasDropdown?: boolean;
-
-  /**
    * List of dropdown items shown when `hasDropdown` is true.
    * Ignored if `hasDropdown` is false or the array is empty.
    */
@@ -72,11 +65,15 @@ const contextStyles: Record<
  * Handles three link states out of the box:
  * 1. Plain link (no dropdown)
  * 2. Link with a chevron icon that rotates on hover (`hasDropdown`)
- * 3. Link with a full dropdown panel (`hasDropdown` + `items`)
+ * 3. Link with a full glassmorphic dropdown panel (`hasDropdown` + `items`)
  *
  * Colors are controlled via the `context` prop — never pass color
  * classes manually through `className`. This keeps navbar/footer
  * styling consistent and centralized in one place.
+ *
+ * The dropdown panel follows the site's glassmorphism language
+ * (bg-white/45 + backdrop-blur-xl + soft purple-tinted shadow),
+ * matching components like AIModelsCard.
  *
  * @example
  * // Plain link
@@ -102,7 +99,6 @@ const contextStyles: Record<
  */
 export default function NavLink({
   context = "navbar",
-  hasDropdown = false,
   items,
   children,
   className = "",
@@ -111,13 +107,20 @@ export default function NavLink({
 }: NavLinkProps) {
   const [open, setOpen] = useState(false);
   const styles = contextStyles[context];
-  const showDropdown = hasDropdown && items && items.length > 0;
+  const hasDropdown = !!items?.length; // tek kaynak, tek karar noktası
+
+  const accentColors = [
+    "#FD9120", // orange
+    "#8059E8", // purple
+    "#22C1A0", // teal
+    "#F386C4", // pink
+  ];
 
   return (
     <div
       className="relative"
-      onMouseEnter={() => showDropdown && setOpen(true)}
-      onMouseLeave={() => showDropdown && setOpen(false)}
+      onMouseEnter={() => hasDropdown && setOpen(true)}
+      onMouseLeave={() => hasDropdown && setOpen(false)}
     >
       <a
         href={href}
@@ -128,22 +131,54 @@ export default function NavLink({
         {hasDropdown && (
           <ChevronDown
             size={14}
-            className={`transition-transform ${styles.icon} ${open ? "rotate-180" : ""}`}
+            className={`transition-transform duration-300 ${styles.icon} ${
+              open ? "rotate-180" : ""
+            }`}
           />
         )}
       </a>
 
-      {showDropdown && open && (
-        <div className="absolute top-full right-0 mt-2 bg-white rounded-lg border border-neutral-200 shadow-lg py-2 min-w-[180px] z-50">
-          {items!.map((item) => (
-            <a
-              key={item.key}
-              href={item.href ?? "#"}
-              className="block px-4 py-2 text-body text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
+      {hasDropdown && (
+        // Dış sarmalayıcı: görsel boşluk artık padding ile oluşturuluyor
+        // (margin değil) — böylece hover alanı kesintisiz kalır ve
+        // imleç panele giderken dropdown kaybolmaz.
+        <div
+          className={`absolute top-full right-0 pt-3 min-w-[200px] z-50 transition-all duration-200 ${
+            open
+              ? "opacity-100 translate-y-0 visible"
+              : "opacity-0 -translate-y-1 invisible pointer-events-none"
+          }`}
+        >
+          <div
+            dir="rtl"
+            className="relative overflow-hidden rounded-sm bg-white/95 backdrop-blur-xl border border-white/60 shadow-[0_35px_70px_-25px_rgba(20,16,40,0.3)] py-2"
+          >
+            {/* üstteki ince marka gradyanı — AIModelsCard ile aynı renk paleti */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[2px] opacity-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, #FD9120 0%, #F386C4 50%, #8059E8 100%)",
+              }}
+            />
+
+            {items!.map((item, index) => {
+              const color = accentColors[index % accentColors.length];
+              return (
+                <a
+                  key={item.key}
+                  href={item.href ?? "#"}
+                  className="group relative block px-4 py-2.5 font-thmanyah-text text-[13.5px] text-[#3F3F52] transition-colors duration-200 hover:text-[#09090B]"
+                >
+                  <span
+                    className="absolute inset-0 rounded-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                    style={{ backgroundColor: `${color}0F` /* ~%6 opaklık */ }}
+                  />
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
