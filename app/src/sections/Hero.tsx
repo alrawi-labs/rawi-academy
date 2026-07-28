@@ -18,14 +18,14 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-[5.4fr_0.95fr] items-center min-h-[640px]">
           <div className="pt-[130px] pb-10">
             {/* الإحصائية العلوية */}
-            <div className="flex items-center gap-2 mb-7 font-mono text-[13px] text-neutral-500">
+            <div className="flex items-center gap-2 mb-7 font-mono text-caption text-neutral-500">
               <span className="w-1.5 h-1.5 rounded-full bg-accent-teal" />
               نسبة الطلاب الذين طوّروا مهاراتهم مع راوي:{" "}
               <b className="text-secondary font-medium">92.4%</b>
             </div>
 
             {/* العنوان الرئيسي */}
-            <h1 className="font-thmanyah-display font-bold text-[44px] leading-[1.25] tracking-tight">
+            <h1 className="font-thmanyah-display font-bold text-hero leading-[1.25] tracking-tight">
               <span className="text-secondary">
                 أربعة أركان لبناء معرفة تكبر مع أبنائك.{" "}
               </span>
@@ -45,7 +45,6 @@ export default function Hero() {
               <Button
                 variant="primary-alt"
                 href="#"
-                icon={<ChevronLeft className="w-4 h-4" strokeWidth={2.5} />}
               >
                 ابدأ الآن
               </Button>
