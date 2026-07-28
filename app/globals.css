@@ -6,7 +6,7 @@
   /* ------------------------------ */
   --color-primary: #8059e8;
   --color-primary-hover: #6e48e0;
-  --color-primary-light: #eeedfe; /* açık mor - badge, hover bg vb. için */
+  --color-primary-light: #eeedfe;
 
   --color-primary-alt: #533afd;
   --color-primary-alt-hover: #4229e0;
@@ -18,19 +18,19 @@
   --color-orange-bg-hover: #fff4ee;
 
   /* ------------------------------ */
-  /* Neutral scale (metinler, arka planlar, border'lar) */
+  /* Neutral scale */
   /* ------------------------------ */
-  --color-neutral-900: #09090b; /* başlıklar, koyu metin */
-  --color-neutral-700: #3f3f52; /* paragraf metni */
-  --color-neutral-500: #5f6b85; /* ikincil metin, şirket isimleri */
-  --color-neutral-400: #7a7f94; /* soluk metin, alt başlık */
-  --color-neutral-300: #b9b4ce; /* nokta ayraçlar, ince detaylar */
-  --color-neutral-200: #e4e7ed; /* border, divider */
-  --color-neutral-100: #f7f8fc; /* section arka planı */
+  --color-neutral-900: #09090b;
+  --color-neutral-700: #3f3f52;
+  --color-neutral-500: #5f6b85;
+  --color-neutral-400: #7a7f94;
+  --color-neutral-300: #b9b4ce;
+  --color-neutral-200: #e4e7ed;
+  --color-neutral-100: #f7f8fc;
   --color-neutral-0: #ffffff;
 
   /* ------------------------------ */
-  /* Accent (hero'daki gradient şeritler) */
+  /* Accent */
   /* ------------------------------ */
   --color-accent-teal: #5eead4;
   --color-accent-orange: #fdba74;
@@ -40,13 +40,13 @@
   /* ------------------------------ */
   /* Visual (hero'daki gradient şeritler) */
   /* ------------------------------ */
-  --color--visual-teal: #00d2be;
-  --color--visual-orange: #fd7900;
-  --color--visual-purple: #5e46ff;
-  --color--visual-pink: #ff2daa;
+  --color-visual-teal: #00d2be;
+  --color-visual-orange: #fd7900;
+  --color-visual-purple: #5e46ff;
+  --color-visual-pink: #ff2daa;
 
   /* ------------------------------ */
-  /* Semantic aliases               */
+  /* Semantic aliases */
   /* ------------------------------ */
   --background: var(--color-neutral-0);
   --foreground: var(--color-neutral-900);
@@ -72,11 +72,11 @@
   --color-orange: var(--color-orange);
   --color-orange-bg-hover: var(--color-orange-bg-hover);
 
-  /* Secondary = koyu metin / başlık rengi olarak kullanıyoruz */
+  /* Secondary = koyu metin / başlık rengi */
   --color-secondary: var(--color-neutral-900);
   --color-secondary-muted: var(--color-neutral-700);
 
-  /* Neutral scale doğrudan erişilebilir olsun */
+  /* Neutral scale */
   --color-neutral-900: var(--color-neutral-900);
   --color-neutral-700: var(--color-neutral-700);
   --color-neutral-500: var(--color-neutral-500);
@@ -86,23 +86,30 @@
   --color-neutral-100: var(--color-neutral-100);
   --color-neutral-0: var(--color-neutral-0);
 
-  /* Accent */
-  --color-accent-purple: #8946ff; /* koyu mor, eskiden #A78BFA */
-  --color-accent-violet: #b88cff; /* açık violet - yeni token */
-  --color-accent-blue: #5b95ff; /* mavi - yeni token */
-  --color-accent-teal: #18e5fb;
+  /* Accent — artık :root'taki gerçek değerlere referans veriyor */
+  --color-accent-teal: var(--color-accent-teal);
+  --color-accent-orange: var(--color-accent-orange);
+  --color-accent-purple: var(--color-accent-purple);
+  --color-accent-pink: var(--color-accent-pink);
+
+  /* Visual — eksikti, eklendi */
+  --color-visual-teal: var(--color-visual-teal);
+  --color-visual-orange: var(--color-visual-orange);
+  --color-visual-purple: var(--color-visual-purple);
+  --color-visual-pink: var(--color-visual-pink);
 
   --font-sans: var(--font-thmanyah-sans);
   --font-mono: var(--font-geist-mono);
 
-  --text-hero: 2.75rem; /* 44px — Hero H1 */
-  --text-h2: 2.125rem; /* 34px — section başlıkları (FAQ vb.) */
-  --text-h3: 1.375rem; /* 22px — kart başlıkları */
-  --text-h3-sm: 1.1875rem; /* 19px — daha küçük kart başlığı */
-  --text-lead: 1.75rem; /* 28px — CoursesSection üst paragraf */
-  --text-body: 0.9375rem; /* 15px */
+  --text-hero: 2.75rem;      /* 44px */
+  --text-h2: 2.125rem;       /* 34px */
+  --text-h2-sm: 1.625rem;    /* 26px */
+  --text-h3: 1.375rem;       /* 22px */
+  --text-h3-sm: 1.1875rem;   /* 19px */
+  --text-lead: 1.75rem;      /* 28px */
+  --text-body: 0.9375rem;    /* 15px */
   --text-caption: 0.8125rem; /* 13px */
-  --text-micro: 0.6875rem; /* 11px */
+  --text-micro: 0.6875rem;   /* 11px */
 }
 
 @layer base {
