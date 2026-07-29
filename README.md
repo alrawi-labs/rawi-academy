@@ -57,10 +57,11 @@ rawi-academy/
 │   │   │   ├── CyclingWord.tsx         Word-cycling animated text
 │   │   │   ├── AbstractRibbonBackground.tsx  Token-driven SVG ribbon bg (alternative to photo bg — not currently wired into any card)
 │   │   │   └── courses/                Subject cards for the four pillars
-│   │   │       ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg (bg-5.png)
+│   │   │       ├── CardHeader.tsx            Shared title row (subject name + accented Expand button); color variant per subject, size variant per card width
+│   │   │       ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg (bg-5.png); composed of local CodeEditorMockup/ProgressPanel sub-components
 │   │   │       ├── QuranSunnahCard.tsx       القرآن والسنة — solid (non-glass) tafsir + memorization mockup over photo bg (bg-19.png); composed of local BrowserMockup/PhoneMockup sub-components
-│   │   │       ├── LanguagesCard.tsx         اللغات — glass video panel, globe, flashcard stack
-│   │   │       ├── MathCard.tsx              الرياضيات — chalkboard, geometry proof, plot, photo bg
+│   │   │       ├── LanguagesCard.tsx         اللغات — glass video panel, globe, flashcard stack; composed of local VideoPanel/CyclingHeadline sub-components
+│   │   │       ├── MathCard.tsx              الرياضيات — chalkboard, geometry proof, plot, photo bg; decorative SVG/gradient layers grouped into a local DecorativeOverlays sub-component
 │   │   │       ├── FollowCard.tsx            متابعة — weekly progress mockup, brand gradient bg
 │   │   │       ├── ChalkboardSteps.tsx       Animated step-by-step algebra solve (glass)
 │   │   │       ├── GeometryProofCard.tsx     Animated Pythagorean theorem proof (glass)
@@ -129,6 +130,15 @@ Tokens are defined in `globals.css` under `:root` and mapped into Tailwind via `
 
 > These are reconciled with the logo mark's saturated tones (previously a softer pastel set — see Known Issues for the leftover unused tokens from that earlier version).
 
+**Subject accent colors** — each of the four pillars has a fixed identity color, applied via `CardHeader`'s `color` prop using plain Tailwind palette classes (not yet formalized as design tokens):
+
+| Subject | Color |
+|:--|:--|
+| القرآن والسنة (Quran & Sunnah) | teal |
+| البرمجة (Programming) | purple |
+| الرياضيات (Math) | orange |
+| اللغات (Languages) | pink |
+
 ### Typography
 
 Self-hosted via `next/font/local` — no external font requests, zero layout shift.
@@ -141,7 +151,7 @@ Self-hosted via `next/font/local` — no external font requests, zero layout shi
 
 > Licensed by Thmanyah, sourced from [font.thmanyah.com](https://font.thmanyah.com). See the accompanying `LICENSE.pdf` before any extended commercial use.
 
-> Font sizes are being migrated to a semantic scale (`text-hero`, `text-h2`, `text-h3`, `text-h3-sm`, `text-lead`, `text-body`, `text-caption`, `text-micro`) — already in use via `SectionLede` and `Button`. Remaining components still use one-off `text-[Npx]` values pending migration (see Roadmap).
+> Font sizes are being migrated to a semantic scale (`text-hero`, `text-h2`, `text-h3`, `text-h3-sm`, `text-h2-sm`, `text-lead`, `text-body`, `text-caption`, `text-micro`) — already in use via `SectionLede`, `Button`, `CardHeader`, and the wide subject cards (`text-h2-sm`, 26px). Remaining components still use one-off `text-[Npx]` values pending migration (see Roadmap).
 
 <br>
 
@@ -171,6 +181,13 @@ Reusable section intro block combining an emphasized `lead` statement, a muted `
 **`SectionContainer` (`src/components/layout/SectionContainer.tsx`)**
 Reusable content-width wrapper (`max-w-7xl mx-auto px-10`) used inside top-level `<section>` elements. Centralizes horizontal constraint only — background color, vertical spacing (`pt-*`), and `dir` are left on the parent `<section>` so each section can vary independently without fighting the container.
 
+**`CardHeader` (`src/components/courses/CardHeader.tsx`)**
+Shared title row used at the top of every subject card in `CoursesSection`, pairing the subject name with an accented "expand details" icon button. Props:
+- `color`: `"teal"` · `"purple"` · `"orange"` · `"pink"` — fixed 1:1 mapping to subject (see Subject Cards table)
+- `size`: `"sm"` (narrow cards — `px-8 pt-8 pb-2`, `text-h3`) · `"lg"` (wide, `col-span-2` cards — `px-10 pt-4 pb-0`, `text-h2-sm`)
+
+Colors are controlled entirely via `color` — never passed manually through `className` — so each subject's accent stays consistent everywhere its header appears.
+
 **`Navbar.tsx`**
 Fully transparent, `position: absolute` navbar meant to sit over the hero, built with the shared `Button` and `NavLink` components. Rendered once in `layout.tsx` so it persists across every page.
 
@@ -188,17 +205,17 @@ Dark (`neutral-900`) closing section, intentionally breaking from the light them
 
 ### Subject Cards (`src/components/courses/`)
 
-Each of the four pillars gets a dedicated, visually distinct card. Card shells share `rounded-lg`, `shadow-sm`, and a title row with an `Expand` icon button, but differ in background treatment and whether the floating panels are glass or solid:
+Each of the four pillars gets a dedicated, visually distinct card, sharing the `CardHeader` component for its title row. Cards differ in background treatment and whether the floating panels are glass or solid:
 
-| Card | Background | Panel style | Notable pieces |
-|:--|:--|:--|:--|
-| `ProgrammingCard` | Photo (`bg-5.png`) | Glass (`bg-white/40 backdrop-blur-xl`) | Glass code-editor window (macOS dots, syntax highlighting, `Tab` hint), glass "مسار البرمجة" progress panel |
-| `QuranSunnahCard` | Photo (`bg-19.png`) | Solid (`bg-neutral-0`) | `BrowserMockup` (tafsir window, local sub-component) + `PhoneMockup` (memorization view with radial progress ring, local sub-component) |
-| `LanguagesCard` | Photo (`bg-18.png`), extends into the title area | Glass | `Globe`, `LanguageFlashcardStack`, glass video-call panel with `CyclingWord` headline |
-| `MathCard` | Photo (`bg-18.png`), extends into the title area | Glass | `ChalkboardSteps`, `GeometryProofCard`, `MathPlot`, `BridgeSentence`, guide-line/grain SVG overlays |
-| `FollowCard` | Brand gradient (mint → blue → violet → orchid → coral → orange) | Solid | Weekly progress ring + 7-day bar chart mockup |
+| Card | Accent color | Background | Panel style | Notable pieces |
+|:--|:--|:--|:--|:--|
+| `QuranSunnahCard` | teal | Photo (`bg-19.png`) | Solid (`bg-neutral-0`) | `BrowserMockup` (tafsir window, local) + `PhoneMockup` (memorization view with radial progress ring, local) |
+| `ProgrammingCard` | purple | Photo (`bg-5.png`) | Glass (`bg-white/40 backdrop-blur-xl`) | `CodeEditorMockup` (local; glass editor window, macOS dots, syntax highlighting, `Tab` hint) + `ProgressPanel` (local; "مسار البرمجة" progress + activity chart) |
+| `MathCard` | orange | Photo (`bg-24.png`), extends into the title area | Glass | `ChalkboardSteps`, `GeometryProofCard`, `MathPlot`, `BridgeSentence` (all shared), plus `DecorativeOverlays` (local; grain texture, golden-ratio guide lines, corner ring, warm glow, ground shadow) |
+| `LanguagesCard` | pink | Photo (`bg-25.png`), extends into the title area | Glass | `Globe`, `LanguageFlashcardStack` (shared), plus `VideoPanel` (local; glass live-class window with floating badges) and `CyclingHeadline` (local; animated word headline over the globe) |
+| `FollowCard` | — | Brand gradient (mint → blue → violet → orchid → coral → orange) | Solid | Weekly progress ring + 7-day bar chart mockup |
 
-**Glassmorphism pattern** — used for any panel that floats over a photo or gradient background (`ChalkboardSteps`, `GeometryProofCard`, the code editor and progress panel in `ProgrammingCard`, the video panel in `LanguagesCard`):
+**Glassmorphism pattern** — used for any panel that floats over a photo or gradient background (`ChalkboardSteps`, `GeometryProofCard`, `CodeEditorMockup`/`ProgressPanel` in `ProgrammingCard`, `VideoPanel` in `LanguagesCard`):
 ```
 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_30px_60px_-20px_rgba(20,16,40,0.25)]
 ```
@@ -208,7 +225,7 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 
 **`AbstractRibbonBackground`** — a token-driven SVG alternative to photo backgrounds (diagonal ribbon bands built from `--color-accent-*` gradients + a subtle framer-motion drift), built to remove reliance on stock photography. Not currently used by any card — `ProgrammingCard` reverted to a photo background (`bg-5.png`).
 
-**Local sub-components** — some cards break their JSX into small, file-local functions (e.g. `BrowserMockup` / `PhoneMockup` inside `QuranSunnahCard.tsx`) purely for readability. These stay local as long as they're only used within that one card; if a future card needs the same mockup, it should be extracted into its own file under `components/ui/` rather than duplicated.
+**Local sub-components** — every subject card now breaks its JSX into small, file-local functions purely for readability (e.g. `BrowserMockup` / `PhoneMockup` in `QuranSunnahCard.tsx`, `CodeEditorMockup` / `ProgressPanel` in `ProgrammingCard.tsx`, `VideoPanel` / `CyclingHeadline` in `LanguagesCard.tsx`, `DecorativeOverlays` in `MathCard.tsx`). These stay local as long as they're only used within that one card; if a future card needs the same mockup, it should be extracted into its own file under `components/ui/` rather than duplicated.
 
 <br>
 
@@ -216,7 +233,9 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 
 - `--color-accent-orange` and `--color-accent-pink` still exist in `:root` but were never mapped into `@theme inline` — dead tokens from the pre-reconciliation palette, safe to remove.
 - New `--visual-*` tokens (`--color--visual-teal/orange/purple/pink`) have a naming typo (double dash: `--color--visual-*` instead of `--color-visual-*`) and aren't yet mapped into `@theme inline`. Pending a follow-up pass.
-- Off-palette hardcoded hex values with no matching token: `#FD9120`, `#C23B82`, `#F386C4`, `#6E6584`, `#8B87A3` (all in `ProgrammingCard`), `#22C1A0` (in `QuranSunnahCard`). Decision pending on whether to formalize these as tokens.
+- Off-palette hardcoded hex values with no matching token: `#FD9120`, `#C23B82`, `#F386C4`, `#6E6584`, `#8B87A3` (all in `ProgrammingCard`), `#22C1A0` (in `QuranSunnahCard`), `#8059E8` used directly as an SVG `stroke` in `MathCard`'s guide lines/ring (Tailwind color classes don't apply to SVG `stroke` attributes, so this one is expected to stay as a raw value or move to `var(--color-primary)`). Decision pending on whether to formalize the rest as tokens.
+- `CardHeader`'s four subject accent colors (teal/purple/orange/pink) currently use plain Tailwind palette classes (`teal-400`, `purple-400`, etc.), not project design tokens — consider formalizing once the `--visual-*` token naming is fixed.
+- `MathCard` has an empty, content-less floating `div` (positioned like `LanguagesCard`'s `CyclingHeadline`, `right-[8%]`) — unclear whether it's an intentional placeholder or a leftover from an earlier draft.
 
 <br>
 
@@ -227,15 +246,18 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 - [x] FAQ section
 - [x] Footer
 - [x] Shared `SectionContainer` / `SectionLede` components for section intros
+- [x] Shared `CardHeader` component with per-subject color + size variants
+- [x] Split all four subject cards into local sub-components for readability
 - [ ] Remaining landing sections (testimonials, pricing)
 - [ ] Scroll-aware navbar (background/border fade-in past the hero)
 - [ ] Mobile layouts for all sections
 - [ ] Fix naming + wire `--visual-*` tokens into `@theme inline`
 - [ ] Finish migrating remaining components off one-off `text-[Npx]` values onto the semantic font-size scale
-- [ ] Resolve off-palette hex values in `ProgrammingCard` / `QuranSunnahCard`
+- [ ] Resolve off-palette hex values in `ProgrammingCard` / `QuranSunnahCard` / `MathCard`
 - [ ] Decide `FollowCard` background direction (keep gradient vs. switch to `AbstractRibbonBackground`)
 - [ ] Remove unused `accent-orange` / `accent-pink` tokens
-- [ ] Extract `PhoneMockup` / `BrowserMockup` from `QuranSunnahCard` into shared components if reused by another subject card
+- [ ] Resolve the empty placeholder `div` in `MathCard` (remove or give it content like `LanguagesCard`'s `CyclingHeadline`)
+- [ ] Formalize `CardHeader`'s subject accent colors as design tokens
 
 <br>
 
