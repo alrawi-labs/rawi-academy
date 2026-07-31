@@ -2,15 +2,11 @@
 
 import { CardHeader } from "./CardHeader";
 
-/**
- * Browser-style mockup showing a tafsir (Quran interpretation) page,
- * positioned on the upper-right area of the card's background image.
- */
 function BrowserMockup() {
   return (
     <div
       dir="ltr"
-      className="absolute right-[28%] top-10 w-[62%] bg-neutral-0 rounded-xl border border-black/5"
+      className="absolute right-[26%] sm:right-[28%] top-5 sm:top-8 lg:top-10 w-[64%] sm:w-[62%] bg-neutral-0 rounded-xl border border-black/5 scale-[0.72] sm:scale-90 lg:scale-100 origin-top-right"
       style={{
         boxShadow:
           "0 30px 60px -20px color-mix(in srgb, var(--color-primary) 25%, transparent)",
@@ -33,7 +29,7 @@ function BrowserMockup() {
             التفسير
           </span>
         </div>
-        <p className="font-thmanyah-text text-[14px] leading-8 text-neutral-700 mt-3">
+        <p className="font-thmanyah-text text-[14px] leading-8 text-neutral-700 mt-3 line-clamp-3 sm:line-clamp-4 lg:line-clamp-none">
           الثناء على الله بصفاته التي كلُّها أوصاف كمال، وبنعمه الظاهرة
           والباطنة، الدينية والدنيوية، الذي تفضَّل فأنزل على عبده ورسوله محمد
           صلى الله عليه وسلم القرآن، ولم يجعل فيه شيئًا من الميل عن الحق.
@@ -51,14 +47,9 @@ function BrowserMockup() {
   );
 }
 
-/**
- * Phone-style mockup showing the memorization/recitation view, with a
- * progress ring, audio player, and status dots — positioned at the
- * bottom-right of the card's background image.
- */
 function PhoneMockup() {
   return (
-    <div className="absolute right-4 bottom-0 w-52.5">
+    <div className="absolute right-3 sm:right-4 bottom-0 w-52.5 scale-[0.58] sm:scale-[0.72] md:scale-[0.85] lg:scale-100 origin-bottom-right">
       <div
         className="rounded-[38px] p-1 border-2 border-neutral-200 bg-neutral-100 opacity-95"
         style={{
@@ -170,25 +161,13 @@ function PhoneMockup() {
   );
 }
 
-/**
- * QuranSunnahCard — course showcase card for the "القرآن الكريم والسنة"
- * subject, part of the CoursesSection grid.
- *
- * Composed of two local mockups layered on a background image:
- * 1. `BrowserMockup` — a tafsir reading view (top-right).
- * 2. `PhoneMockup` — a memorization/recitation view (bottom-right).
- *
- * These sub-components are kept local to this file since they are not
- * currently reused elsewhere. If a future card needs the same mockup,
- * extract it into its own file under `components/ui/`.
- */
 export default function QuranSunnahCard() {
   return (
     <div className="relative bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm">
       <CardHeader title="القرآن الكريم والسنة — حفظٌ وفهمٌ يوميّ" color="teal" />
 
       <div
-        className="relative h-105 mt-4 overflow-hidden bg-cover bg-center"
+        className="relative h-84 sm:h-92 md:h-100 lg:h-105 mt-4 overflow-hidden bg-cover bg-center"
         style={{
           backgroundImage: "url(/backgrounds/bg-19.png)",
         }}

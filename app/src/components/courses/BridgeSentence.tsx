@@ -23,7 +23,7 @@ export function BridgeSentence() {
   const bridgeLineStyle: BridgeLineStyle = { "--mc-len": 430 };
 
   return (
-    <div className="hidden md:block absolute left-[35%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-[270px] h-[270px] pointer-events-none">
+    <div className="hidden md:block absolute left-[35%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-67.5 h-67.5 pointer-events-none">
       <style>{`
         @keyframes mc-bridge-draw {
           from { stroke-dashoffset: var(--mc-len); }
@@ -55,9 +55,9 @@ export function BridgeSentence() {
       <svg viewBox="0 0 220 220" className="absolute inset-0 w-full h-full overflow-visible">
         <defs>
           <linearGradient id="bridgeStroke" x1="8" y1="92" x2="150" y2="150" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#D6D0EE" />
-            <stop offset="55%" stopColor="#8059E8" />
-            <stop offset="100%" stopColor="#4E2FB0" />
+            <stop offset="0%" stopColor="var(--color-accent-purple)" />
+            <stop offset="55%" stopColor="var(--color-primary)" />
+            <stop offset="100%" stopColor="var(--color-outline-hover)" />
           </linearGradient>
           <filter id="bridgeGlow" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur stdDeviation="3.2" result="blur" />
@@ -81,16 +81,16 @@ export function BridgeSentence() {
 
         {/* نقطة توهّج تتجول ببطء على طول المسار — إشارة فكرة تنتقل من البسيط إلى المعقد */}
         {!reduceMotion && (
-          <circle r="2.6" fill="#5B34C4" filter="url(#bridgeGlow)">
+          <circle r="2.6" fill="var(--color-outline-hover)" filter="url(#bridgeGlow)">
             <animateMotion dur="7s" repeatCount="indefinite" path={BRIDGE_PATH} rotate="auto" begin="2.6s" />
           </circle>
         )}
 
         {/* رموز رياضية تتصاعد في تعقيدها مع تقدّم الخط */}
-        <text x="19" y="90" fontSize="15" fill="#B7ACE6" className="mc-bridge-glyph" style={{ animationDelay: "0.6s" }}>
+        <text x="19" y="90" fontSize="15" fill="var(--color-accent-purple)" className="mc-bridge-glyph" style={{ animationDelay: "0.6s" }}>
           - +
         </text>
-        <text x="120" y="68" fontSize="15" fill="#8059E8" className="mc-bridge-glyph" style={{ animationDelay: "1.4s" }}>
+        <text x="120" y="68" fontSize="15" fill="var(--color-primary)" className="mc-bridge-glyph" style={{ animationDelay: "1.4s" }}>
           √
         </text>
         <text
@@ -98,7 +98,7 @@ export function BridgeSentence() {
           y="140"
           fontSize="15"
           fontWeight="700"
-          fill="#4E2FB0"
+          fill="var(--color-outline-hover)"
           filter="url(#bridgeGlow)"
           className="mc-bridge-glyph"
           style={{ animationDelay: "2.2s" }}
@@ -107,12 +107,12 @@ export function BridgeSentence() {
         </text>
 
         {/* نقطة الوصول — توهّج ثابت عند مركز الالتفاف */}
-        <circle cx="110" cy="128" r="3.4" fill="#4E2FB0" filter="url(#bridgeGlow)" className="mc-bridge-glyph" style={{ animationDelay: "2.6s" }} />
+        <circle cx="110" cy="128" r="3.4" fill="var(--color-outline-hover)" filter="url(#bridgeGlow)" className="mc-bridge-glyph" style={{ animationDelay: "2.6s" }} />
       </svg>
 
       <div
         dir="rtl"
-        className="mc-bridge-label absolute left-[2%] top-[27%] font-thmanyah-display text-[15px] font-medium tracking-wide text-[#A8A2C4] whitespace-nowrap"
+        className="mc-bridge-label absolute left-[2%] top-[27%] font-thmanyah-display text-body font-medium tracking-wide text-neutral-500 whitespace-nowrap"
         style={{ animationDelay: "0.5s", transform: "rotate(-4deg)" }}
       >
         من الأساسيات
@@ -120,7 +120,7 @@ export function BridgeSentence() {
 
       <div
         dir="rtl"
-        className="mc-bridge-label absolute left-[28%] top-[66%] font-thmanyah-display text-[21px] font-bold text-[#2E2153] leading-snug whitespace-nowrap"
+        className="mc-bridge-label absolute left-[28%] top-[66%] font-thmanyah-display text-[21px] font-bold text-neutral-800 leading-snug whitespace-nowrap"
         style={{ animationDelay: "2.4s" }}
       >
         إلى أصعب المسائل

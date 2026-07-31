@@ -62,7 +62,7 @@ export default function LanguageFlashcardStack() {
   };
 
   return (
-    <div className="relative w-[228px] h-[292px]">
+    <div className="relative w-57 h-73">
       {visible.map((lang, depth) => (
         <div
           key={lang.native}
@@ -72,34 +72,34 @@ export default function LanguageFlashcardStack() {
             zIndex: 10 - depth,
           }}
         >
-          <div className="w-full h-full bg-white/60 backdrop-blur-md backdrop-saturate-150 rounded-lg border border-white/60 shadow-[0_30px_60px_-20px_rgba(120,80,220,0.25)] p-5 flex flex-col relative overflow-hidden">
+          <div className="w-full h-full bg-neutral-0/60 backdrop-blur-md backdrop-saturate-150 rounded-lg border border-neutral-0/60 shadow-[0_30px_60px_-20px_rgba(120,80,220,0.25)] p-5 flex flex-col relative overflow-hidden">
             {/* حافة علوية لامعة توحي بانعكاس الضوء على الزجاج */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/50 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-linear-to-b from-neutral-0/50 to-transparent" />
 
             <div className="flex items-center justify-between relative">
-              <span className="text-[10px] font-semibold tracking-[0.15em] text-[#9A9AB0] uppercase">
+              <span className="text-[10px] font-semibold tracking-[0.15em] text-neutral-400 uppercase">
                 بطاقة تعلّم
               </span>
-              <span className="text-[10px] font-medium text-[#8059E8] bg-white/40 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/50">
+              <span className="text-[10px] font-medium text-primary bg-neutral-0/40 backdrop-blur-sm px-2 py-0.5 rounded-full border border-neutral-0/50">
                 {lang.region}
               </span>
             </div>
 
             <div className="flex-1 flex flex-col items-center justify-center text-center px-2 relative">
-              <p className="text-[30px] leading-tight font-semibold text-[#09090B] break-words">
+              <p className="text-[30px] leading-tight font-semibold text-neutral-900 wrap-break-word">
                 {lang.native}
               </p>
               <p
                 dir="rtl"
-                className="font-thmanyah-text text-[13px] text-[#7A7F94] mt-2"
+                className="font-thmanyah-text text-caption text-neutral-400 mt-2"
               >
                 {lang.ar}
               </p>
             </div>
 
-            <div className="space-y-1.5 pt-3 border-t border-white/50 relative">
-              <div className="h-[3px] rounded-full bg-white/40 w-full" />
-              <div className="h-[3px] rounded-full bg-white/40 w-4/5" />
+            <div className="space-y-1.5 pt-3 border-t border-neutral-0/50 relative">
+              <div className="h-0.75 rounded-full bg-neutral-0/40 w-full" />
+              <div className="h-0.75 rounded-full bg-neutral-0/40 w-4/5" />
             </div>
           </div>
         </div>

@@ -3,18 +3,18 @@
 import { Ruler } from "lucide-react";
 
 // ── Sadece renk paleti değişti; yapı, texture ve konum birebir aynı ──
-const INK = "#211D33";        // soğuk, mora çalan neredeyse-siyah
-const INK_MUTED = "#6E6584";
-const A_COLOR = "#4B2E93"; // ametist — الضلع (a)
-const B_COLOR = "#0F7A5C"; // زمردة خضراء — الضلع (b)
-const C_COLOR = "#BF9556"; // ذهبي شامبانيا — اللون الجريء الوحيد، فقط الوتر والخلاصة
+const INK = "var(--color-neutral-900)";        // soğuk, mora çalan neredeyse-siyah
+const INK_MUTED = "var(--color-neutral-400)";
+const A_COLOR = "var(--color-outline-hover)"; // ametist — الضلع (a)
+const B_COLOR = "var(--color-visual-teal)";   // زمردة خضراء — الضلع (b)
+const C_COLOR = "var(--color-accent-orange)"; // ذهبي شامبانيا — اللون الجريء الوحيد، فقط الوتر والخلاصة
 
 const EASE = "cubic-bezier(0.65,0,0.35,1)";
 
 export default function GeometryProofCard() {
   return (
-    <div dir="rtl" className="absolute right-[27%] top-6 w-[380px]">
-      <div className="relative rounded-lg overflow-hidden bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_30px_60px_-20px_rgba(20,16,40,0.25)]">
+    <div dir="rtl" className="absolute right-[27%] top-6 w-95">
+      <div className="relative rounded-lg overflow-hidden bg-neutral-0/40 backdrop-blur-xl border border-nebg-neutral-0/60 shadow-[0_30px_60px_-20px_rgba(20,16,40,0.25)]">
         {/* لمعة زجاجية قطرية خفيفة أعلى البطاقة */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -25,19 +25,19 @@ export default function GeometryProofCard() {
         />
 
         {/* ترويسة أكاديمية — رقم شكل + عنوان، زجاجية */}
-        <div className="relative flex items-center justify-between px-5 pt-4 pb-3 bg-white/30 backdrop-blur-md">
-          <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.18em] text-[#5F6B85] uppercase">
-            <Ruler size={11} className="text-[#5F6B85]" />
+        <div className="relative flex items-center justify-between px-5 pt-4 pb-3 bg-neutral-0/30 backdrop-blur-md">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.18em] text-neutral-500 uppercase">
+            <Ruler size={11} className="text-neutral-500" />
             الشكل ٣
           </span>
-          <span className="font-thmanyah-text text-[11px] italic text-[#5F6B85]/85">
+          <span className="font-thmanyah-text text-micro italic text-neutral-500/85">
             برهان مساحي — نظرية فيثاغورس
           </span>
         </div>
-        <div className="relative h-px bg-white/50 mx-5" />
+        <div className="relative h-px bg-neutral-0/50 mx-5" />
 
         {/* اللوحة الهندسية — زجاجية شبه شفافة */}
-        <div className="relative px-4 pt-3 pb-4 flex justify-center bg-white/15 backdrop-blur-sm">
+        <div className="relative px-4 pt-3 pb-4 flex justify-center bg-neutral-0/15 backdrop-blur-sm">
           <svg viewBox="0 0 300 330" width="300" height="330">
             {/* المثلث القائم */}
             <polygon

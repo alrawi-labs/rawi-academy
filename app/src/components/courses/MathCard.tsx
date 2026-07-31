@@ -7,18 +7,9 @@ import GeometryProofCard from "./GeometryProofCard";
 import { BridgeSentence } from "./BridgeSentence";
 import { CardHeader } from "./CardHeader";
 
-/**
- * Purely decorative background layers stacked over the card's photo
- * background: a fine grain texture (bottom half only, masked), golden
- * ratio guide lines, a single faint Fibonacci-style ring in the
- * bottom-right corner, a soft warm glow, and a subtle ground shadow
- * at the bottom edge. None of these carry content — they exist only
- * to add visual depth and warmth behind the math illustrations.
- */
 function DecorativeOverlays() {
   return (
     <>
-      {/* نسيج حبيبي دقيق جدًا — محصور بالنصف السفلي فقط عبر قناع تدرّجي، فلا يمسّ البياض العلوي إطلاقًا */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply"
         style={{
@@ -41,7 +32,6 @@ function DecorativeOverlays() {
         <rect width="100%" height="100%" filter="url(#mathGrainLight)" />
       </svg>
 
-      {/* خطوط إرشادية بنسب القسمة الذهبية — بلون العلامة التجارية للموقع */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 800 500"
@@ -86,9 +76,8 @@ function DecorativeOverlays() {
         />
       </svg>
 
-      {/* حلقة بيكار واحدة، خافتة جدًا — أثر هندسي وحيد أسفل اليمين */}
       <svg
-        className="absolute -bottom-20 -right-20 w-90 h-90 pointer-events-none opacity-[0.22]"
+        className="absolute -bottom-20 -right-20 w-56 sm:w-72 lg:w-90 h-56 sm:h-72 lg:h-90 pointer-events-none opacity-[0.22]"
         viewBox="0 0 100 100"
         fill="none"
       >
@@ -103,16 +92,14 @@ function DecorativeOverlays() {
         />
       </svg>
 
-      {/* دفء برتقالي خافت جدًا أسفل الإطار — إحساس ضوء طبيعي منخفض لا توهّج مبتذل */}
       <div
-        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-180 h-90 pointer-events-none"
+        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-110 sm:w-140 lg:w-180 h-90 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse, rgba(242,180,120,0.12) 0%, transparent 70%)",
         }}
       />
 
-      {/* ظل أرضي خفيف جدًا عند الحافة السفلية — يمنح ثقلًا بصريًا هادئًا دون قتامة */}
       <div
         className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
         style={{
@@ -124,33 +111,12 @@ function DecorativeOverlays() {
   );
 }
 
-/**
- * MathCard — course showcase card for the "الرياضيات" subject, part
- * of the CoursesSection grid. Spans two grid columns (`lg:col-span-2`),
- * same width treatment as `LanguagesCard`.
- *
- * Layer order over the photo background:
- * 1. `DecorativeOverlays` — local; grain, guide lines, ring, glow, shadow.
- * 2. `BridgeSentence` — shared; self-drawing line from "basics" to a
- *    spiral, echoing the same golden-ratio motif as the corner ring.
- * 3. `ChalkboardSteps` — shared; animated algebra solve (left).
- * 4. `MathPlot` — shared; animated function plot disc (right, bleeds
- *    outside the card frame).
- * 5. `GeometryProofCard` — shared; animated Pythagorean proof (center).
- *
- * Route: starts as a near-straight line (the basics), gradually curves
- * into the beginning of a golden spiral (the hardest problems) — same
- * logic as the ring in the bottom-right corner, but here the shape
- * itself "completes" the idea.
- */
 export default function MathCard() {
   return (
     <div className="relative bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm lg:col-span-2">
       <CardHeader title="الرياضيات — تفكيرٌ منطقي، خطوة بخطوة" color="orange" />
 
-
-      <div className="relative h-125 mt-2 overflow-hidden bg-neutral-0">
-        {/* الأساس: يتدرّج بنفس ألوان بطاقة المتابعة */}
+      <div className="relative h-96 sm:h-105 md:h-115 lg:h-125 mt-2 overflow-hidden bg-neutral-0">
         <div
           className="absolute inset-0 bg-cover bg-top"
           style={{
@@ -160,21 +126,25 @@ export default function MathCard() {
 
         <DecorativeOverlays />
 
-        {/* الجملة الجسر — خط يرسم نفسه من البساطة إلى الالتفاف الحلزوني، بنفس منطق الفكرة */}
-        <BridgeSentence />
+        {/* Karmaşık geçiş çizgisi küçük ekranda kalabalık yapıyordu, md ve üstünde gösteriliyor */}
+        <div className="hidden md:block">
+          <BridgeSentence />
+        </div>
 
         {/* السبورة — يسار */}
-        <div className="absolute left-10 md:left-14 top-1/2 -translate-y-1/2 z-20">
+        <div className="absolute left-4 sm:left-8 md:left-14 bottom-4 sm:bottom-6 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-20 scale-75 sm:scale-90 lg:scale-100 origin-bottom-left md:origin-left">
           <ChalkboardSteps />
         </div>
 
         {/* قرص الرسم البياني — يمين، ينسحب جزئيًا خارج الإطار */}
-        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-115 h-115">
+        <div className="absolute -right-10 sm:-right-14 lg:-right-16 top-1/2 -translate-y-1/2 w-52 sm:w-72 md:w-90 lg:w-115 h-52 sm:h-72 md:h-90 lg:h-115">
           <MathPlot className="relative w-full h-full" />
         </div>
 
         {/* بطاقة البرهان الهندسي — المنتصف */}
-        <GeometryProofCard />
+        <div className="scale-75 sm:scale-90 lg:scale-100 origin-center">
+          <GeometryProofCard />
+        </div>
 
         {/*
           NOT: Bu div şu an içerik taşımıyor (LanguagesCard'daki
