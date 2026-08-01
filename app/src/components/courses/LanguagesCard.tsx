@@ -5,6 +5,8 @@ import Globe from "../3D/Globe";
 import CyclingWord from "../CyclingWord";
 import LanguageFlashcardStack from "./LanguageFlashcardStack";
 import { CardHeader } from "./CardHeader";
+import CardInteractiveShell from "./CardInteractiveShell";
+import LanguageCoursesList from "./LanguageCoursesList";
 
 function VideoPanel() {
   return (
@@ -129,29 +131,37 @@ function CyclingHeadline() {
 
 export default function LanguagesCard() {
   return (
-    <div className="relative bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm lg:col-span-2">
-      <CardHeader title="اللغات — بوابة تواصلك مع العالم" color="pink"/>
+    <CardInteractiveShell
+      accent="pink"
+      title="اللغات — بوابة تواصلك مع العالم"
+      description="جلسات ودورات مباشرة مع أفضل المدرسين، تفتح لك طريقًا حقيقيًا نحو التواصل بلغة جديدة."
+      modalContent={<LanguageCoursesList />}
+      className="lg:col-span-2"
+    >
+      <div className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-pink-400/40 rounded-lg overflow-hidden shadow-sm">
+        <CardHeader title="اللغات — بوابة تواصلك مع العالم" color="pink" />
 
-      <div
-        className="relative h-96 sm:h-105 md:h-115 lg:h-125 mt-2 overflow-hidden bg-cover bg-top"
-        style={{
-          backgroundImage: "url(/backgrounds/bg-25.png)",
-        }}
-      >
-        {/* كومة بطاقات اللغات — يسار */}
-        <div className="absolute left-4 sm:left-8 md:left-14 lg:left-20 bottom-4 sm:bottom-6 md:bottom-auto md:top-3/5 md:-translate-y-1/2 z-20 scale-75 sm:scale-90 lg:scale-100 origin-bottom-left md:origin-left">
-          <LanguageFlashcardStack />
+        <div
+          className="relative h-96 sm:h-105 md:h-115 lg:h-125 mt-2 overflow-hidden bg-cover bg-top"
+          style={{
+            backgroundImage: "url(/backgrounds/bg-25.png)",
+          }}
+        >
+          {/* كومة بطاقات اللغات — يسار */}
+          <div className="absolute left-4 sm:left-8 md:left-14 lg:left-20 bottom-4 sm:bottom-6 md:bottom-auto md:top-3/5 md:-translate-y-1/2 z-20 scale-75 sm:scale-90 lg:scale-100 origin-bottom-left md:origin-left">
+            <LanguageFlashcardStack />
+          </div>
+
+          {/* الكرة الأرضية — يمين، تنسحب جزئيًا خارج الإطار */}
+          <div className="absolute -right-10 sm:-right-14 lg:-right-16 top-1/2 -translate-y-1/2 w-52 sm:w-72 md:w-90 lg:w-115 h-52 sm:h-72 md:h-90 lg:h-115">
+            <div className="absolute inset-10 rounded-full" />
+            <Globe className="relative w-full h-full" />
+          </div>
+
+          <VideoPanel />
+          <CyclingHeadline />
         </div>
-
-        {/* الكرة الأرضية — يمين، تنسحب جزئيًا خارج الإطار */}
-        <div className="absolute -right-10 sm:-right-14 lg:-right-16 top-1/2 -translate-y-1/2 w-52 sm:w-72 md:w-90 lg:w-115 h-52 sm:h-72 md:h-90 lg:h-115">
-          <div className="absolute inset-10 rounded-full" />
-          <Globe className="relative w-full h-full" />
-        </div>
-
-        <VideoPanel />
-        <CyclingHeadline />
       </div>
-    </div>
+    </CardInteractiveShell>
   );
 }

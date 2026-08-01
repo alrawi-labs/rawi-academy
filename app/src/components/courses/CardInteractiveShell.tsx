@@ -53,6 +53,10 @@ interface CardInteractiveShellProps {
   /** Modal açıldığında gösterilecek, karttan tamamen farklı olabilecek içerik
    *  (ör. kurs listesi). Verilmezse modal, kart yüzünü büyüterek gösterir. */
   modalContent?: ReactNode;
+  /** Grid item'a özel class'lar (ör. `lg:col-span-2`). Bu class'lar grid
+   *  container'ın DOĞRUDAN çocuğu olan dış sarmalayıcıya uygulanmalı,
+   *  aksi halde col-span gibi grid class'ları çalışmaz. */
+  className?: string;
 }
 
 export default function CardInteractiveShell({
@@ -61,6 +65,7 @@ export default function CardInteractiveShell({
   description,
   children,
   modalContent,
+  className = "",
 }: CardInteractiveShellProps) {
   const [open, setOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -103,7 +108,7 @@ export default function CardInteractiveShell({
         aria-label={`${title} — عرض الدورات`}
         className={`group relative cursor-pointer outline-none rounded-lg
           transition-transform duration-300 ease-out
-          hover:scale-[1.03] hover:z-10 focus-visible:ring-2 ${ringMap[accent]}`}
+          hover:scale-[1.03] hover:z-10 focus-visible:ring-2 ${ringMap[accent]} ${className}`}
       >
         {children}
       </div>
