@@ -172,7 +172,7 @@ export default function QuranSunnahCard() {
       modalContent={<QuranCoursesList accent="teal" />}
     >
       <div
-        className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-teal-400
+        className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-teal-400/40
           rounded-lg overflow-hidden shadow-sm group-hover:shadow-2xl
           transition-[border-color,box-shadow] duration-300"
       >

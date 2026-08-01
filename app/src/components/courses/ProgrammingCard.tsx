@@ -1,7 +1,9 @@
 "use client";
 
-import { Expand, GitBranch, Sparkles, FileCode2, Route } from "lucide-react";
+import { GitBranch, Sparkles, FileCode2, Route } from "lucide-react";
 import { CardHeader } from "./CardHeader";
+import CardInteractiveShell from "./CardInteractiveShell";
+import ProgrammingCoursesList from "./ProgrammingCoursesList";
 
 function CodeEditorMockup() {
   return (
@@ -17,7 +19,6 @@ function CodeEditorMockup() {
         }}
       />
 
-      {/* Window chrome + file tabs */}
       <div className="relative bg-neutral-0/30 backdrop-blur-md">
         <div className="flex items-center gap-1.5 px-4 pt-3 pb-2 border-b border-neutral-0/40">
           <span className="w-2.5 h-2.5 rounded-full bg-neutral-0/70" />
@@ -40,7 +41,6 @@ function CodeEditorMockup() {
         </div>
       </div>
 
-      {/* Syntax-highlighted code body */}
       <div className="relative bg-neutral-0/15 backdrop-blur-sm flex text-micro leading-loose">
         <div className="font-mono text-neutral-500 text-left pl-4 pr-3 py-3 select-none border-r border-neutral-0/40">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
@@ -94,7 +94,6 @@ function CodeEditorMockup() {
         </div>
       </div>
 
-      {/* Status bar */}
       <div className="relative bg-primary/85 backdrop-blur-md px-4 py-1.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
@@ -111,7 +110,6 @@ function CodeEditorMockup() {
         </div>
       </div>
 
-      {/* "Tab to accept" AI suggestion hint — küçük ekranlarda gürültü yapmasın diye gizli */}
       <div
         dir="ltr"
         className="hidden lg:flex absolute right-9 top-33 items-center gap-1 bg-neutral-900/55 backdrop-blur-md rounded-md px-2 py-1 border border-neutral-0/10 shadow-[0_10px_25px_-8px_rgba(0,0,0,0.4)]"
@@ -210,16 +208,23 @@ function ProgressPanel() {
 
 export default function ProgrammingCard() {
   return (
-    <div className="relative bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm">
-      <CardHeader title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم" color="purple" />
+    <CardInteractiveShell
+      accent="purple"
+      title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم"
+      description="مسار مباشر بإشراف مدربين متخصصين، من أول سطر كود إلى بناء مشاريع حقيقية تضاف إلى معرض أعمالك."
+      modalContent={<ProgrammingCoursesList />}
+    >
+      <div className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-purple-400/40 rounded-lg overflow-hidden shadow-sm">
+        <CardHeader title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم" color="purple" />
 
-      <div
-        className="relative h-72 sm:h-88 md:h-96 lg:h-105 mt-4 overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: "url(/backgrounds/bg-5.png)" }}
-      >
-        <CodeEditorMockup />
-        <ProgressPanel />
+        <div
+          className="relative h-72 sm:h-88 md:h-96 lg:h-105 mt-4 overflow-hidden bg-cover bg-center"
+          style={{ backgroundImage: "url(/backgrounds/bg-5.png)" }}
+        >
+          <CodeEditorMockup />
+          <ProgressPanel />
+        </div>
       </div>
-    </div>
+    </CardInteractiveShell>
   );
 }
