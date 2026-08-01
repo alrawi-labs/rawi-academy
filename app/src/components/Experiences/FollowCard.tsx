@@ -4,13 +4,13 @@ import { RotateCw } from "lucide-react";
 
 export default function FollowCard({ title = "متابعةٌ تصنع الفرق" }) {
   return (
-    <div className="relative w-full max-w-[403px] bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm">
+    <div className="relative w-full max-w-[403px] mx-auto md:mx-0 bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm">
       {/* Title — now its own small card, sitting above the mockup panel */}
       <div
         dir="rtl"
-        className="absolute z-10 left-1/2 -translate-x-1/2 top-[4%] w-[260px] rounded-lg px-5 py-4"
+        className="absolute z-10 left-1/2 -translate-x-1/2 top-[4%] w-[72%] sm:w-[260px] rounded-lg px-4 py-4 sm:px-5"
       >
-        <h3 className="font-thmanyah-display text-center font-semibold text-h2-sm leading-[1.45] text-neutral-900">
+        <h3 className="font-thmanyah-display text-center font-semibold text-h3 sm:text-h2-sm leading-[1.45] text-neutral-900">
           {title}
         </h3>
       </div>
@@ -19,7 +19,7 @@ export default function FollowCard({ title = "متابعةٌ تصنع الفرق
           product screenshot: quiet, mostly white, sitting inside the gradient */}
       <div
         dir="rtl"
-        className="absolute left-[12%] top-[58%] -translate-y-1/2 w-[300px] rounded-lg overflow-hidden bg-neutral-0 border border-neutral-200 shadow-[0_20px_45px_-20px_rgba(9,9,11,0.25)]"
+        className="absolute left-[7%] sm:left-[12%] top-[58%] -translate-y-1/2 w-[84%] sm:w-[300px] rounded-lg overflow-hidden bg-neutral-0 border border-neutral-200 shadow-[0_20px_45px_-20px_rgba(9,9,11,0.25)]"
       >
         <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-primary-light">
           <span className="w-2 h-2 rounded-full bg-orange" />
@@ -30,7 +30,7 @@ export default function FollowCard({ title = "متابعةٌ تصنع الفرق
           </span>
         </div>
 
-        <div className="p-5">
+        <div className="p-4 sm:p-5">
           {/* ملخص التقدّم — دائرة نسبة + رقم متسلسل الأيام */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2.5">
@@ -130,7 +130,7 @@ export default function FollowCard({ title = "متابعةٌ تصنع الفرق
       </div>
       {/* Gradient field — recolored using the closest theme tokens available
           for each stop in the original reference gradient */}
-      <div className="w-full h-125 mt-2 bg-gradient-aurora" />
+      <div className="w-full h-96 sm:h-110 lg:h-125 mt-2 bg-gradient-aurora" />
     </div>
   );
 }

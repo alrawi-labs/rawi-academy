@@ -43,38 +43,51 @@ rawi-academy/
 │   │   └── thmanyahseriftext/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── CyclingWord.tsx         Word-cycling animated text
+│   │   │   ├── MarqueeStrip.tsx        Trusted-by / stats marquee
+│   │   │   ├── worldLandPoints.ts      Coordinate data feeding the Globe component
+│   │   │   ├── 3D/
+│   │   │   │   ├── Globe.tsx                Rotating globe illustration (Languages card)
+│   │   │   │   └── HeroGlassBars.tsx        Ribbon graphic behind the hero
 │   │   │   ├── ui/
 │   │   │   │   ├── Button.tsx          Shared Button component (variant/size/border/icon)
-│   │   │   │   ├── NavLink.tsx         Shared nav link (plain / chevron / dropdown panel)
-│   │   │   │   └── SectionLede.tsx     Section intro block (lead + sub + body, all optional)
+│   │   │   │   └── NavLink.tsx         Shared nav link (plain / chevron / dropdown panel)
 │   │   │   ├── layout/
-│   │   │   │   └── SectionContainer.tsx  Content-width wrapper (max-w-7xl + horizontal padding)
+│   │   │   │   ├── SectionContainer.tsx  Content-width wrapper (max-w-7xl + horizontal padding)
+│   │   │   │   └── SectionLede.tsx       Section intro block (lead + sub + body, all optional)
 │   │   │   ├── Icons/
 │   │   │   │   └── GoogleIcon.tsx      Google "G" mark for the Hero's alt sign-in button
-│   │   │   ├── HeroGlassBars.tsx       Ribbon graphic behind the hero
-│   │   │   ├── MarqueeStrip.tsx        Trusted-by / stats marquee
-│   │   │   ├── Globe.tsx               Rotating globe illustration (Languages card)
-│   │   │   ├── CyclingWord.tsx         Word-cycling animated text
-│   │   │   ├── AbstractRibbonBackground.tsx  Token-driven SVG ribbon bg (alternative to photo bg — not currently wired into any card)
-│   │   │   └── courses/                Subject cards for the four pillars
-│   │   │       ├── CardHeader.tsx            Shared title row (subject name + accented Expand button); color variant per subject, size variant per card width
-│   │   │       ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg (bg-5.png); composed of local CodeEditorMockup/ProgressPanel sub-components
-│   │   │       ├── QuranSunnahCard.tsx       القرآن والسنة — solid (non-glass) tafsir + memorization mockup over photo bg (bg-19.png); composed of local BrowserMockup/PhoneMockup sub-components
-│   │   │       ├── LanguagesCard.tsx         اللغات — glass video panel, globe, flashcard stack; composed of local VideoPanel/CyclingHeadline sub-components
-│   │   │       ├── MathCard.tsx              الرياضيات — chalkboard, geometry proof, plot, photo bg; decorative SVG/gradient layers grouped into a local DecorativeOverlays sub-component
-│   │   │       ├── FollowCard.tsx            متابعة — weekly progress mockup, brand gradient bg
-│   │   │       ├── ChalkboardSteps.tsx       Animated step-by-step algebra solve (glass)
-│   │   │       ├── GeometryProofCard.tsx     Animated Pythagorean theorem proof (glass)
-│   │   │       ├── MathProblemStack.tsx      Rotating stack of stamped "problem cards"
-│   │   │       ├── MathPlot.tsx              Animated function plot disc
-│   │   │       ├── BridgeSentence.tsx        Self-drawing SVG line ("basics → hardest problems")
-│   │   │       └── LanguageFlashcardStack.tsx Rotating stack of language flashcards
+│   │   │   ├── courses/                Subject cards for the four pillars
+│   │   │   │   ├── CardHeader.tsx            Shared title row (subject name + accented Expand button); color variant per subject, size variant per card width
+│   │   │   │   ├── ProgrammingCard.tsx       البرمجة — glass code-editor mockup over photo bg (bg-5.png)
+│   │   │   │   ├── QuranSunnahCard.tsx       القرآن والسنة — solid (non-glass) tafsir + memorization mockup over photo bg (bg-19.png)
+│   │   │   │   ├── LanguagesCard.tsx         اللغات — glass video panel, globe, flashcard stack
+│   │   │   │   ├── MathCard.tsx              الرياضيات — chalkboard, geometry proof, plot, photo bg
+│   │   │   │   ├── ChalkboardSteps.tsx       Animated step-by-step algebra solve (glass)
+│   │   │   │   ├── GeometryProofCard.tsx     Animated Pythagorean theorem proof (glass)
+│   │   │   │   ├── MathPlot.tsx              Animated function plot disc
+│   │   │   │   ├── BridgeSentence.tsx        Self-drawing SVG line ("basics → hardest problems")
+│   │   │   │   └── LanguageFlashcardStack.tsx Rotating stack of language flashcards
+│   │   │   └── Experiences/             ⚠️ TODO: add short description per component
+│   │   │       ├── AgeCard.tsx
+│   │   │       ├── AIModelsCard.tsx
+│   │   │       ├── FeatureCard.tsx
+│   │   │       └── FollowCard.tsx            متابعة — weekly progress mockup, brand gradient bg
 │   │   └── sections/
 │   │       ├── Navbar.tsx              Transparent, absolute-positioned navbar
 │   │       ├── Hero.tsx                Landing hero section
-│   │       ├── CoursesSection.tsx      SectionContainer + SectionLede intro + 2-col grid of the four subject cards
+│   │       ├── Courses.tsx             SectionContainer + SectionLede intro + 2-col grid of the four subject cards
 │   │       ├── FAQSection.tsx          Asymmetric FAQ (sticky heading + accordion list)
-│   │       └── Footer.tsx              Dark closing section
+│   │       ├── Footer.tsx              Dark closing section (responsive as of Aug 2026)
+│   │       ├── ExperiencesSection.tsx      ⚠️ TODO: add description
+│   │       ├── ExploreTracksSection.tsx    ⚠️ TODO: add description
+│   │       ├── FinalCTASection.tsx         ⚠️ TODO: add description
+│   │       ├── HowToStartSection.tsx       ⚠️ TODO: add description
+│   │       ├── LogoRiseSection.tsx         ⚠️ TODO: add description
+│   │       ├── StartWithWhatMatters.tsx    ⚠️ TODO: add description
+│   │       ├── TeamSection.tsx             ⚠️ TODO: add description
+│   │       ├── VisionSection.tsx           ⚠️ TODO: add description
+│   │       └── WhyRawiSection.tsx          ⚠️ TODO: add description
 │   ├── globals.css                     Design tokens, theme mapping, font wiring
 │   ├── layout.tsx                      Root layout · dir="rtl" · font loading
 │   └── page.tsx                        Home page
@@ -84,6 +97,8 @@ rawi-academy/
 ├── package.json
 └── tsconfig.json
 ```
+
+> **Note:** several sections and the `Experiences/` components are new since the last structural pass and don't have written descriptions yet — see the ⚠️ markers above. Send over a one-liner for each and this doc can be filled in properly.
 
 <br>
 
@@ -182,7 +197,7 @@ Reusable section intro block combining an emphasized `lead` statement, a muted `
 Reusable content-width wrapper (`max-w-7xl mx-auto px-10`) used inside top-level `<section>` elements. Centralizes horizontal constraint only — background color, vertical spacing (`pt-*`), and `dir` are left on the parent `<section>` so each section can vary independently without fighting the container.
 
 **`CardHeader` (`src/components/courses/CardHeader.tsx`)**
-Shared title row used at the top of every subject card in `CoursesSection`, pairing the subject name with an accented "expand details" icon button. Props:
+Shared title row used at the top of every subject card in `Courses.tsx`, pairing the subject name with an accented "expand details" icon button. Props:
 - `color`: `"teal"` · `"purple"` · `"orange"` · `"pink"` — fixed 1:1 mapping to subject (see Subject Cards table)
 - `size`: `"sm"` (narrow cards — `px-8 pt-8 pb-2`, `text-h3`) · `"lg"` (wide, `col-span-2` cards — `px-10 pt-4 pb-0`, `text-h2-sm`)
 
@@ -194,14 +209,16 @@ Fully transparent, `position: absolute` navbar meant to sit over the hero, built
 **`Hero.tsx`**
 Opening section with a stat line, a two-tone display headline, primary/outline CTAs (via `Button`, the outline variant paired with `GoogleIcon`), and a trusted-by marquee strip. Includes an SVG ribbon (`HeroGlassBars`) built from the same four shapes as the logo mark.
 
-**`CoursesSection.tsx`**
+**`Courses.tsx`**
 `SectionContainer` wrapping a `SectionLede` intro (two-tone, bold lead-in + muted continuation) followed by a 2-column grid of the four subject cards.
 
 **`FAQSection.tsx`**
 Asymmetric two-column layout instead of a centered accordion: a sticky heading block on one side, an accordion list on the other. Question badges reuse the Arabic verse-marker motif from `QuranSunnahCard` (Arabic-Indic numerals in a circular badge) instead of a generic plus/chevron icon. Answers reveal with a self-drawing underline (`scaleX` from the trailing edge) on open.
 
 **`Footer.tsx`**
-Dark (`neutral-900`) closing section, intentionally breaking from the light theme used everywhere else. Asymmetric top row (logo + tagline vs. a single CTA), four link columns built with `NavLink` (`context="footer"`), and custom inline SVG social icons (`lucide-react` no longer ships brand/logo icons, so Instagram/Twitter/YouTube are hand-drawn minimal outlines using `currentColor`).
+Dark (`neutral-900`) closing section, intentionally breaking from the light theme used everywhere else. Asymmetric top row (logo + tagline vs. a single CTA), four link columns built with `NavLink` (`context="footer"`), and custom inline SVG social icons (`lucide-react` no longer ships brand/logo icons, so Instagram/Twitter/YouTube are hand-drawn minimal outlines using `currentColor`). Responsive breakpoints added (mobile padding/gap scaling, stacked CTA, adaptive link grid).
+
+**New sections pending documentation** — `ExperiencesSection.tsx`, `ExploreTracksSection.tsx`, `FinalCTASection.tsx`, `HowToStartSection.tsx`, `LogoRiseSection.tsx`, `StartWithWhatMatters.tsx`, `TeamSection.tsx`, `VisionSection.tsx`, `WhyRawiSection.tsx`, `WorthLearningHero.tsx`, and the `Experiences/` components (`AgeCard`, `AIModelsCard`, `FeatureCard`). Add a one-line description for each here once confirmed.
 
 ### Subject Cards (`src/components/courses/`)
 
@@ -223,9 +240,7 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 
 **Photo backgrounds** live in `public/backgrounds/` and are applied via `bg-cover bg-center` + `backgroundImage`. When a card's title should read as part of the photo rather than sit on a separate white strip, the background is set on the *outermost* card container instead of the inner content wrapper.
 
-**`AbstractRibbonBackground`** — a token-driven SVG alternative to photo backgrounds (diagonal ribbon bands built from `--color-accent-*` gradients + a subtle framer-motion drift), built to remove reliance on stock photography. Not currently used by any card — `ProgrammingCard` reverted to a photo background (`bg-5.png`).
-
-**Local sub-components** — every subject card now breaks its JSX into small, file-local functions purely for readability (e.g. `BrowserMockup` / `PhoneMockup` in `QuranSunnahCard.tsx`, `CodeEditorMockup` / `ProgressPanel` in `ProgrammingCard.tsx`, `VideoPanel` / `CyclingHeadline` in `LanguagesCard.tsx`, `DecorativeOverlays` in `MathCard.tsx`). These stay local as long as they're only used within that one card; if a future card needs the same mockup, it should be extracted into its own file under `components/ui/` rather than duplicated.
+**Local sub-components** — every subject card breaks its JSX into small, file-local functions purely for readability (e.g. `BrowserMockup` / `PhoneMockup` in `QuranSunnahCard.tsx`, `CodeEditorMockup` / `ProgressPanel` in `ProgrammingCard.tsx`, `VideoPanel` / `CyclingHeadline` in `LanguagesCard.tsx`, `DecorativeOverlays` in `MathCard.tsx`). These stay local as long as they're only used within that one card; if a future card needs the same mockup, it should be extracted into its own file under `components/ui/` rather than duplicated.
 
 <br>
 
@@ -236,6 +251,8 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 - Off-palette hardcoded hex values with no matching token: `#FD9120`, `#C23B82`, `#F386C4`, `#6E6584`, `#8B87A3` (all in `ProgrammingCard`), `#22C1A0` (in `QuranSunnahCard`), `#8059E8` used directly as an SVG `stroke` in `MathCard`'s guide lines/ring (Tailwind color classes don't apply to SVG `stroke` attributes, so this one is expected to stay as a raw value or move to `var(--color-primary)`). Decision pending on whether to formalize the rest as tokens.
 - `CardHeader`'s four subject accent colors (teal/purple/orange/pink) currently use plain Tailwind palette classes (`teal-400`, `purple-400`, etc.), not project design tokens — consider formalizing once the `--visual-*` token naming is fixed.
 - `MathCard` has an empty, content-less floating `div` (positioned like `LanguagesCard`'s `CyclingHeadline`, `right-[8%]`) — unclear whether it's an intentional placeholder or a leftover from an earlier draft.
+- `AbstractRibbonBackground.tsx` and `MathProblemStack.tsx`, previously documented here, no longer appear in the source tree — confirm whether they were intentionally removed or need to be re-added.
+- Several new sections (`ExperiencesSection`, `ExploreTracksSection`, `FinalCTASection`, `HowToStartSection`, `LogoRiseSection`, `StartWithWhatMatters`, `TeamSection`, `VisionSection`, `WhyRawiSection`, `WorthLearningHero`) and the `Experiences/` components exist in the tree but aren't documented above yet.
 
 <br>
 
@@ -245,19 +262,21 @@ with a diagonal glare layer (`linear-gradient(115deg, rgba(255,255,255,0.5) 0%, 
 - [x] Courses section (intro + grid)
 - [x] FAQ section
 - [x] Footer
+- [x] Footer responsive breakpoints (mobile/tablet)
 - [x] Shared `SectionContainer` / `SectionLede` components for section intros
 - [x] Shared `CardHeader` component with per-subject color + size variants
 - [x] Split all four subject cards into local sub-components for readability
-- [ ] Remaining landing sections (testimonials, pricing)
+- [ ] Document new sections (`ExperiencesSection`, `ExploreTracksSection`, `FinalCTASection`, `HowToStartSection`, `LogoRiseSection`, `StartWithWhatMatters`, `TeamSection`, `VisionSection`, `WhyRawiSection`, `WorthLearningHero`) and `Experiences/` components
 - [ ] Scroll-aware navbar (background/border fade-in past the hero)
-- [ ] Mobile layouts for all sections
+- [ ] Mobile layouts for remaining sections (Footer done; others pending)
 - [ ] Fix naming + wire `--visual-*` tokens into `@theme inline`
 - [ ] Finish migrating remaining components off one-off `text-[Npx]` values onto the semantic font-size scale
 - [ ] Resolve off-palette hex values in `ProgrammingCard` / `QuranSunnahCard` / `MathCard`
-- [ ] Decide `FollowCard` background direction (keep gradient vs. switch to `AbstractRibbonBackground`)
+- [ ] Decide `FollowCard` background direction (keep gradient vs. switch to alternative)
 - [ ] Remove unused `accent-orange` / `accent-pink` tokens
 - [ ] Resolve the empty placeholder `div` in `MathCard` (remove or give it content like `LanguagesCard`'s `CyclingHeadline`)
 - [ ] Formalize `CardHeader`'s subject accent colors as design tokens
+- [ ] Confirm removal of `AbstractRibbonBackground.tsx` / `MathProblemStack.tsx` and clean up any lingering references
 
 <br>
 

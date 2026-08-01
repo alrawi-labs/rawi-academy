@@ -51,6 +51,26 @@
   --background: var(--color-neutral-0);
   --foreground: var(--color-neutral-900);
   --border-color: var(--color-neutral-200);
+
+  /* ------------------------------ */
+  /* Gradients                      */
+  /* ------------------------------ */
+  --gradient-aurora: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 20%,
+    #e4f8f3 30%,
+    #d3efee 38%,
+    #c9e3f2 45%,
+    #bfd3f5 52%,
+    #c2bff0 59%,
+    #cbaeea 66%,
+    #d7a0e2 72%,
+    #e092ce 79%,
+    #ea92ac 85%,
+    #f0a183 91%,
+    #f2b478 100%
+  );
 }
 
 @theme inline {
@@ -101,15 +121,15 @@
   --font-sans: var(--font-thmanyah-sans);
   --font-mono: var(--font-geist-mono);
 
-  --text-hero: 2.75rem;      /* 44px */
-  --text-h2: 2.125rem;       /* 34px */
-  --text-h2-sm: 1.625rem;    /* 26px */
-  --text-h3: 1.375rem;       /* 22px */
-  --text-h3-sm: 1.1875rem;   /* 19px */
-  --text-lead: 1.75rem;      /* 28px */
-  --text-body: 0.9375rem;    /* 15px */
+  --text-hero: 2.75rem; /* 44px */
+  --text-h2: 2.125rem; /* 34px */
+  --text-h2-sm: 1.625rem; /* 26px */
+  --text-h3: 1.375rem; /* 22px */
+  --text-h3-sm: 1.1875rem; /* 19px */
+  --text-lead: 1.75rem; /* 28px */
+  --text-body: 0.9375rem; /* 15px */
   --text-caption: 0.8125rem; /* 13px */
-  --text-micro: 0.6875rem;   /* 11px */
+  --text-micro: 0.6875rem; /* 11px */
 }
 
 @layer base {
@@ -117,6 +137,10 @@
   *::before,
   *::after {
     border-color: var(--border-color);
+  }
+
+  .bg-gradient-aurora {
+    background: var(--gradient-aurora);
   }
 }
 

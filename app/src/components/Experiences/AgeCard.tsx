@@ -47,7 +47,10 @@ export default function AgeCard() {
   }, [enteringIndex]);
 
   return (
-    <div className="relative border border-neutral-200 rounded-lg overflow-hidden shadow-sm min-h-140 sm:min-h-150 lg:min-h-127.5">
+    // lg:min-h-127.5 → orijinal masaüstü davranışı için geri geldi (absolute
+    // konumlandırılan çocuklara yer açmak amacıyla). Mobil/tablette min-h YOK
+    // — yükseklik tamamen içeriğe göre, boşluk kalmıyor.
+    <div className="relative border border-neutral-200 rounded-lg overflow-hidden shadow-sm lg:min-h-127.5">
       {/* Arka plan katmanı */}
       <div
         className="absolute inset-0"
@@ -68,9 +71,9 @@ export default function AgeCard() {
       />
 
       {/* İçerik sarmalayıcı: mobilde normal akış (block/flow),
-          lg ve üzerinde orijinal absolute konumlandırmaya geçiş */}
+          lg ve üzerinde ORİJİNAL mutlak konumlandırma (değişmedi) */}
       <div className="relative z-10 lg:absolute lg:inset-0">
-        {/* Metin bloğu */}
+        {/* Metin bloğu — orijinal haliyle aynı */}
         <div
           dir="rtl"
           className="px-5 py-8 sm:px-8 sm:py-10 lg:px-0 lg:py-0 lg:absolute lg:top-10 lg:left-10 max-w-full lg:max-w-105"
@@ -85,19 +88,24 @@ export default function AgeCard() {
           </p>
         </div>
 
-        {/* Adım animasyonu penceresi */}
+        {/* Adım animasyonu penceresi — orijinal konumlandırma aynı */}
         <div className="px-4 pb-4 sm:px-6 sm:pb-6 lg:p-0 lg:absolute lg:bottom-3 lg:right-3 w-full lg:w-150 max-w-full lg:max-w-none">
-          {/* Sabit yükseklikli iç kutu — aspect-ratio yerine doğrudan yükseklik
-              vererek pencerenin çökmesini engelliyor */}
-          <div className="relative w-full h-65 sm:h-75 lg:h-75 rounded-lg overflow-hidden bg-neutral-0/45 backdrop-blur-sm border border-neutral-0/60 shadow-[0_35px_70px_-25px_rgba(20,16,40,0.3)]">
-            <div className="flex items-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 bg-neutral-0/40 backdrop-blur-md border-b border-neutral-0/50 relative z-20">
+          {/* ⬇️ Kutu: mobilde YÜKSEKLİK YOK (auto, içerik kadar).
+              lg'de orijinal sabit h-75 (300px) geri geldi. */}
+          <div className="relative w-full flex flex-col lg:h-75 rounded-lg overflow-hidden bg-neutral-0/45 backdrop-blur-sm border border-neutral-0/60 shadow-[0_35px_70px_-25px_rgba(20,16,40,0.3)]">
+            <div className="flex items-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 bg-neutral-0/40 backdrop-blur-md border-b border-neutral-0/50 relative z-20 shrink-0">
               {/* macOS pencere düğmeleri — marka paletinden bağımsız, evrensel kırmızı/sarı/yeşil */}
               <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#FF5F57]" />
               <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#FEBC2E]" />
               <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#28C840]" />
             </div>
 
-            <div className="relative w-full h-[calc(100%-42px)]">
+            {/* ⬇️ DEĞİŞTİ: Mobilde görselin gerçek oranına kilitli
+                (aspect-[1672/700]) — tam görünür, kırpma yok, boşluk yok.
+                lg'de aspect-auto + flex-1 ile ORİJİNAL davranışa dönüyor:
+                kutu sabit 300px, görsel kalan alanı object-cover ile
+                (kırparak) dolduruyor — masaüstü tasarımı değişmedi. */}
+            <div className="relative w-full aspect-[1672/700] lg:aspect-auto lg:flex-1">
               {STEPS.map((src, i) => {
                 const isBase = i === activeIndex;
                 const isEntering = i === enteringIndex;
@@ -108,7 +116,9 @@ export default function AgeCard() {
                     key={src}
                     src={src}
                     alt={`step-${i + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity"
+                    // Mobil: object-contain (tam görünür, kırpma yok)
+                    // lg: object-cover (orijinal masaüstü davranışı)
+                    className="absolute inset-0 w-full h-full object-contain lg:object-cover transition-opacity"
                     style={{
                       opacity: 1,
                       transitionDuration: `${FADE_DURATION}ms`,

@@ -70,7 +70,7 @@ const ANSWER_ROWS = [
 function TestIllustration() {
   return (
     <div className="relative z-10 mt-4 flex flex-1 items-center justify-center px-5 pb-5 sm:px-6 sm:pb-6">
-      <div className="relative w-full aspect-[722/798]">
+      <div className="relative w-full aspect-660/798">
         {/* Sağdaki avatar figürü */}
         {/* Avatar figürü — premium gradyan + glow tekniği */}
         <svg
@@ -265,17 +265,17 @@ function TestIllustration() {
 function CertificateIllustration() {
   return (
     <div className="relative z-10 mt-4 flex flex-1 items-center justify-center px-5 pb-8 sm:px-6 sm:pb-9">
-      <div className="relative w-full aspect-[722/706]">
+      <div className="relative w-full aspect-600/898 lg:aspect-660/708 sm:aspect-660/798">
         {/* Arkada hafif kaydırılmış ikinci sayfa — yığın hissi */}
         <div
           className="absolute rounded-xl bg-neutral-100"
-          style={{ left: "6%", top: "1%", width: "57%", height: "80%" }}
+          style={{ left: "6%", top: "16%", width: "57%", height: "66%" }}
         />
 
         {/* Sertifika kağıdı */}
         <div
           className="absolute rounded-xl bg-gradient-to-b from-neutral-0 to-neutral-100 p-3 shadow-[0_25px_55px_-22px_var(--color-primary)]/40 sm:p-4"
-          style={{ left: "3%", top: "4%", width: "57%", height: "80%" }}
+          style={{ left: "3%", top: "20%", width: "57%", height: "66%" }}
         >
           <div className="relative flex h-full flex-col items-center rounded-lg border border-primary-light px-3 pt-4 text-center sm:px-4">
             {/* Köşe noktaları */}
@@ -322,10 +322,14 @@ function CertificateIllustration() {
               />
             </svg>
 
-            <h4 className="mt-2 font-thmanyah-display text-body font-bold text-outline-hover sm:text-h3-sm">
+            {/* ⬇️ DEĞİŞTİ: leading-none/varsayılan sıkı satır yüksekliği yerine
+                leading-snug + küçük bir pb payı eklendi. Arapça glifin alt
+                kısmı (harf kuyrukları) artık satır kutusunun dışına taşıp
+                dıştaki overflow-hidden tarafından kesilmiyor. */}
+            <h4 className="mt-2 font-thmanyah-display text-body font-bold leading-snug pb-0.5 text-outline-hover sm:text-h3-sm">
               شهادة إتمام
             </h4>
-            <p className="mt-1 font-thmanyah-text text-micro text-neutral-400">
+            <p className="mt-1 font-thmanyah-text text-micro leading-relaxed text-neutral-400">
               تم منح هذه الشهادة إلى
             </p>
 
@@ -449,7 +453,6 @@ function CertificateIllustration() {
             opacity="0.12"
           />
 
-          {/* arka glow kopyası — baş + gövde */}
           <path
             d="M62 190c0-42 17-70 38-70s38 28 38 70"
             stroke="url(#charGradWave)"
@@ -467,7 +470,6 @@ function CertificateIllustration() {
             filter="url(#charGlowWave)"
           />
 
-          {/* baş */}
           <circle
             cx="100"
             cy="56"
@@ -478,7 +480,6 @@ function CertificateIllustration() {
             strokeWidth="3.5"
           />
 
-          {/* gövde */}
           <path
             d="M62 190c0-42 17-70 38-70s38 28 38 70"
             fill="var(--color-neutral-0)"
@@ -488,7 +489,6 @@ function CertificateIllustration() {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          {/* parlaklık vurgusu */}
           <path
             d="M70 184c-5-32 3-58 20-72"
             stroke="var(--color-primary-light)"
@@ -496,7 +496,6 @@ function CertificateIllustration() {
             strokeWidth="1.5"
             strokeLinecap="round"
           />
-          {/* yaka */}
           <path
             d="M88 122L100 136L112 122"
             stroke="url(#charGradWave)"
@@ -505,7 +504,6 @@ function CertificateIllustration() {
             strokeLinejoin="round"
           />
 
-          {/* bacaklar */}
           <path
             d="M74 188c-6 20-10 40-8 60"
             stroke="url(#charGradWave)"
@@ -519,7 +517,6 @@ function CertificateIllustration() {
             strokeLinecap="round"
           />
 
-          {/* sallanan kol — yukarı kalkık */}
           <path
             d="M72 130c-14-18-22-40-20-62"
             stroke="url(#charGradWave)"
@@ -536,7 +533,6 @@ function CertificateIllustration() {
             strokeWidth="3"
           />
 
-          {/* diğer kol — yanda, gevşek */}
           <path
             d="M128 130c12 12 18 26 16 42"
             stroke="url(#charGradWave)"
@@ -572,11 +568,11 @@ function CommunityIllustration() {
 
   return (
     <div className="relative z-10 mt-4 flex flex-1 items-end px-5 pb-5 sm:px-6 sm:pb-6">
-      <div className="relative w-full aspect-780/780">
+      <div className="relative w-full aspect-660/798">
         {/* Sohbet penceresi */}
         <div
           className="absolute flex flex-col overflow-hidden rounded-2xl bg-neutral-0 shadow-[0_25px_55px_-22px_var(--color-primary)]/40"
-          style={{ left: "0%", top: "4%", width: "68%", height: "88%" }}
+          style={{ left: "0%", top: "4%", width: "78%", height: "88%" }}
         >
           <div className="flex items-center gap-1.5 border-b border-primary-light px-4 py-2.5">
             <span className="h-2 w-2 rounded-full bg-accent-orange" />
@@ -880,6 +876,8 @@ function CommunityIllustration() {
   );
 }
 
+// FeatureCards.tsx — sadece değişen kısımlar aşağıda işaretli, geri kalanı aynı
+
 export default function FeatureCards() {
   return (
     <div
@@ -889,10 +887,12 @@ export default function FeatureCards() {
       {FEATURES.map((feature, index) => (
         <div
           key={feature.title}
-          className="relative flex flex-col justify-start overflow-hidden rounded-lg min-h-[440px] sm:min-h-[480px] lg:h-[540px] bg-neutral-100"
+          // ⬇️ DEĞİŞTİ: lg:h-[540px] → lg:min-h-135
+          // Sabit yükseklik yerine min-height: lg'de 3 sütuna geçince kart
+          // daralıp başlık daha fazla satıra sarabiliyor; sabit h ile bu durumda
+          // illüstrasyon overflow-hidden tarafından kesiliyordu.
+          className="relative flex flex-col justify-start overflow-hidden rounded-lg min-h-110 sm:min-h-120 lg:min-h-135 bg-neutral-100"
         >
-          {/* Fotoğraf katmanı — kendi görselinizi buraya bağlayın:
-              style={{ backgroundImage: `url(${feature.backgroundImage})` }} */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -903,17 +903,17 @@ export default function FeatureCards() {
             }}
           />
 
-          {/* Metin — üstte, Apple tarzı büyük ve sıkı başlık */}
           <div className="relative z-10 px-6 pt-7 sm:px-7 sm:pt-8">
-            <h3 className="font-thmanyah-display font-bold text-h3 sm:text-h2-sm leading-[1.28] tracking-[-0.01em] text-neutral-900">
+            {/* ⬇️ DEĞİŞTİ: line-clamp eklendi — çok dar ekranlarda satır sayısı
+                öngörülemez artmasın, kart yüksekliği tutarlı kalsın */}
+            <h3 className="font-thmanyah-display font-bold text-h3 sm:text-h2-sm leading-[1.28] tracking-[-0.01em] text-neutral-900 line-clamp-2">
               {feature.title}
             </h3>
-            <p className="mt-3 font-thmanyah-text text-body leading-[1.85] text-neutral-700 max-w-[34ch]">
+            <p className="mt-3 font-thmanyah-text text-body leading-[1.85] text-neutral-700 max-w-[34ch] line-clamp-3 sm:line-clamp-none">
               {feature.description}
             </p>
           </div>
 
-          {/* Yalnızca ilk kartta: referans görseldeki illüstrasyon */}
           {index === 0 && <TestIllustration />}
           {index === 1 && <CertificateIllustration />}
           {index === 2 && <CommunityIllustration />}
