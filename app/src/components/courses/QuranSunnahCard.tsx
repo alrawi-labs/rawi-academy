@@ -1,6 +1,8 @@
 "use client";
 
 import { CardHeader } from "./CardHeader";
+import CardInteractiveShell from "./CardInteractiveShell";
+import QuranCoursesList from "./QuranCoursesList";
 
 function BrowserMockup() {
   return (
@@ -163,18 +165,32 @@ function PhoneMockup() {
 
 export default function QuranSunnahCard() {
   return (
-    <div className="relative bg-neutral-0 border border-neutral-200 rounded-lg overflow-hidden shadow-sm">
-      <CardHeader title="القرآن الكريم والسنة — حفظٌ وفهمٌ يوميّ" color="teal" />
-
+    <CardInteractiveShell
+      accent="teal"
+      title="القرآن الكريم والسنة — حفظٌ وفهمٌ يوميّ"
+      description="تفسير ميسّر ومتابعة حفظ تفاعلية، بمنهجٍ متدرّج يواكب عمر الطالب ومستواه."
+      modalContent={<QuranCoursesList accent="teal" />}
+    >
       <div
-        className="relative h-84 sm:h-92 md:h-100 lg:h-105 mt-4 overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: "url(/backgrounds/bg-19.png)",
-        }}
+        className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-teal-400
+          rounded-lg overflow-hidden shadow-sm group-hover:shadow-2xl
+          transition-[border-color,box-shadow] duration-300"
       >
-        <BrowserMockup />
-        <PhoneMockup />
+        <CardHeader
+          title="القرآن الكريم والسنة — حفظٌ وفهمٌ يوميّ"
+          color="teal"
+        />
+
+        <div
+          className="relative h-84 sm:h-92 md:h-100 lg:h-105 mt-4 overflow-hidden bg-cover bg-center"
+          style={{
+            backgroundImage: "url(/backgrounds/bg-19.png)",
+          }}
+        >
+          <BrowserMockup />
+          <PhoneMockup />
+        </div>
       </div>
-    </div>
+    </CardInteractiveShell>
   );
 }
