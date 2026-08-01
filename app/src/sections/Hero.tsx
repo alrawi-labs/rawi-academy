@@ -56,14 +56,14 @@ export default function Hero() {
               >
                 ابدأ الآن
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 href="#"
                 icon={<GoogleIcon />}
                 className="w-full sm:w-auto justify-center"
               >
                 التسجيل عبر جوجل
-              </Button>
+              </Button> */}
             </div>
           </div>
 

@@ -113,7 +113,7 @@ export default function Navbar() {
 
                   if (!hasChildren) {
                     return (
-                       <a
+                      <a
                         key={link.key}
                         href={link.href}
                         onClick={() => setMobileOpen(false)}
@@ -158,7 +158,7 @@ export default function Navbar() {
                           >
                             <div className="flex flex-col gap-1 pb-3 pr-3">
                               {link.children!.map((child) => (
-                                <a 
+                                <a
                                   key={child.key}
                                   href={child.href}
                                   onClick={() => setMobileOpen(false)}
@@ -175,7 +175,7 @@ export default function Navbar() {
                   );
                 })}
 
-                 <a
+                <a
                   href="#"
                   onClick={() => setMobileOpen(false)}
                   className="py-3.5 text-h3-sm font-thmanyah-display font-semibold text-neutral-900 border-b border-neutral-200"
@@ -183,7 +183,7 @@ export default function Navbar() {
                   الأسعار
                 </a>
 
-                 <a
+                <a
                   href="#"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center gap-1.5 py-4 text-body font-medium text-primary-alt"
@@ -202,7 +202,7 @@ export default function Navbar() {
                 size="md"
                 className="w-full justify-center"
               >
-                تسجيل الدخول
+                سجل الان{" "}
               </Button>
               <Button
                 variant="primary-alt"
@@ -272,7 +272,7 @@ export default function Navbar() {
           {/* الأزرار — geniş ekran */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <Button variant="orange" href="#" size="sm">
-              تسجيل الدخول
+              سجل الان{" "}
             </Button>
 
             <Button
