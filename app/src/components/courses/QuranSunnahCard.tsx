@@ -173,7 +173,7 @@ export default function QuranSunnahCard() {
     >
       <div
         className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-teal-400/40
-          rounded-lg overflow-hidden shadow-sm group-hover:shadow-2xl
+          rounded-lg overflow-hidden shadow-sm 
           transition-[border-color,box-shadow] duration-300"
       >
         <CardHeader

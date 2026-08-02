@@ -107,8 +107,8 @@ export default function CardInteractiveShell({
         }}
         aria-label={`${title} — عرض الدورات`}
         className={`group relative cursor-pointer outline-none rounded-lg
-          transition-transform duration-300 ease-out
-          hover:scale-[1.03] hover:z-10 focus-visible:ring-2 ${ringMap[accent]} ${className}`}
+          transition-[margin] duration-300 ease-out
+          hover:-mx-1 hover:z-10 focus-visible:ring-2 ${ringMap[accent]} ${className}`}
       >
         {children}
       </div>
