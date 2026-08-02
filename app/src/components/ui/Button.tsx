@@ -13,8 +13,16 @@ type BaseProps = {
    * - "primary-alt": solid alternate brand color, white text.
    * - "outline": white background, bordered, colored text.
    * - "orange": subtle translucent background with orange text.
+   * - "pink": solid brand pink, white text.
+   * - "orange-solid": solid brand orange, white text.
    */
-  variant?: "primary" | "primary-alt" | "outline" | "orange";
+  variant?:
+    | "primary"
+    | "primary-alt"
+    | "outline"
+    | "orange"
+    | "pink"
+    | "orange-solid";
 
   /** Controls padding and font size. Defaults to "md". */
   size?: "sm" | "md" | "lg";
@@ -78,6 +86,8 @@ const variantStyles: Record<NonNullable<BaseProps["variant"]>, string> = {
     "bg-white text-primary-alt hover:border-outline-hover hover:text-outline-hover rounded-sm",
   orange:
     "text-orange bg-white/70 hover:border-outline-hover hover:text-outline-hover rounded-sm",
+  pink: "text-white bg-visual-pink hover:opacity-90 rounded-sm",
+  "orange-solid": "text-white bg-orange hover:opacity-90 rounded-sm",
 };
 
 // Varyanta göre varsayılan border davranışı (gerekirse `border` prop'u ile override edilir)
@@ -86,17 +96,21 @@ const defaultBorder: Record<NonNullable<BaseProps["variant"]>, boolean> = {
   "primary-alt": false,
   outline: true,
   orange: false,
+  pink: false,
+  "orange-solid": false,
 };
 
 /**
  * Button — a single reusable button component rendered as either a
  * native <button> or <a>, used across the whole site.
  *
- * Handles four visual variants out of the box:
+ * Handles visual variants out of the box:
  * 1. "primary" — solid brand purple call-to-action
  * 2. "primary-alt" — solid alternate brand color call-to-action
  * 3. "outline" — bordered, transparent background
  * 4. "orange" — subtle translucent accent button
+ * 5. "pink" — solid brand pink call-to-action
+ * 6. "orange-solid" — solid brand orange call-to-action
  *
  * Automatically renders as an <a> when `href` is passed, and as a
  * <button> otherwise — no separate `as` prop needed, the element
