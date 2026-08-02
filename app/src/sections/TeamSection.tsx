@@ -57,7 +57,7 @@ export default function TeamSection() {
                   src="/backgrounds/bg-1.png"
                   alt=""
                   aria-hidden="true"
-                  className={`opacity-40 pointer-events-none h-full select-none absolute top-0 z-0 sm:grayscale transition-all duration-700 ease-out sm:group-hover:grayscale-0 ${
+                  className={`opacity-40 pointer-events-none h-full select-none absolute top-0 z-0 ${
                     isReversed ? "right-0 scale-x-[-1]" : "left-0"
                   } w-70 sm:w-95`}
                 />
@@ -82,7 +82,7 @@ export default function TeamSection() {
                       <img
                         src={person.image}
                         alt={person.name}
-                        className="w-full h-full object-cover sm:grayscale transition-all duration-700 ease-out sm:group-hover:grayscale-0"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   </div>
