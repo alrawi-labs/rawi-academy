@@ -7,55 +7,55 @@ import Button from "../ui/Button";
 // kendi içeriğinle değiştir. `image`: /public altında gerçek fotoğraf.
 const courses = [
   {
-    id: "algorithms",
-    title: "أساسيات الخوارزميات وهياكل البيانات",
-    instructor: "المهندس كريم الشامي",
+    id: "algebra-foundations",
+    title: "أساسيات الجبر",
+    instructor: "الأستاذ فراس عودة",
     description:
-      "من الفرز والبحث إلى تحليل التعقيد الزمني، بأمثلة عملية مكتوبة أمامك خطوة بخطوة.",
-    seatsLeft: 6,
-    price: "299 TL",
-    image: "/courses/algorithms.jpg",
-  },
-  {
-    id: "python",
-    title: "بايثون للمبتدئين",
-    instructor: "المهندسة لينا فرحات",
-    description:
-      "بناء أول برنامج حقيقي بلا خبرة مسبقة، مع تمارين مباشرة بعد كل جلسة.",
-    seatsLeft: 15,
+      "المعادلات والمتباينات من الصفر، بخطوات واضحة وأمثلة محلولة أمامك سطرًا بسطر.",
+    seatsLeft: 11,
     price: "مجانًا",
-    image: "/courses/python.jpg",
+    image: "/courses/algebra-foundations.jpg",
   },
   {
-    id: "frontend",
-    title: "تطوير الويب — Frontend",
-    instructor: "المهندس عمر بيلال",
+    id: "geometry-proofs",
+    title: "البراهين الهندسية",
+    instructor: "الدكتورة هبة رشيد",
     description:
-      "React ومبادئ التصميم التفاعلي، وبناء مشروع كامل ينضم إلى معرض أعمالك.",
-    seatsLeft: 3,
-    price: "349 TL",
-    image: "/courses/frontend.jpg",
+      "منطق البرهان الهندسي خطوة بخطوة، مع تدريب على حل المسائل بأسلوب منهجي.",
+    seatsLeft: 7,
+    price: "259 TL",
+    image: "/courses/geometry-proofs.jpg",
   },
   {
-    id: "data-structures",
-    title: "هياكل البيانات المتقدمة",
-    instructor: "الدكتور طارق منصور",
+    id: "calculus-1",
+    title: "التفاضل والتكامل — المستوى الأول",
+    instructor: "الأستاذ يوسف النجار",
     description:
-      "الأشجار، الرسوم البيانية، والتعامل مع مسائل المقابلات التقنية الحقيقية.",
-    seatsLeft: 9,
-    price: "299 TL",
-    image: "/courses/data-structures.jpg",
+      "من مفهوم النهايات إلى المشتقات الأولى، بشرح مرئي يبسّط الفكرة قبل الرمز.",
+    seatsLeft: 4,
+    price: "319 TL",
+    image: "/courses/calculus-1.jpg",
+  },
+  {
+    id: "statistics-basics",
+    title: "الإحصاء وتحليل البيانات",
+    instructor: "الأستاذة سارة قاسم",
+    description:
+      "قراءة البيانات واتخاذ القرار منها، بأمثلة من الحياة اليومية لا من الكتاب فقط.",
+    seatsLeft: 13,
+    price: "مجانًا",
+    image: "/courses/statistics-basics.jpg",
   },
 ];
 
-export default function ProgrammingCoursesList() {
+export default function MathCoursesList() {
   return (
     <div className="w-full flex flex-col gap-5 sm:gap-6">
       {courses.map((course) => (
         <div
           key={course.id}
           className="w-full rounded-sm border border-neutral-200 bg-neutral-0 overflow-hidden
-            flex flex-col sm:flex-row transition-colors hover:border-primary"
+            flex flex-col sm:flex-row transition-colors hover:border-orange"
         >
           <div className="relative w-full h-52 sm:w-64 sm:h-auto shrink-0">
             <Image
@@ -65,7 +65,7 @@ export default function ProgrammingCoursesList() {
               sizes="(max-width: 640px) 100vw, 256px"
               className="object-cover"
             />
-            <div className="absolute inset-0 mix-blend-multiply bg-primary/20" />
+            <div className="absolute inset-0 mix-blend-multiply bg-orange/20" />
 
             <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-sm bg-neutral-900/70 px-2.5 py-1">
               <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
@@ -102,7 +102,7 @@ export default function ProgrammingCoursesList() {
                 >
                   {course.price}
                 </span>
-                <Button variant="primary">تفاصيل الدورة</Button>
+                <Button variant="orange-solid">تفاصيل الدورة</Button>
               </div>
             </div>
           </div>

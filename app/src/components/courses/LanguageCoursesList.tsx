@@ -102,9 +102,7 @@ export default function LanguageCoursesList() {
                 >
                   {course.price}
                 </span>
-                <Button className="bg-visual-pink hover:opacity-90 text-neutral-0">
-                  تفاصيل الدورة
-                </Button>
+                <Button variant="pink">تفاصيل الدورة</Button>
               </div>
             </div>
           </div>
