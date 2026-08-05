@@ -14,6 +14,11 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
 
   const links = [
+     {
+      key: "curriculum",
+      label: "منهجنا",
+      href: "/curriculum",
+    },
     {
       key: "subjects",
       label: "المواد الدراسية",
