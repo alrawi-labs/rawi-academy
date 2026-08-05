@@ -6,7 +6,8 @@ import CyclingWord from "../CyclingWord";
 import LanguageFlashcardStack from "./LanguageFlashcardStack";
 import { CardHeader } from "./CardHeader";
 import CardInteractiveShell from "./CardInteractiveShell";
-import LanguageCoursesList from "./LanguageCoursesList";
+import SubjectCoursesList from "./SubjectCoursesList";
+
 
 function VideoPanel() {
   return (
@@ -135,7 +136,7 @@ export default function LanguagesCard() {
       accent="pink"
       title="اللغات — بوابة تواصلك مع العالم"
       description="جلسات ودورات مباشرة مع أفضل المدرسين، تفتح لك طريقًا حقيقيًا نحو التواصل بلغة جديدة."
-      modalContent={<LanguageCoursesList />}
+      modalContent={<SubjectCoursesList subject="languages" />}
       className="lg:col-span-2"
     >
       <div className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-pink-400/40 rounded-lg overflow-hidden shadow-sm">

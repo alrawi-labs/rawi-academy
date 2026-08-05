@@ -7,7 +7,7 @@ import GeometryProofCard from "./GeometryProofCard";
 import { BridgeSentence } from "./BridgeSentence";
 import { CardHeader } from "./CardHeader";
 import CardInteractiveShell from "./CardInteractiveShell";
-import MathCoursesList from "./MathCoursesList";
+import SubjectCoursesList from "./SubjectCoursesList";
 
 function DecorativeOverlays() {
   return (
@@ -119,7 +119,7 @@ export default function MathCard() {
       accent="orange"
       title="الرياضيات — تفكيرٌ منطقي، خطوة بخطوة"
       description="دروس وبراهين مباشرة تبني المنطق الرياضي خطوة بخطوة، من الأساسيات إلى مسائل أكثر تعقيدًا."
-      modalContent={<MathCoursesList />}
+      modalContent={<SubjectCoursesList subject="math" />}
       className="lg:col-span-2"
     >
       <div className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-orange-400/40 rounded-lg overflow-hidden shadow-sm">

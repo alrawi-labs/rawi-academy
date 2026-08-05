@@ -3,7 +3,7 @@
 import { GitBranch, Sparkles, FileCode2, Route } from "lucide-react";
 import { CardHeader } from "./CardHeader";
 import CardInteractiveShell from "./CardInteractiveShell";
-import ProgrammingCoursesList from "./ProgrammingCoursesList";
+import SubjectCoursesList from "./SubjectCoursesList";
 
 function CodeEditorMockup() {
   return (
@@ -212,7 +212,7 @@ export default function ProgrammingCard() {
       accent="purple"
       title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم"
       description="مسار مباشر بإشراف مدربين متخصصين، من أول سطر كود إلى بناء مشاريع حقيقية تضاف إلى معرض أعمالك."
-      modalContent={<ProgrammingCoursesList />}
+      modalContent={<SubjectCoursesList subject="programming" />}
     >
       <div className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-purple-400/40 rounded-lg overflow-hidden shadow-sm">
         <CardHeader title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم" color="purple" />

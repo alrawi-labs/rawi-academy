@@ -2,7 +2,7 @@
 
 import { CardHeader } from "./CardHeader";
 import CardInteractiveShell from "./CardInteractiveShell";
-import QuranCoursesList from "./QuranCoursesList";
+import SubjectCoursesList from "./SubjectCoursesList";
 
 function BrowserMockup() {
   return (
@@ -169,7 +169,7 @@ export default function QuranSunnahCard() {
       accent="teal"
       title="القرآن الكريم والسنة — حفظٌ وفهمٌ يوميّ"
       description="تفسير ميسّر ومتابعة حفظ تفاعلية، بمنهجٍ متدرّج يواكب عمر الطالب ومستواه."
-      modalContent={<QuranCoursesList accent="teal" />}
+      modalContent={<SubjectCoursesList subject="quran" />}
     >
       <div
         className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-teal-400/40

@@ -2,60 +2,24 @@
 
 import Image from "next/image";
 import Button from "../ui/Button";
+import { getCoursesBySubject, type CourseSubject } from "@/app/src/data/courses";
+import { subjectConfig } from "@/app/src/data/subjectConfig";
 
-// ⚠️ Placeholder veri — gerçek kurs/eğitmen/fiyat bilgilerini
-// kendi içeriğinle değiştir. `image`: /public altında gerçek fotoğraf.
-const courses = [
-  {
-    id: "algebra-foundations",
-    title: "أساسيات الجبر",
-    instructor: "الأستاذ فراس عودة",
-    description:
-      "المعادلات والمتباينات من الصفر، بخطوات واضحة وأمثلة محلولة أمامك سطرًا بسطر.",
-    seatsLeft: 11,
-    price: "مجانًا",
-    image: "/courses/algebra-foundations.jpg",
-  },
-  {
-    id: "geometry-proofs",
-    title: "البراهين الهندسية",
-    instructor: "الدكتورة هبة رشيد",
-    description:
-      "منطق البرهان الهندسي خطوة بخطوة، مع تدريب على حل المسائل بأسلوب منهجي.",
-    seatsLeft: 7,
-    price: "259 TL",
-    image: "/courses/geometry-proofs.jpg",
-  },
-  {
-    id: "calculus-1",
-    title: "التفاضل والتكامل — المستوى الأول",
-    instructor: "الأستاذ يوسف النجار",
-    description:
-      "من مفهوم النهايات إلى المشتقات الأولى، بشرح مرئي يبسّط الفكرة قبل الرمز.",
-    seatsLeft: 4,
-    price: "319 TL",
-    image: "/courses/calculus-1.jpg",
-  },
-  {
-    id: "statistics-basics",
-    title: "الإحصاء وتحليل البيانات",
-    instructor: "الأستاذة سارة قاسم",
-    description:
-      "قراءة البيانات واتخاذ القرار منها، بأمثلة من الحياة اليومية لا من الكتاب فقط.",
-    seatsLeft: 13,
-    price: "مجانًا",
-    image: "/courses/statistics-basics.jpg",
-  },
-];
+export default function SubjectCoursesList({
+  subject,
+}: {
+  subject: CourseSubject;
+}) {
+  const courses = getCoursesBySubject(subject);
+  const style = subjectConfig[subject];
 
-export default function MathCoursesList() {
   return (
     <div className="w-full flex flex-col gap-5 sm:gap-6">
       {courses.map((course) => (
         <div
           key={course.id}
-          className="w-full rounded-sm border border-neutral-200 bg-neutral-0 overflow-hidden
-            flex flex-col sm:flex-row transition-colors hover:border-orange"
+          className={`w-full rounded-sm border border-neutral-200 bg-neutral-0 overflow-hidden
+            flex flex-col sm:flex-row transition-colors ${style.borderHoverClass}`}
         >
           <div className="relative w-full h-52 sm:w-64 sm:h-auto shrink-0">
             <Image
@@ -65,7 +29,7 @@ export default function MathCoursesList() {
               sizes="(max-width: 640px) 100vw, 256px"
               className="object-cover"
             />
-            <div className="absolute inset-0 mix-blend-multiply bg-orange/20" />
+            <div className={`absolute inset-0 mix-blend-multiply ${style.photoOverlayClass}`} />
 
             <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-sm bg-neutral-900/70 px-2.5 py-1">
               <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
@@ -102,7 +66,11 @@ export default function MathCoursesList() {
                 >
                   {course.price}
                 </span>
-                <Button variant="orange-solid">تفاصيل الدورة</Button>
+                {style.buttonVariant ? (
+                  <Button variant={style.buttonVariant}>تفاصيل الدورة</Button>
+                ) : (
+                  <Button className={style.buttonClassName}>تفاصيل الدورة</Button>
+                )}
               </div>
             </div>
           </div>
