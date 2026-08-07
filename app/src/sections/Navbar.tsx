@@ -7,14 +7,18 @@ import { ChevronDown, Sparkles, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Button from "../components/ui/Button";
 import NavLink from "../components/ui/NavLink";
+import { useNavbarVariant } from "../context/NavbarVariantContext";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
+  const { variant } = useNavbarVariant();
+  const isDark = variant === "dark";
+
   const links = [
-     {
+    {
       key: "curriculum",
       label: "منهجنا",
       href: "/curriculum",
@@ -102,7 +106,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                aria-label="Menüyü kapat"
+                aria-label="اغلق القائمة"
                 className="flex items-center justify-center w-9 h-9 rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 transition-colors"
               >
                 <X size={20} />
@@ -228,30 +232,36 @@ export default function Navbar() {
   return (
     <nav
       dir="rtl"
-      className="w-full absolute top-0 left-0 z-50 border backdrop-blur-sm"
+      className={`w-full absolute top-0 left-0 z-50 backdrop-blur-sm transition-colors duration-300`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+      <div
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 ${isDark ? "border-dark" : "border"}`}
+      >
         <div className="flex items-center justify-between h-[64px] sm:h-[70px] lg:h-[76px]">
           {/* الشعار */}
-          <div className="flex items-center shrink-0">
-            <Image
-              src="/logos/cropped_logo.png"
-              alt="راوي"
-              width={2048}
-              height={2048}
-              className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 object-contain"
-              priority
-            />
-            <span className="font-extrabold text-body sm:text-h3-sm text-neutral-900 tracking-tight whitespace-nowrap">
-              أكاديمية راوي
-            </span>
-          </div>
+            <a className="flex items-center shrink-0" href="/">
+              <Image
+                src="/logos/cropped_logo.png"
+                alt="راوي"
+                width={2048}
+                height={2048}
+                className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 object-contain"
+                priority
+              />
+              <span
+                className={`font-extrabold text-body sm:text-h3-sm tracking-tight whitespace-nowrap ${
+                  isDark ? "text-neutral-0" : "text-neutral-900"
+                }`}
+              >
+                أكاديمية راوي
+              </span>
+            </a>
 
           {/* الروابط — sadece geniş ekranlarda */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+          <div className={`hidden lg:flex items-center gap-5 xl:gap-7`}>
             {links.map((link) => (
               <NavLink
-                context="navbar"
+                context={isDark ? "navbar-dark" : "navbar"}
                 key={link.key}
                 href={link.href}
                 items={link.children}
@@ -260,11 +270,15 @@ export default function Navbar() {
               </NavLink>
             ))}
 
-            <NavLink context="navbar" href="#">
+            <NavLink context={isDark ? "navbar-dark" : "navbar"} href="#">
               الأسعار
             </NavLink>
 
-            <span className="w-px h-4 bg-neutral-200" />
+            <span
+              className={`w-px h-4 ${
+                isDark ? "bg-neutral-0/20" : "bg-neutral-200"
+              }`}
+            />
             <a
               href="#"
               className="flex items-center gap-1.5 text-body font-medium text-primary-alt hover:text-primary-alt-hover transition-colors whitespace-nowrap"
@@ -295,8 +309,12 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            aria-label="Menüyü aç"
-            className="lg:hidden flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full text-neutral-900 hover:bg-neutral-100 transition-colors shrink-0"
+            aria-label="افتح القائمة"
+            className={`lg:hidden flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full transition-colors shrink-0 ${
+              isDark
+                ? "text-neutral-0 hover:bg-neutral-0/10"
+                : "text-neutral-900 hover:bg-neutral-100"
+            }`}
           >
             <Menu size={22} />
           </button>

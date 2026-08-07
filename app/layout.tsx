@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Navbar from "./src/sections/Navbar";
 import "./globals.css";
 import Footer from "./src/sections/Footer";
+import { NavbarVariantProvider } from "./src/context/NavbarVariantContext";
 
 const thmanyahSerifDisplay = localFont({
   src: [
@@ -115,8 +116,10 @@ export default function RootLayout({
       className={`${thmanyahSerifDisplay.variable} ${thmanyahSerifText.variable} ${thmanyahSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col relative">
-        <Navbar />
-        {children}
+        <NavbarVariantProvider>
+          <Navbar />
+          {children}
+        </NavbarVariantProvider>
         <Footer />
       </body>
     </html>

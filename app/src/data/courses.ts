@@ -28,7 +28,7 @@ export const courses: Course[] = [
       "برنامج مباشر بمجموعات صغيرة، بخطة مراجعة أسبوعية تثبّت المحفوظ وتمنع النسيان.",
     seatsLeft: 4,
     price: "مجانًا",
-    image: "/courses/hifz.jpg",
+    image: "/courses/quran/hifz.png",
   },
   {
     id: "tafsir",

@@ -51,6 +51,7 @@
   --background: var(--color-neutral-0);
   --foreground: var(--color-neutral-900);
   --border-color: var(--color-neutral-200);
+  --border-dark-color: var(--color-neutral-500);
 
   /* ------------------------------ */
   /* Gradients                      */
@@ -165,4 +166,9 @@ body {
 }
 .font-thmanyah-sans {
   font-family: var(--font-thmanyah-sans), sans-serif;
+}
+.border-dark {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-dark-color);
 }

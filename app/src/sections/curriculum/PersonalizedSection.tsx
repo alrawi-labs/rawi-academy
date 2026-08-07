@@ -10,11 +10,11 @@ const rows = [
 
 export default function PersonalizedSection() {
   return (
-    <section dir="rtl" className="py-[120px] max-md:py-16">
+    <section dir="rtl" className="py-[120px] max-md:py-16 bg-neutral-100">
       <SectionContainer>
         <div className="grid grid-cols-[.9fr_1.1fr] gap-20 max-md:grid-cols-1 max-md:gap-9">
           <Reveal className="sticky top-[100px] self-start max-md:static">
-            <h2 className="font-thmanyah-display text-h2-sm mb-4.5">
+            <h2 className="font-thmanyah-display text-h2-sm mb-4.5 text-neutral-900">
               لا يتعلم الجميع بالطريقة نفسها.
             </h2>
             <p className="text-body text-neutral-500">

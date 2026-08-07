@@ -22,9 +22,10 @@ type NavLinkProps = {
   /**
    * Visual color context depending on where the link is placed.
    * - "navbar": dark text on light background (default).
+   * - "navbar-dark": light text on dark/glass navbar background.
    * - "footer": light text on dark background.
    */
-  context?: "navbar" | "footer";
+  context?: "navbar" | "navbar-dark" | "footer";
 
   /**
    * List of dropdown items shown when `hasDropdown` is true.
@@ -50,6 +51,11 @@ const contextStyles: Record<
     text: "text-neutral-700",
     hoverText: "hover:text-neutral-900",
     icon: "text-neutral-400",
+  },
+  "navbar-dark": {
+    text: "text-neutral-0/85",
+    hoverText: "hover:text-neutral-0",
+    icon: "text-neutral-0/60",
   },
   footer: {
     text: "text-neutral-300",
@@ -88,6 +94,10 @@ const contextStyles: Record<
  * @example
  * // Footer variant
  * <NavLink context="footer" href="/about">من نحن</NavLink>
+ *
+ * @example
+ * // Dark navbar variant
+ * <NavLink context="navbar-dark" href="/pricing">الأسعار</NavLink>
  *
  * @example
  * // Rendering a full nav list dynamically

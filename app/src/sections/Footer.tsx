@@ -166,8 +166,28 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
           <div className="col-span-2 sm:col-span-2 md:col-span-1">
+            {/* Kare foto + ortalanmış CTA butonu */}
+            <div className="relative w-full aspect-3/2 rounded-lg overflow-hidden mb-6">
+              <Image
+                src="/backgrounds/dark/bg-1.png"
+                alt=""
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-neutral-900/50" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Button
+                  variant="outline"
+                  href="#"
+                  size="lg"
+                  className="font-bold text-7xl"
+                >
+                  استكشف مساراتنا{" "}
+                </Button>
+              </div>
+            </div>
+
             <p className="text-body font-semibold text-neutral-500 mb-4 tracking-wide">
               تابعنا
             </p>

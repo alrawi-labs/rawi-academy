@@ -62,7 +62,7 @@ export default function CurriculumHero() {
         />
       </svg>
 
-      <SectionContainer>
+      <SectionContainer >
         <div className="relative z-10 grid grid-cols-[510px_minmax(0,760px)] gap-10 items-start max-[900px]:grid-cols-1">
           {/* Kartlar önce (dir=rtl'de start/right kenara oturur) */}
           <div className="max-[900px]:order-2">
