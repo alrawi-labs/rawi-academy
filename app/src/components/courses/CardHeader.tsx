@@ -31,6 +31,8 @@ interface CardHeaderProps {
 
   /** Additional classes for the outer wrapper only. */
   className?: string;
+
+  textColor?: string;
 }
 
 /**
@@ -168,6 +170,7 @@ export function CardHeader({
   color,
   size = "sm",
   className = "",
+  textColor = "text-neutral-900",
 }: CardHeaderProps) {
   const colors = colorStyles[color];
   const layout = sizeStyles[size];
@@ -177,7 +180,7 @@ export function CardHeader({
       className={`flex items-start justify-between ${layout.wrapper} ${className}`}
     >
       <h3
-        className={`font-thmanyah-display font-bold leading-[1.4] text-neutral-900 ${layout.title}`}
+        className={`font-thmanyah-display font-bold leading-[1.4] ${textColor} ${layout.title}`}
       >
         {title}
       </h3>

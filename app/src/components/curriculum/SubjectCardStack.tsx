@@ -13,7 +13,7 @@ export const SUBJECTS = [
     description:
       "يبدأ الطالب من حيث هو، لا من حيث يفترض الناس أن يكون. يتدرّج في التلاوة، ثم الحفظ، ثم الفهم، مع متابعةٍ مستمرة تجعل كل خطوةٍ مبنيةً على ما قبلها.",
     color: "var(--color-visual-teal)",
-    photo: "/subjects/quran.png",
+    photo: "/courses/quran.png",
   },
   {
     id: "code",
@@ -21,7 +21,7 @@ export const SUBJECTS = [
     description:
       "لا يحتاج الطالب إلى أي خبرةٍ مسبقة. نبدأ معه من الأساس، ثم نبني مهاراته تدريجيًا حتى يصبح قادرًا على تطوير برامج ومشاريع يفهم كل جزءٍ فيها بنفسه.",
     color: "var(--color-primary)",
-    photo: "/subjects/code.png",
+    photo: "/courses/code.png",
   },
   {
     id: "lang",
@@ -29,7 +29,7 @@ export const SUBJECTS = [
     description:
       "لا نعتمد على حفظ الكلمات والقواعد وحدها، بل ندرّب الطالب على الفهم والاستماع والمحادثة، حتى تصبح اللغة جزءًا طبيعيًا من تواصله اليومي.",
     color: "var(--color-visual-pink)",
-    photo: "/subjects/languages.png",
+    photo: "/courses/languages.png",
   },
   {
     id: "math",
@@ -37,7 +37,7 @@ export const SUBJECTS = [
     description:
       "كثيرٌ من الطلاب يحفظون طريقة الحل دون أن يفهموا السبب. لذلك يبدأ كل درسٍ بالفكرة، ثم ينتقل إلى التطبيق، حتى يصبح الحل نتيجةً للفهم لا للحفظ.",
     color: "var(--color-orange)",
-    photo: "/subjects/math2.png",
+    photo: "/courses/math2.png",
   },
 ] as const;
 

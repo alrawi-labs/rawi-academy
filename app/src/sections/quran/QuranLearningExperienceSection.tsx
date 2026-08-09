@@ -1,6 +1,13 @@
 "use client";
 
-import {SectionContainer} from "@/app/src/components/layout/SectionContainer";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 type Step = {
   title: string;
@@ -49,21 +56,6 @@ const STEPS: Step[] = [
 
 const FLOW_WORDS = ["يتعلّم", "يقرأ", "يُصحّح", "يراجع", "يتقدّم"];
 
-function FlowArrow() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 20 14" className="shrink-0 text-visual-teal/50">
-      <path
-        d="M18 7H2M2 7L7 2M2 7L7 12"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 /** Nokta-ayraçlı metin — chip/badge yerine, TajweedSection'daki TermsRow ile aynı aile. */
 function TagsRow({ tags }: { tags: string[] }) {
   return (
@@ -86,9 +78,7 @@ function ProgressDots({ activeIndex, total }: { activeIndex: number; total: numb
         <span
           key={i}
           className={`rounded-full transition-all duration-300 ${
-            i === activeIndex
-              ? "w-3 h-1.5 bg-visual-teal"
-              : "w-1.5 h-1.5 bg-neutral-200"
+            i === activeIndex ? "w-3 h-1.5 bg-visual-teal" : "w-1.5 h-1.5 bg-neutral-200"
           }`}
         />
       ))}
@@ -120,12 +110,12 @@ function StepCard({
 }) {
   return (
     <div
-      className={`relative rounded-lg border p-7 sm:p-8 overflow-hidden ${
-        wide
-          ? "bg-visual-teal/[0.05] border-visual-teal/25 lg:col-span-2"
-          : "bg-neutral-0 border-neutral-200"
+      className={`border-visual-teal/20 relative rounded-lg border p-7 sm:p-8 overflow-hidden bg-cover bg-center ${
+        wide ? "lg:col-span-2" : ""
       }`}
+      style={{ backgroundImage: "url('/backgrounds/bg-39.png')" }}
     >
+
       {wide && <DotGridAccent />}
 
       <div className="relative flex flex-col gap-4">
@@ -140,14 +130,96 @@ function StepCard({
           <h3 className="font-thmanyah-display font-bold text-h3-sm sm:text-h3 text-neutral-900 leading-snug">
             {step.subtitle}
           </h3>
-          <p className="font-thmanyah-text text-caption text-neutral-600 leading-6 max-w-[440px]">
+          <p className="font-thmanyah-text text-caption text-neutral-400 leading-6 max-w-[440px]">
             {step.description}
           </p>
         </div>
 
-        <div className="pt-3 border-t border-neutral-100">
+        <div className="pt-3 border-t border-visual-teal/40">
           <TagsRow tags={step.tags} />
         </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Kapanış "akış" cümlesi — kelimeler ve aralarındaki oklar scroll'da sırayla beliriyor.
+ * Zamanlamayı değiştirmek için tek yer: WORD_DURATION / WORD_OVERLAP / ARROW_DURATION.
+ */
+function FlowSentence({ words }: { words: string[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const WORD_DURATION = 0.45;
+  const WORD_OVERLAP = "-=0.15"; // bir sonraki kelime, öncekinin bitmesini beklemeden bu kadar erken başlar
+  const ARROW_DURATION = 0.3;
+  const ARROW_OVERLAP = "-=0.2";
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const wordEls = gsap.utils.toArray<HTMLSpanElement>(".flow-word");
+      const arrowEls = gsap.utils.toArray<SVGSVGElement>(".flow-arrow");
+
+      // Oklar sağdan (akışın başladığı taraf) sola doğru "çiziliyormuş" gibi büyüsün
+      gsap.set(arrowEls, { scaleX: 0, transformOrigin: "100% 50%" });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 82%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      wordEls.forEach((word, i) => {
+        tl.from(
+          word,
+          { opacity: 0, y: 14, duration: WORD_DURATION, ease: "power2.out" },
+          i === 0 ? 0 : WORD_OVERLAP
+        );
+        if (arrowEls[i]) {
+          tl.to(
+            arrowEls[i],
+            { scaleX: 1, duration: ARROW_DURATION, ease: "power2.out" },
+            ARROW_OVERLAP
+          );
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative mt-16 sm:mt-20 rounded-lg bg-visual-teal/[0.04] py-10 sm:py-12 px-6 sm:px-12"
+    >
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+        {words.map((word, i) => (
+          <div key={word} className="flex items-center gap-3 sm:gap-5">
+            <span className="flow-word font-thmanyah-display font-bold text-h3-sm sm:text-h2-sm text-neutral-900">
+              {word}
+            </span>
+            {i < words.length - 1 && (
+              <svg
+                className="flow-arrow shrink-0 text-visual-teal/50"
+                width="20"
+                height="14"
+                viewBox="0 0 20 14"
+              >
+                <path
+                  d="M18 7H2M2 7L7 2M2 7L7 12"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -181,19 +253,7 @@ export default function QuranLearningExperienceSection() {
           ))}
         </div>
 
-        {/* Kapanış cümlesi — akış şeridi */}
-        <div className="relative mt-16 sm:mt-20 rounded-lg border-r-4 border-visual-teal bg-visual-teal/[0.04] py-10 sm:py-12 px-6 sm:px-12">
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-            {FLOW_WORDS.map((word, i) => (
-              <div key={word} className="flex items-center gap-3 sm:gap-5">
-                <span className="font-thmanyah-display font-bold text-h3-sm sm:text-h2-sm text-neutral-900">
-                  {word}
-                </span>
-                {i < FLOW_WORDS.length - 1 && <FlowArrow />}
-              </div>
-            ))}
-          </div>
-        </div>
+        <FlowSentence words={FLOW_WORDS} />
       </SectionContainer>
     </section>
   );

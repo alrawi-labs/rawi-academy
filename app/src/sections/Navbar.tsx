@@ -24,14 +24,14 @@ export default function Navbar() {
       href: "/curriculum",
     },
     {
-      key: "subjects",
+      key: "courses",
       label: "المواد الدراسية",
       href: "#",
       children: [
-        { key: "quran", label: "القرآن الكريم", href: "/subjects/quran" },
-        { key: "programming", label: "البرمجة", href: "/subjects/programming" },
-        { key: "languages", label: "اللغات", href: "/subjects/languages" },
-        { key: "math", label: "الرياضيات", href: "/subjects/math" },
+        { key: "quran", label: "القرآن الكريم", href: "/courses/quran" },
+        { key: "programming", label: "البرمجة", href: "/courses/programming" },
+        { key: "languages", label: "اللغات", href: "/courses/languages" },
+        { key: "math", label: "الرياضيات", href: "/courses/math" },
       ],
     },
     {
@@ -290,7 +290,7 @@ export default function Navbar() {
 
           {/* الأزرار — geniş ekran */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <Button variant="orange" href="#" size="sm">
+            <Button variant={(isDark? "orange-solid": "orange")} href="#" size="sm">
               سجل الان{" "}
             </Button>
 

@@ -1,15 +1,21 @@
 "use client";
 
 interface BarConfig {
+  /** Distance from the left edge of the container, e.g. "6%". */
   left: string;
+  /** Top and bottom gradient stops (with alpha) for the glass tint. */
   from: string;
   to: string;
+  /** Shadow/glow color cast under the bar. */
   glow: string;
+  /** Animation name + duration, e.g. "driftA 9s". */
   drift: string;
 }
 
-// Tüm barlar --color-visual-teal (ve bir tanesi --color-visual-orange) üzerinden
-// color-mix() ile türetildi — tek token'a bağlı kalarak raw hex kullanılmadı.
+// Tüm barlar --color-visual-teal üzerinden color-mix() ile türetildi —
+// tek bir token'a bağlı kalarak (raw hex yok) dört farklı ton elde ediliyor.
+// Bu, HeroGlassBars'taki 4-konu paletinin yerine Kur'an sayfasına özel
+// tek-renk (teal) varyasyonu.
 const BARS: BarConfig[] = [
   {
     left: "2%",
@@ -19,11 +25,10 @@ const BARS: BarConfig[] = [
     drift: "driftA 10s",
   },
   {
-    // Fotoğraftaki altın şerit — visual-orange'dan türetildi
     left: "10%",
-    from: "color-mix(in srgb, var(--color-visual-orange) 75%, white)",
-    to: "color-mix(in srgb, var(--color-visual-orange) 45%, white)",
-    glow: "color-mix(in srgb, var(--color-visual-orange) 55%, transparent)",
+    from: "color-mix(in srgb, var(--color-visual-teal) 100%, transparent)",
+    to: "color-mix(in srgb, var(--color-visual-teal) 60%, white)",
+    glow: "color-mix(in srgb, var(--color-visual-teal) 65%, transparent)",
     drift: "driftB 9s",
   },
   {
@@ -66,6 +71,18 @@ export default function QuranGlassBars() {
           z-index: 0;
           pointer-events: none;
         }
+        /* faint dot grid so the glass blur has something to refract;
+           remove if the container already has imagery/texture behind it */
+        .dotgrid {
+          position: absolute;
+          inset: -10% -10%;
+          z-index: -1;
+          background-image: radial-gradient(
+            rgba(27, 23, 48, 0.14) 1px,
+            transparent 1px
+          );
+          background-size: 26px 26px;
+        }
         .bar {
           position: absolute;
           width: 230px;
@@ -106,24 +123,54 @@ export default function QuranGlassBars() {
         }
 
         @keyframes driftA {
-          0%, 100% { transform: rotate(-36deg) translateY(0) translateX(0); opacity: 1; }
-          50% { transform: rotate(-31deg) translateY(60px) translateX(-26px); opacity: 0.85; }
+          0%,
+          100% {
+            transform: rotate(-36deg) translateY(0) translateX(0);
+            opacity: 1;
+          }
+          50% {
+            transform: rotate(-31deg) translateY(60px) translateX(-26px);
+            opacity: 0.85;
+          }
         }
         @keyframes driftB {
-          0%, 100% { transform: rotate(-36deg) translateY(0) translateX(0); opacity: 1; }
-          50% { transform: rotate(-41deg) translateY(-52px) translateX(20px); opacity: 0.85; }
+          0%,
+          100% {
+            transform: rotate(-36deg) translateY(0) translateX(0);
+            opacity: 1;
+          }
+          50% {
+            transform: rotate(-41deg) translateY(-52px) translateX(20px);
+            opacity: 0.85;
+          }
         }
         @keyframes driftC {
-          0%, 100% { transform: rotate(-36deg) translateY(0) translateX(0); opacity: 1; }
-          50% { transform: rotate(-30deg) translateY(48px) translateX(28px); opacity: 0.85; }
+          0%,
+          100% {
+            transform: rotate(-36deg) translateY(0) translateX(0);
+            opacity: 1;
+          }
+          50% {
+            transform: rotate(-30deg) translateY(48px) translateX(28px);
+            opacity: 0.85;
+          }
         }
         @keyframes driftD {
-          0%, 100% { transform: rotate(-36deg) translateY(0) translateX(0); opacity: 1; }
-          50% { transform: rotate(-42deg) translateY(-56px) translateX(-20px); opacity: 0.85; }
+          0%,
+          100% {
+            transform: rotate(-36deg) translateY(0) translateX(0);
+            opacity: 1;
+          }
+          50% {
+            transform: rotate(-42deg) translateY(-56px) translateX(-20px);
+            opacity: 0.85;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .bar { animation: none !important; }
+          .bar {
+            animation: none !important;
+          }
         }
       `}</style>
     </div>
