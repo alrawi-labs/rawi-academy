@@ -6,6 +6,7 @@ import Image from "next/image";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button from "@/app/src/components/ui/Button";
 import { courses, type CourseSubject } from "@/app/src/data/courses";
+import { getInstructorById, getInstructorDisplayName } from "@/app/src/data/instructors";
 
 type SubjectMeta = {
   key: CourseSubject;
@@ -166,50 +167,56 @@ function SubjectSection({
           ref={trackRef}
           className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
-          {subjectCourses.map((course) => (
-            <a
-              key={course.id}
-              data-card
-              href={`${subject.href}/${course.id}`}
-              className="group snap-start shrink-0 w-[320px] md:w-[400px] flex flex-col rounded-sm border border-neutral-200 hover:border-neutral-300 overflow-hidden transition-colors"
-            >
-              <div className="relative w-full aspect-[16/10] bg-neutral-100">
-                <Image
-                  src={course.image}
-                  alt={course.title}
-                  fill
-                  sizes="(min-width: 768px) 400px, 320px"
-                  className="object-cover"
-                />
-              </div>
+          {subjectCourses.map((course) => {
+            const instructor = getInstructorById(course.instructorId);
 
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-h3-sm font-thmanyah-display text-neutral-900 mb-1.5">
-                  {course.title}
-                </h3>
-                <p className="text-caption text-neutral-500 mb-3">
-                  {course.instructor}
-                </p>
-                <p className="text-body text-neutral-600 leading-relaxed mb-6 line-clamp-4">
-                  {course.description}
-                </p>
-
-                <div className="mt-auto flex items-center justify-between pt-5 border-t border-neutral-100">
-                  <div>
-                    <p className="text-body font-semibold text-neutral-900">
-                      {course.price}
-                    </p>
-                    <p className="text-caption text-neutral-400 mt-0.5">
-                      {course.seatsLeft} مقاعد
-                    </p>
-                  </div>
-                  <Button variant="primary" className={accentBg[subject.color]}>
-                    سجّل الآن
-                  </Button>
+            return (
+              <a
+                key={course.id}
+                data-card
+                href={`${subject.href}/${course.id}`}
+                className="group snap-start shrink-0 w-[320px] md:w-[400px] flex flex-col rounded-sm border border-neutral-200 hover:border-neutral-300 overflow-hidden transition-colors"
+              >
+                <div className="relative w-full aspect-[16/10] bg-neutral-100">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    sizes="(min-width: 768px) 400px, 320px"
+                    className="object-cover"
+                  />
                 </div>
-              </div>
-            </a>
-          ))}
+
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-h3-sm font-thmanyah-display text-neutral-900 mb-1.5">
+                    {course.title}
+                  </h3>
+                  {instructor && (
+                    <p className="text-caption text-neutral-500 mb-3">
+                      {getInstructorDisplayName(instructor)}
+                    </p>
+                  )}
+                  <p className="text-body text-neutral-600 leading-relaxed mb-6 line-clamp-4">
+                    {course.description}
+                  </p>
+
+                  <div className="mt-auto flex items-center justify-between pt-5 border-t border-neutral-100">
+                    <div>
+                      <p className="text-body font-semibold text-neutral-900">
+                        {course.price}
+                      </p>
+                      <p className="text-caption text-neutral-400 mt-0.5">
+                        {course.seatsLeft} مقاعد
+                      </p>
+                    </div>
+                    <Button variant="primary" className={accentBg[subject.color]}>
+                      سجّل الآن
+                    </Button>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </SectionContainer>
     </section>

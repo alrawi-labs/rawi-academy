@@ -2,6 +2,12 @@
 // tek bir dizide tutulur; bileşenler `getCoursesBySubject` ile kendi konusuna
 // ait kayıtları filtreler. Yeni bir kurs eklemek için sadece bu diziye yeni bir
 // kayıt eklemen yeterli — hiçbir bileşene dokunmana gerek yok.
+//
+// Eğitmen bilgisi burada değil; her kurs sadece `instructorId` ile
+// `instructors.ts`'deki kayda işaret eder. Eğitmenin adını/unvanını/fotoğrafını
+// göstermek için `getInstructorById(course.instructorId)` kullan.
+
+import { getInstructorById } from "./instructors";
 
 export type CourseSubject = "quran" | "languages" | "math" | "programming";
 
@@ -9,21 +15,21 @@ export type Course = {
   id: string;
   subject: CourseSubject;
   title: string;
-  instructor: string;
+  instructorId: string;
   description: string;
   seatsLeft: number;
   price: string; // "مجانًا" veya "199 TL" gibi — format standartlaşınca number'a çevrilebilir
   image: string; // /public altında gerçek fotoğraf yolu
 };
 
-// ⚠️ Placeholder veri — gerçek kurs/eğitmen/fiyat bilgilerini kendi içeriğinle değiştir.
+// ⚠️ Placeholder veri — gerçek kurs/fiyat bilgilerini kendi içeriğinle değiştir.
 export const courses: Course[] = [
   // القرآن
   {
     id: "hifz",
     subject: "quran",
     title: "حفظ القرآن الكريم",
-    instructor: "الشيخ عبد الله الحمصي",
+    instructorId: "abdullah-alhomsi",
     description:
       "برنامج مباشر بمجموعات صغيرة، بخطة مراجعة أسبوعية تثبّت المحفوظ وتمنع النسيان.",
     seatsLeft: 4,
@@ -34,7 +40,7 @@ export const courses: Course[] = [
     id: "tafsir",
     subject: "quran",
     title: "فهم وتفسير القرآن",
-    instructor: "الدكتورة سارة النعيمي",
+    instructorId: "sarah-alnuaimi",
     description:
       "فهم معاني الآيات وأسباب النزول، بأسلوبٍ ميسّر يربط النص بواقع الحياة.",
     seatsLeft: 12,
@@ -45,7 +51,7 @@ export const courses: Course[] = [
     id: "tajweed",
     subject: "quran",
     title: "أحكام التجويد",
-    instructor: "الشيخ يوسف الأتاسي",
+    instructorId: "yusuf-alatasi",
     description:
       "أحكام التلاوة الصحيحة ومخارج الحروف، بتطبيق عملي مسموع وتصحيح مباشر لكل طالب.",
     seatsLeft: 2,
@@ -56,7 +62,7 @@ export const courses: Course[] = [
     id: "sunnah",
     subject: "quran",
     title: "السنة النبوية",
-    instructor: "الشيخ أحمد الرفاعي",
+    instructorId: "ahmad-alrifai",
     description:
       "أحاديث نبوية مختارة وشروحها، وربطها بآداب السلوك اليومي للطالب.",
     seatsLeft: 18,
@@ -69,7 +75,7 @@ export const courses: Course[] = [
     id: "turkish-a1",
     subject: "languages",
     title: "التركية للمبتدئين — A1",
-    instructor: "الأستاذة أيشه يلماز",
+    instructorId: "aysha-yilmaz",
     description:
       "أول خطوة حقيقية في التركية: الحروف، النطق، والجمل اليومية التي تستخدمها فورًا.",
     seatsLeft: 10,
@@ -80,7 +86,7 @@ export const courses: Course[] = [
     id: "turkish-conversation",
     subject: "languages",
     title: "محادثة تركية — مستوى متوسط",
-    instructor: "الأستاذ مراد كايا",
+    instructorId: "murat-kaya",
     description:
       "جلسات حوارية مباشرة تركز على الطلاقة، بمواقف حياتية حقيقية لا حفظ نظري.",
     seatsLeft: 5,
@@ -91,7 +97,7 @@ export const courses: Course[] = [
     id: "english-business",
     subject: "languages",
     title: "الإنجليزية لبيئة العمل",
-    instructor: "الأستاذة رنا خليل",
+    instructorId: "rana-khalil",
     description:
       "مفردات وصياغات الاجتماعات والإيميلات المهنية، بتدريب مباشر على مواقف واقعية.",
     seatsLeft: 8,
@@ -102,7 +108,7 @@ export const courses: Course[] = [
     id: "arabic-for-turkish",
     subject: "languages",
     title: "العربية للناطقين بالتركية",
-    instructor: "الأستاذ إبراهيم ديميرتاش",
+    instructorId: "ibrahim-demirtas",
     description:
       "قواعد ومفردات عملية، مبنية خصيصًا لمتعلم يتحدث التركية أصلًا.",
     seatsLeft: 14,
@@ -115,7 +121,7 @@ export const courses: Course[] = [
     id: "algebra-foundations",
     subject: "math",
     title: "أساسيات الجبر",
-    instructor: "الأستاذ فراس عودة",
+    instructorId: "firas-oudeh",
     description:
       "المعادلات والمتباينات من الصفر، بخطوات واضحة وأمثلة محلولة أمامك سطرًا بسطر.",
     seatsLeft: 11,
@@ -126,7 +132,7 @@ export const courses: Course[] = [
     id: "geometry-proofs",
     subject: "math",
     title: "البراهين الهندسية",
-    instructor: "الدكتورة هبة رشيد",
+    instructorId: "heba-rashid",
     description:
       "منطق البرهان الهندسي خطوة بخطوة، مع تدريب على حل المسائل بأسلوب منهجي.",
     seatsLeft: 7,
@@ -137,7 +143,7 @@ export const courses: Course[] = [
     id: "calculus-1",
     subject: "math",
     title: "التفاضل والتكامل — المستوى الأول",
-    instructor: "الأستاذ يوسف النجار",
+    instructorId: "yusuf-alnajjar",
     description:
       "من مفهوم النهايات إلى المشتقات الأولى، بشرح مرئي يبسّط الفكرة قبل الرمز.",
     seatsLeft: 4,
@@ -148,7 +154,7 @@ export const courses: Course[] = [
     id: "statistics-basics",
     subject: "math",
     title: "الإحصاء وتحليل البيانات",
-    instructor: "الأستاذة سارة قاسم",
+    instructorId: "sarah-qasem",
     description:
       "قراءة البيانات واتخاذ القرار منها، بأمثلة من الحياة اليومية لا من الكتاب فقط.",
     seatsLeft: 13,
@@ -161,7 +167,7 @@ export const courses: Course[] = [
     id: "algorithms",
     subject: "programming",
     title: "أساسيات الخوارزميات وهياكل البيانات",
-    instructor: "المهندس كريم الشامي",
+    instructorId: "karim-alshami",
     description:
       "من الفرز والبحث إلى تحليل التعقيد الزمني، بأمثلة عملية مكتوبة أمامك خطوة بخطوة.",
     seatsLeft: 6,
@@ -172,7 +178,7 @@ export const courses: Course[] = [
     id: "python",
     subject: "programming",
     title: "بايثون للمبتدئين",
-    instructor: "المهندسة لينا فرحات",
+    instructorId: "lina-farhat",
     description:
       "بناء أول برنامج حقيقي بلا خبرة مسبقة، مع تمارين مباشرة بعد كل جلسة.",
     seatsLeft: 15,
@@ -183,7 +189,7 @@ export const courses: Course[] = [
     id: "frontend",
     subject: "programming",
     title: "تطوير الويب — Frontend",
-    instructor: "المهندس عمر بيلال",
+    instructorId: "omar-bilal",
     description:
       "React ومبادئ التصميم التفاعلي، وبناء مشروع كامل ينضم إلى معرض أعمالك.",
     seatsLeft: 3,
@@ -194,7 +200,7 @@ export const courses: Course[] = [
     id: "data-structures",
     subject: "programming",
     title: "هياكل البيانات المتقدمة",
-    instructor: "الدكتور طارق منصور",
+    instructorId: "tariq-mansour",
     description:
       "الأشجار، الرسوم البيانية، والتعامل مع مسائل المقابلات التقنية الحقيقية.",
     seatsLeft: 9,
@@ -205,4 +211,11 @@ export const courses: Course[] = [
 
 export function getCoursesBySubject(subject: CourseSubject): Course[] {
   return courses.filter((course) => course.subject === subject);
+}
+
+/** Bir kursu, bağlı olduğu eğitmen kaydıyla birlikte döndürür (join). */
+export function getCourseWithInstructor(courseId: string) {
+  const course = courses.find((c) => c.id === courseId);
+  if (!course) return undefined;
+  return { course, instructor: getInstructorById(course.instructorId) };
 }
