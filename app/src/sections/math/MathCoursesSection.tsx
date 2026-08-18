@@ -10,7 +10,7 @@ import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import { CardHeader } from "@/app/src/components/courses/CardHeader";
 
 const ELASTIC_EASE = "ease-[cubic-bezier(0.34,1.56,0.64,1)]";
-const CARD_BG = "/backgrounds/dark/bg-7.png";
+const CARD_BG = "/backgrounds/bg-19.png";
 
 function AnimatedBorder() {
   return (
@@ -30,7 +30,7 @@ function AnimatedBorder() {
           className="absolute inset-[-60%]"
           style={{
             background:
-              "conic-gradient(from 0deg, transparent 0%, transparent 52%, color-mix(in srgb, var(--color-visual-teal) 55%, transparent) 63%, var(--color-visual-teal) 71%, color-mix(in srgb, var(--color-visual-teal) 55%, transparent) 79%, transparent 90%, transparent 100%)",
+              "conic-gradient(from 0deg, transparent 0%, transparent 52%, color-mix(in srgb, var(--color-visual-orange) 55%, transparent) 63%, var(--color-visual-orange) 71%, color-mix(in srgb, var(--color-visual-orange) 55%, transparent) 79%, transparent 90%, transparent 100%)",
             animation: "border-spin 2.6s linear infinite",
           }}
         />
@@ -49,37 +49,6 @@ function AnimatedBorder() {
   );
 }
 
-/** Kart yüzeyi için ortak fotoğraf zemini + okunabilirlik karartması — dosya-lokal, iki kart tipinde de kullanılıyor. */
-/** Kart yüzeyi için ortak fotoğraf zemini + okunabilirlik karartması — inline style ile tam kaplama garantisi. */
-function CardPhotoSurface() {
-  return (
-    <>
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          backgroundImage: `url('${CARD_BG}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <div
-        className="pointer-events-none"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          background:
-            "linear-gradient(160deg, rgba(9,9,11,0.55) 0%, rgba(9,9,11,0.88) 75%)",
-        }}
-      />
-    </>
-  );
-}
-
 function SeatsBadge({ seatsLeft }: { seatsLeft: number }) {
   const urgent = seatsLeft <= 5;
   return (
@@ -89,7 +58,7 @@ function SeatsBadge({ seatsLeft }: { seatsLeft: number }) {
       }`}
     >
       <span
-        className={`w-1.5 h-1.5 rounded-full ${urgent ? "bg-orange" : "bg-neutral-500"}`}
+        className={`w-1.5 h-1.5 rounded-full ${urgent ? "bg-orange" : "bg-neutral-400"}`}
       />
       {urgent ? `متبقّي ${seatsLeft} مقاعد فقط` : `${seatsLeft} مقعدًا متاحًا`}
     </span>
@@ -97,32 +66,27 @@ function SeatsBadge({ seatsLeft }: { seatsLeft: number }) {
 }
 
 function FeaturedCourseCard({ courseId }: { courseId: string }) {
-  const course = getCoursesBySubject("quran").find((c) => c.id === courseId);
+  const course = getCoursesBySubject("math").find((c) => c.id === courseId);
   if (!course) return null;
   const instructor = getInstructorById(course.instructorId);
-
   return (
     <a
-      href={`/quran/courses/${course.id}`}
-      className={`group relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-lg border border-neutral-800 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
+      href={`/math/courses/${course.id}`}
+      className={`group relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-lg border border-neutral-200 bg-neutral-0 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
     >
       <AnimatedBorder />
-
       <div className="relative p-6 sm:px-8 flex flex-col justify-between gap-6 text-right order-2 lg:order-1 overflow-hidden">
-        <CardPhotoSurface />
-
         <div className="relative flex flex-col gap-3">
           <CardHeader
-            textColor="text-neutral-0"
+            textColor="text-neutral-900"
             title={course.title}
-            color="teal"
+            color="orange"
             size="lg"
           />
-          <p className="font-thmanyah-text text-body text-neutral-400 leading-relaxed max-w-md">
+          <p className="font-thmanyah-text text-body text-neutral-500 leading-relaxed max-w-md">
             {course.description}
           </p>
         </div>
-
         <div className="relative flex flex-col gap-3 py-12">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
@@ -131,30 +95,28 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
                   <img
                     src={instructor.avatar}
                     alt={getInstructorDisplayName(instructor)}
-                    className="w-8 h-8 rounded-full object-cover border border-neutral-800"
+                    className="w-8 h-8 rounded-full object-cover border border-neutral-200"
                   />
-                  <span className="font-thmanyah-text text-caption text-neutral-400 whitespace-nowrap">
+                  <span className="font-thmanyah-text text-caption text-neutral-500 whitespace-nowrap">
                     {getInstructorDisplayName(instructor)}
                   </span>
                 </>
               )}
             </div>
-            <span className="font-mono text-caption text-visual-teal shrink-0">
+            <span className="font-mono text-caption text-visual-orange shrink-0">
               {course.price}
             </span>
           </div>
-
-          <div className="flex items-center justify-between pt-3 border-t border-neutral-800">
+          <div className="flex items-center justify-between pt-3 border-t border-neutral-200">
             <SeatsBadge seatsLeft={course.seatsLeft} />
             <ChevronLeft
-              className={`w-4 h-4 text-neutral-500 transition-transform duration-500 ${ELASTIC_EASE} group-hover:-translate-x-1.5`}
+              className={`w-4 h-4 text-neutral-400 transition-transform duration-500 ${ELASTIC_EASE} group-hover:-translate-x-1.5`}
               aria-hidden="true"
             />
           </div>
         </div>
       </div>
-
-      <div className="relative min-h-[14rem] lg:min-h-full bg-neutral-800 order-1 lg:order-2 overflow-hidden">
+      <div className="relative min-h-[14rem] lg:min-h-full bg-neutral-100 order-1 lg:order-2 overflow-hidden">
         <div
           className={`absolute inset-0 transition-transform duration-700 ${ELASTIC_EASE} group-hover:scale-105`}
           style={{
@@ -167,7 +129,7 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
           className="absolute inset-0 pointer-events-none lg:bg-none"
           style={{
             background:
-              "linear-gradient(0deg, rgba(9,9,11,0.35) 0%, transparent 30%)",
+              "linear-gradient(0deg, rgba(255,255,255,0.35) 0%, transparent 30%)",
           }}
         />
       </div>
@@ -176,31 +138,27 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
 }
 
 function CourseCard({ courseId }: { courseId: string }) {
-  const course = getCoursesBySubject("quran").find((c) => c.id === courseId);
+  const course = getCoursesBySubject("math").find((c) => c.id === courseId);
   if (!course) return null;
   const instructor = getInstructorById(course.instructorId);
-
   return (
     <a
-  href={`/quran/courses/${course.id}`}
-  className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-800 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
->
-  <AnimatedBorder />
-  <CardPhotoSurface />
-
+      href={`/math/courses/${course.id}`}
+      className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-200 bg-neutral-0 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
+    >
+      <AnimatedBorder />
       <div className="relative p-5 sm:p-6 pb-4 text-right">
         <CardHeader
-          textColor="text-neutral-0"
+          textColor="text-neutral-900"
           title={course.title}
-          color="teal"
+          color="orange"
           size="sm"
         />
-        <p className="font-thmanyah-text text-body text-neutral-400 leading-relaxed max-w-md">
+        <p className="font-thmanyah-text text-body text-neutral-500 leading-relaxed max-w-md">
           {course.description}
         </p>
       </div>
-
-      <div className="relative mx-5 sm:mx-6 aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800">
+      <div className="relative mx-5 sm:mx-6 aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
         <div
           className={`absolute inset-0 transition-transform duration-700 ${ELASTIC_EASE} group-hover:scale-105`}
           style={{
@@ -210,7 +168,6 @@ function CourseCard({ courseId }: { courseId: string }) {
           }}
         />
       </div>
-
       <div className="relative p-5 sm:p-6 pt-4 flex flex-col gap-3 text-right">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -219,23 +176,22 @@ function CourseCard({ courseId }: { courseId: string }) {
                 <img
                   src={instructor.avatar}
                   alt={getInstructorDisplayName(instructor)}
-                  className="w-8 h-8 rounded-full object-cover border border-neutral-800"
+                  className="w-8 h-8 rounded-full object-cover border border-neutral-200"
                 />
-                <span className="font-thmanyah-text text-caption text-neutral-400 whitespace-nowrap">
+                <span className="font-thmanyah-text text-caption text-neutral-500 whitespace-nowrap">
                   {getInstructorDisplayName(instructor)}
                 </span>
               </>
             )}
           </div>
-          <span className="font-mono text-caption text-visual-teal shrink-0">
+          <span className="font-mono text-caption text-visual-orange shrink-0">
             {course.price}
           </span>
         </div>
-
-        <div className="flex items-center justify-between pt-2 border-t border-neutral-800">
+        <div className="flex items-center justify-between pt-2 border-t border-neutral-200">
           <SeatsBadge seatsLeft={course.seatsLeft} />
           <ChevronLeft
-            className={`w-4 h-4 text-neutral-500 transition-transform duration-500 ${ELASTIC_EASE} group-hover:-translate-x-1.5`}
+            className={`w-4 h-4 text-neutral-400 transition-transform duration-500 ${ELASTIC_EASE} group-hover:-translate-x-1.5`}
             aria-hidden="true"
           />
         </div>
@@ -244,26 +200,23 @@ function CourseCard({ courseId }: { courseId: string }) {
   );
 }
 
-export default function QuranCoursesSection() {
-  const quranCourses = getCoursesBySubject("quran");
-  const [featured, ...rest] = quranCourses;
-
+export default function MathCoursesSection() {
+  const mathCourses = getCoursesBySubject("math");
+  const [featured, ...rest] = mathCourses;
   return (
-    <section dir="rtl" className="relative bg-neutral-900 py-20 lg:py-28">
+    <section dir="rtl" className="relative bg-neutral-100 pt-20 lg:pt-28">
       <SectionContainer>
         <div className="max-w-[560px]">
-          <h2 className="font-thmanyah-display font-bold text-h2-sm sm:text-h2 text-neutral-0 leading-[1.3] mt-3">
-            اختر برنامجك وابدأ اليوم
+          <h2 className="font-thmanyah-display font-bold text-h2-sm sm:text-h2 text-neutral-900 leading-[1.3] mt-3">
+            رياضيات تُفهم، لا تُحفظ
           </h2>
-          <p className="font-thmanyah-text text-body text-neutral-400 leading-7 mt-5">
-            من الحفظ إلى التفسير والتجويد، بمجموعات صغيرة ومتابعة أسبوعية مباشرة
-            من معلّمين مُجازين.
+          <p className="font-thmanyah-text text-body text-neutral-500 leading-7 mt-5">
+            من أساسيات الجبر إلى التفاضل والتكامل، بخطوات محلولة أمامك سطرًا
+            بسطر ومتابعة مباشرة من مدرّبين متخصصين.
           </p>
         </div>
-
         <div className="mt-10 lg:mt-14 flex flex-col gap-5 lg:gap-6">
           {featured && <FeaturedCourseCard courseId={featured.id} />}
-
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 lg:gap-6">
             {rest.map((course) => (
               <CourseCard key={course.id} courseId={course.id} />

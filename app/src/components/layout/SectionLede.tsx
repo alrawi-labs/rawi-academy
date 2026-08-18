@@ -1,4 +1,4 @@
-// components/ui/SectionLede.tsx
+// /app/src/components/ui/SectionLede.tsx
 import { ReactNode } from "react";
 
 /**

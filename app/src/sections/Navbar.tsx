@@ -29,7 +29,7 @@ export default function Navbar() {
       href: "#",
       children: [
         { key: "quran", label: "القرآن الكريم", href: "/courses/quran" },
-        { key: "programming", label: "البرمجة", href: "/courses/programming" },
+        { key: "code", label: "البرمجة", href: "/courses/code" },
         { key: "languages", label: "اللغات", href: "/courses/languages" },
         { key: "math", label: "الرياضيات", href: "/courses/math" },
       ],

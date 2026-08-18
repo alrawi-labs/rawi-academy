@@ -9,7 +9,7 @@
 
 import { getInstructorById } from "./instructors";
 
-export type CourseSubject = "quran" | "languages" | "math" | "programming";
+export type CourseSubject = "quran" | "languages" | "math" | "code";
 
 export type Course = {
   id: string;
@@ -165,7 +165,7 @@ export const courses: Course[] = [
   // البرمجة
   {
     id: "algorithms",
-    subject: "programming",
+    subject: "code",
     title: "أساسيات الخوارزميات وهياكل البيانات",
     instructorId: "karim-alshami",
     description:
@@ -176,7 +176,7 @@ export const courses: Course[] = [
   },
   {
     id: "python",
-    subject: "programming",
+    subject: "code",
     title: "بايثون للمبتدئين",
     instructorId: "lina-farhat",
     description:
@@ -187,7 +187,7 @@ export const courses: Course[] = [
   },
   {
     id: "frontend",
-    subject: "programming",
+    subject: "code",
     title: "تطوير الويب — Frontend",
     instructorId: "omar-bilal",
     description:
@@ -198,7 +198,7 @@ export const courses: Course[] = [
   },
   {
     id: "data-structures",
-    subject: "programming",
+    subject: "code",
     title: "هياكل البيانات المتقدمة",
     instructorId: "tariq-mansour",
     description:

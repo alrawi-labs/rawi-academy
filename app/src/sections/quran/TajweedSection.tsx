@@ -149,9 +149,6 @@ export default function TajweedSection() {
         <div className="grid lg:grid-cols-[380px_1fr] gap-12 lg:gap-20">
           {/* Sağ sütun — sticky lede, dark zeminde manuel kontrast kontrolü */}
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <span className="font-thmanyah-text text-caption text-visual-teal font-semibold tracking-wide">
-              التجويد
-            </span>
             <h2 className="font-thmanyah-display font-bold text-h2-sm sm:text-h2 text-neutral-0 leading-[1.3] mt-3">
               اقرأ القرآن كما أُنزل
             </h2>

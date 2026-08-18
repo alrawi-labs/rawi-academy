@@ -61,13 +61,19 @@ const colorStyles: Record<
     groupHoverBorder: "group-hover:border-teal-300",
     groupHoverIcon: "group-hover:text-teal-500",
   },
+  // Purple maps to the shared `--color-visual-purple` token (the same one
+  // used by `CodeGridSurface`/`AnimatedBorder` in the code-courses section),
+  // not the generic Tailwind purple-* scale, so the Programming accent stays
+  // tied to one source of truth.
   purple: {
-    bg: "bg-purple-400/10",
-    border: "border-purple-200",
-    icon: "text-purple-400",
-    groupHoverBg: "group-hover:bg-purple-400/20",
-    groupHoverBorder: "group-hover:border-purple-300",
-    groupHoverIcon: "group-hover:text-purple-500",
+    bg: "bg-[color-mix(in_srgb,var(--color-visual-purple)_10%,transparent)]",
+    border:
+      "border-[color-mix(in_srgb,var(--color-visual-purple)_35%,transparent)]",
+    icon: "text-visual-purple",
+    groupHoverBg:
+      "group-hover:bg-[color-mix(in_srgb,var(--color-visual-purple)_20%,transparent)]",
+    groupHoverBorder: "group-hover:border-visual-purple",
+    groupHoverIcon: "group-hover:text-visual-purple",
   },
   orange: {
     bg: "bg-orange-400/10",

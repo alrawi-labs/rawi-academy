@@ -10,7 +10,8 @@ import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import { CardHeader } from "@/app/src/components/courses/CardHeader";
 
 const ELASTIC_EASE = "ease-[cubic-bezier(0.34,1.56,0.64,1)]";
-const CARD_BG = "/backgrounds/dark/bg-7.png";
+// TODO: gerçek programlama arka planıyla değiştir (koyu, ekran görüntüsü/kod dokulu bir foto tercih edilir)
+const CARD_BG = "/backgrounds/dark/bg-9.png";
 
 function AnimatedBorder() {
   return (
@@ -30,7 +31,7 @@ function AnimatedBorder() {
           className="absolute inset-[-60%]"
           style={{
             background:
-              "conic-gradient(from 0deg, transparent 0%, transparent 52%, color-mix(in srgb, var(--color-visual-teal) 55%, transparent) 63%, var(--color-visual-teal) 71%, color-mix(in srgb, var(--color-visual-teal) 55%, transparent) 79%, transparent 90%, transparent 100%)",
+              "conic-gradient(from 0deg, transparent 0%, transparent 52%, color-mix(in srgb, var(--color-visual-purple) 55%, transparent) 63%, var(--color-visual-purple) 71%, color-mix(in srgb, var(--color-visual-purple) 55%, transparent) 79%, transparent 90%, transparent 100%)",
             animation: "border-spin 2.6s linear infinite",
           }}
         />
@@ -50,7 +51,6 @@ function AnimatedBorder() {
 }
 
 /** Kart yüzeyi için ortak fotoğraf zemini + okunabilirlik karartması — dosya-lokal, iki kart tipinde de kullanılıyor. */
-/** Kart yüzeyi için ortak fotoğraf zemini + okunabilirlik karartması — inline style ile tam kaplama garantisi. */
 function CardPhotoSurface() {
   return (
     <>
@@ -97,13 +97,15 @@ function SeatsBadge({ seatsLeft }: { seatsLeft: number }) {
 }
 
 function FeaturedCourseCard({ courseId }: { courseId: string }) {
-  const course = getCoursesBySubject("quran").find((c) => c.id === courseId);
+  const course = getCoursesBySubject("code").find(
+    (c) => c.id === courseId
+  );
   if (!course) return null;
   const instructor = getInstructorById(course.instructorId);
 
   return (
     <a
-      href={`/quran/courses/${course.id}`}
+      href={`/code/courses/${course.id}`}
       className={`group relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-lg border border-neutral-800 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
     >
       <AnimatedBorder />
@@ -115,7 +117,7 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
           <CardHeader
             textColor="text-neutral-0"
             title={course.title}
-            color="teal"
+            color="purple"
             size="lg"
           />
           <p className="font-thmanyah-text text-body text-neutral-400 leading-relaxed max-w-md">
@@ -139,7 +141,7 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
                 </>
               )}
             </div>
-            <span className="font-mono text-caption text-visual-teal shrink-0">
+            <span className="font-mono text-caption text-visual-purple shrink-0">
               {course.price}
             </span>
           </div>
@@ -176,23 +178,25 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
 }
 
 function CourseCard({ courseId }: { courseId: string }) {
-  const course = getCoursesBySubject("quran").find((c) => c.id === courseId);
+  const course = getCoursesBySubject("code").find(
+    (c) => c.id === courseId
+  );
   if (!course) return null;
   const instructor = getInstructorById(course.instructorId);
 
   return (
     <a
-  href={`/quran/courses/${course.id}`}
-  className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-800 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
->
-  <AnimatedBorder />
-  <CardPhotoSurface />
+      href={`/code/courses/${course.id}`}
+      className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-800 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
+    >
+      <AnimatedBorder />
+      <CardPhotoSurface />
 
       <div className="relative p-5 sm:p-6 pb-4 text-right">
         <CardHeader
           textColor="text-neutral-0"
           title={course.title}
-          color="teal"
+          color="purple"
           size="sm"
         />
         <p className="font-thmanyah-text text-body text-neutral-400 leading-relaxed max-w-md">
@@ -227,7 +231,7 @@ function CourseCard({ courseId }: { courseId: string }) {
               </>
             )}
           </div>
-          <span className="font-mono text-caption text-visual-teal shrink-0">
+          <span className="font-mono text-caption text-visual-purple shrink-0">
             {course.price}
           </span>
         </div>
@@ -244,20 +248,51 @@ function CourseCard({ courseId }: { courseId: string }) {
   );
 }
 
-export default function QuranCoursesSection() {
-  const quranCourses = getCoursesBySubject("quran");
-  const [featured, ...rest] = quranCourses;
+/** Hero/Philosophy bölümlerindeki yay+nokta motifinin sade yansıması — sağ üst köşe, arka planda. Programlama sayfasının görsel kimliğini bu bölümde de sürdürür. */
+function CornerAccent() {
+  return (
+    <svg
+      viewBox="0 0 200 200"
+      className="absolute -top-10 -right-10 w-56 h-56 pointer-events-none"
+      aria-hidden="true"
+    >
+      <path
+        d="M 180 160 A 110 110 0 0 0 40 20"
+        stroke="var(--color-visual-purple)"
+        strokeWidth="1"
+        strokeOpacity="0.15"
+        fill="none"
+      />
+      <circle
+        cx="180"
+        cy="160"
+        r="3"
+        fill="var(--color-visual-orange)"
+        fillOpacity="0.3"
+      />
+    </svg>
+  );
+}
+
+export default function CodeCoursesSection() {
+  const codeCourses = getCoursesBySubject("code");
+  const [featured, ...rest] = codeCourses;
 
   return (
-    <section dir="rtl" className="relative bg-neutral-900 py-20 lg:py-28">
-      <SectionContainer>
+    <section
+      dir="rtl"
+      className="relative bg-neutral-900 py-20 lg:py-28 overflow-hidden"
+    >
+      <CornerAccent />
+
+      <SectionContainer className="relative">
         <div className="max-w-[560px]">
           <h2 className="font-thmanyah-display font-bold text-h2-sm sm:text-h2 text-neutral-0 leading-[1.3] mt-3">
-            اختر برنامجك وابدأ اليوم
+            اختر مسارك وابدأ الكتابة اليوم
           </h2>
           <p className="font-thmanyah-text text-body text-neutral-400 leading-7 mt-5">
-            من الحفظ إلى التفسير والتجويد، بمجموعات صغيرة ومتابعة أسبوعية مباشرة
-            من معلّمين مُجازين.
+            من الأساسيات إلى بناء مشاريع حقيقية، بمجموعات صغيرة ومتابعة
+            أسبوعية مباشرة من مطورين محترفين.
           </p>
         </div>
 

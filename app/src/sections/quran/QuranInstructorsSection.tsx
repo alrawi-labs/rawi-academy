@@ -65,11 +65,8 @@ export default function QuranInstructorsSection() {
     <section dir="rtl" className="relative py-20 sm:py-28 bg-neutral-0">
       <SectionContainer>
         <div className="max-w-[560px] mb-14 sm:mb-20">
-          <span className="text-caption text-visual-teal font-semibold tracking-wide">
-            معلمو القرآن
-          </span>
           <h2 className="font-thmanyah-display font-bold text-h2-sm sm:text-h2 text-neutral-900 leading-[1.3] mt-3">
-            يرافقونك في كل آية، بخبرة سنوات
+            معلموا القران يرافقونك في كل آية، بخبرة سنوات
           </h2>
         </div>
 
