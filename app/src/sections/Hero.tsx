@@ -5,6 +5,7 @@ import HeroGlassBars from "../components/3D/HeroGlassBars";
 import MarqueeStrip from "../components/MarqueeStrip";
 import Button from "../components/ui/Button";
 import { GoogleIcon } from "../components/Icons/GoogleIcon";
+import { LINKS } from "../lib/links";
 
 export default function Hero() {
   return (
@@ -51,7 +52,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mt-8 sm:mt-8 lg:mt-9 w-full sm:w-auto">
               <Button
                 variant="primary-alt"
-                href="#"
+                href={LINKS.courses}
                 className="w-full sm:w-auto justify-center"
               >
                 ابدأ الآن

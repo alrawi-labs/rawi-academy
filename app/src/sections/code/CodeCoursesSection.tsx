@@ -288,7 +288,7 @@ export default function CodeCoursesSection() {
       <SectionContainer className="relative">
         <div className="max-w-[560px]">
           <h2 className="font-thmanyah-display font-bold text-h2-sm sm:text-h2 text-neutral-0 leading-[1.3] mt-3">
-            اختر مسارك وابدأ الكتابة اليوم
+            اختر الدورة المناسبة وابدأ الكتابة اليوم
           </h2>
           <p className="font-thmanyah-text text-body text-neutral-400 leading-7 mt-5">
             من الأساسيات إلى بناء مشاريع حقيقية، بمجموعات صغيرة ومتابعة

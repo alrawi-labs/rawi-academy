@@ -367,7 +367,7 @@ export default function WhyRawiSection() {
                 className="font-thmanyah-display text-h3 sm:text-lead font-medium leading-[1.55] tracking-[-0.01em] text-neutral-900 mb-4 sm:mb-6"
                 style={{ textWrap: "balance" }}
               >
-                كل رحلة تبدأ بخطوة، فبأي مسار ستبدأ؟
+                كل رحلة تبدأ بخطوة، فبأي دورة ستبدأ؟
               </p>
 
               <p className="font-thmanyah-text text-caption sm:text-h3-sm leading-[1.75] text-neutral-400 max-w-[280px] mx-auto mb-8 sm:mb-10">
@@ -380,7 +380,7 @@ export default function WhyRawiSection() {
                 size="md"
                 className="!px-8 !py-3 tracking-[0.02em] text-caption sm:text-h3-sm"
               >
-                استكشف المسارات
+                استكشف دوراتنا
               </Button>
 
               <div className="absolute bottom-0 left-8 right-8 sm:left-10 sm:right-10 h-px bg-gradient-to-r from-transparent via-[var(--color-visual-purple)]/30 to-transparent" />
@@ -502,7 +502,7 @@ export default function WhyRawiSection() {
                 className="font-thmanyah-display text-[28px] sm:text-[30px] font-medium leading-[1.65] tracking-[-0.01em] text-[#1C1C24] mb-6"
                 style={{ textWrap: "balance" }}
               >
-                كل رحلة تبدأ بخطوة، فبأي مسار ستبدأ؟
+                كل رحلة تبدأ بخطوة، فبأي دورة ستبدأ؟
               </p>
 
               <p className="font-thmanyah-text text-[18.5px] leading-[1.8] text-[#8A8FA3] max-w-[300px] mx-auto mb-10">
@@ -515,7 +515,7 @@ export default function WhyRawiSection() {
                 size="md"
                 className="!px-9 !py-3.5 tracking-[0.02em] text-[20px]"
               >
-                استكشف المسارات
+                استكشف الدورات
               </Button>
 
               <div className="absolute bottom-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-[#5B95FF]/30 to-transparent" />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { SectionContainer } from "../components/layout/SectionContainer";
 import { SectionLede } from "../components/layout/SectionLede";
+import { LINKS } from "../lib/links";
 
 type Track = {
   title: string;
@@ -15,30 +16,30 @@ type Track = {
 
 const tracks: Track[] = [
   {
-    title: "مسارات القرآن",
+    title: "دورات القرآن",
     description: "تفسير، حفظ، ومتابعة مستمرة ضمن برنامجٍ واضح ومتدرّج.",
-    href: "/masarat/quran",
+    href: LINKS.courses.quran,
     accent: "var(--color-visual-teal)",
     photo: "/backgrounds/bg-27.png",
   },
   {
-    title: "مسارات البرمجة",
+    title: "دورات البرمجة",
     description: "من الأساسيات إلى بناء مشاريع حقيقية، خطوةً بخطوة.",
-    href: "/masarat/barmaja",
+    href: LINKS.courses.code,
     accent: "var(--color-primary)",
     photo: "/backgrounds/bg-29.png",
   },
   {
-    title: "مسارات اللغات",
+    title: "دورات اللغات",
     description: "تعلّم لغة جديدة كرحلة ممتعة، لا كاختبار ينتهي بيومٍ واحد.",
-    href: "/masarat/lughat",
+    href: LINKS.courses.languages,
     accent: "var(--color-visual-pink)",
     photo: "/backgrounds/bg-30.png",
   },
   {
-    title: "مسارات الرياضيات",
+    title: "دورات الرياضيات",
     description: "مفاهيم معقّدة تتحوّل إلى دروسٍ واضحة تُفهم من أول مرة.",
-    href: "/masarat/riyadiyat",
+    href: LINKS.courses.math,
     accent: "var(--color-orange)",
     photo: "/backgrounds/bg-28.png",
   },
@@ -49,7 +50,7 @@ export default function ExploreTracksSection() {
     <section dir="rtl" className="relative pt-20 sm:pt-24 lg:pt-28">
       <SectionContainer>
         <SectionLede
-          lead="اكتشف مساراتنا التعليمية"
+          lead="اكتشف دوراتنا التعليمية"
           sub="اختر المجال الذي يناسب أهدافك، وابدأ رحلتك"
           className="mb-10 sm:mb-12 lg:mb-16"
         />
@@ -78,7 +79,7 @@ export default function ExploreTracksSection() {
                     className="inline-flex items-center gap-1 font-thmanyah-text text-caption sm:text-body font-medium transition-colors"
                     style={{ color: track.accent }}
                   >
-                    استكشف المسار
+                    استكشف الدورات
                     <ArrowLeft
                       className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1"
                       strokeWidth={2.2}

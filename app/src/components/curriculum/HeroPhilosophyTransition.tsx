@@ -98,7 +98,7 @@ export default function HeroPhilosophyTransition() {
                 ، بخطواتٍ تعرف إلى أين تقودك.
               </h1>
               <p className="font-thmanyah-display font-bold text-lead max-w-[560px] text-neutral-200 max-md:text-body">
-                في راوي، لا نبني الدروس لتُشاهَد ثم تُنسى، بل نصمم كل مسار ليأخذ
+                في راوي، لا نبني الدروس لتُشاهَد ثم تُنسى، بل نصمم كل دورة لتأخذ
                 المتعلم من بناء الأساس، إلى الفهم، ثم التطبيق، وصولًا إلى مهارة
                 يستطيع استخدامها بثقة.
               </p>

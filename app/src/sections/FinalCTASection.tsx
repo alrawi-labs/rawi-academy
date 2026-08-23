@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "../components/ui/Button";
 import { ArrowLeft } from "lucide-react";
+import { LINKS } from "../lib/links";
 
 export default function FinalCTASection() {
   const [email, setEmail] = useState("");
@@ -49,10 +50,10 @@ export default function FinalCTASection() {
                 </h3>
                 <p className="font-thmanyah-text text-caption sm:text-body leading-6 sm:leading-7 text-neutral-700 mt-4 mb-9 max-w-[360px]">
                   فريقنا جاهز للإجابة عن جميع استفساراتك، ومساعدتك في اختيار
-                  المسار المناسب، لنبدأ رحلتك التعليمية بثقة.
+                  الدورة المناسبة، لنبدأ رحلتك التعليمية بثقة.
                 </p>
                 <Button
-                  href="/contact"
+                  href={LINKS.support}
                   variant="outline"
                   size="lg"
                   className="!self-start"

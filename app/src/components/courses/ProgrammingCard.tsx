@@ -149,7 +149,7 @@ function ProgressPanel() {
           </div>
           <div>
             <p className="text-caption font-bold text-neutral-900">
-              مسار البرمجة
+              دورات البرمجة
             </p>
             <p className="text-micro text-neutral-500">المستوى الثاني</p>
           </div>
@@ -211,8 +211,8 @@ export default function ProgrammingCard() {
     <CardInteractiveShell
       accent="purple"
       title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم"
-      description="مسار مباشر بإشراف مدربين متخصصين، من أول سطر كود إلى بناء مشاريع حقيقية تضاف إلى معرض أعمالك."
-      modalContent={<SubjectCoursesList subject="programming" />}
+      description="دروات بإشراف مدربين متخصصين، من أول سطر كود إلى بناء مشاريع حقيقية تضاف إلى معرض أعمالك."
+      modalContent={<SubjectCoursesList subject="code" />}
     >
       <div className="relative bg-neutral-0 border-2 border-neutral-200 group-hover:border-purple-400/40 rounded-lg overflow-hidden shadow-sm">
         <CardHeader title="البرمجة والمهارات — تعلّمٌ يواكب عالم اليوم" color="purple" />

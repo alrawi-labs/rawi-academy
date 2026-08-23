@@ -11,6 +11,22 @@ import { getInstructorById } from "./instructors";
 
 export type CourseSubject = "quran" | "languages" | "math" | "code";
 
+export type CourseLevel = "مبتدئ" | "متوسط" | "متقدم";
+
+export type CourseLesson = {
+  title: string;
+};
+
+export type CourseSection = {
+  title: string;
+  lessons: CourseLesson[];
+};
+
+export type CourseFaq = {
+  question: string;
+  answer: string;
+};
+
 export type Course = {
   id: string;
   subject: CourseSubject;
@@ -20,6 +36,25 @@ export type Course = {
   seatsLeft: number;
   price: string; // "مجانًا" veya "199 TL" gibi — format standartlaşınca number'a çevrilebilir
   image: string; // /public altında gerçek fotoğraf yolu
+  /** Opsiyonel — kurs kartında/detayda seviye rozeti. Yoksa rozet hiç gösterilmez. */
+  level?: CourseLevel;
+  /** Opsiyonel — örn. 500 → detay sayfasında "+500 طالب" olarak gösterilir. */
+  studentsCount?: number;
+  /**
+   * Detay sayfasının "وصف الدورة" sekmesindeki uzun tanıtım metni (paragraf paragraf).
+   * Opsiyonel — yoksa sekme kısa `description` alanına düşer.
+   */
+  overview?: string[];
+  /**
+   * Müfredat: bölüm + ders listesi, "منهج الدورة" sekmesinde akordeon olarak gösterilir.
+   * Ders/bölüm sayıları buradan otomatik hesaplanır — elle ayrı bir sayı alanı TUTMA.
+   * Opsiyonel — yoksa "منهج الدورة" sekmesi hiç render edilmez.
+   */
+  curriculum?: CourseSection[];
+  /** Kursla gelen özellikler listesi, örn. "شهادة موثقة". Opsiyonel. */
+  features?: string[];
+  /** Sık sorulan sorular. Opsiyonel. */
+  faqs?: CourseFaq[];
 };
 
 // ⚠️ Placeholder veri — gerçek kurs/fiyat bilgilerini kendi içeriğinle değiştir.
@@ -184,6 +219,85 @@ export const courses: Course[] = [
     seatsLeft: 15,
     price: "مجانًا",
     image: "/courses/python.jpg",
+    level: "مبتدئ",
+    studentsCount: 500,
+    overview: [
+      "هل أنت مستعد لتعلم إحدى أشهر لغات البرمجة؟ تبدأ هذه الدورة من الصفر وتأخذك خطوة بخطوة نحو كتابة أول برنامج حقيقي بلغة بايثون.",
+      "بايثون لغة ممتازة للمبتدئين لأنها سهلة القراءة، ومجالات استخدامها واسعة جدًا: تطوير الويب، تحليل البيانات، الأتمتة، وأكثر.",
+      "في هذه الدورة ستتعلم تثبيت بايثون وتشغيلها من سطر الأوامر، والتعامل مع المتغيرات وأنواع البيانات، والكود الشرطي، وصولًا إلى كتابة دوال (functions) خاصة بك.",
+      "بحلول نهاية الدورة، ستكون قادرًا على كتابة برامج بسيطة، واكتشاف الأخطاء الشائعة وإصلاحها بنفسك.",
+    ],
+    curriculum: [
+      {
+        title: "لماذا نتعلم البرمجة؟",
+        lessons: [{ title: "مقدمة الدورة" }, { title: "مواد الدورة" }],
+      },
+      {
+        title: "أساسيات البرمجة",
+        lessons: [
+          { title: "ما هي البرمجة؟" },
+          { title: "تثبيت بايثون" },
+          { title: "تشغيل أول كود" },
+          { title: "استخدام سطر الأوامر" },
+        ],
+      },
+      {
+        title: "تركيب جمل البرمجة",
+        lessons: [
+          { title: "بنية الكود" },
+          { title: "التعليقات (Comments)" },
+          { title: "الأخطاء الشائعة وإصلاحها" },
+        ],
+      },
+      {
+        title: "المتغيرات وأنواع البيانات",
+        lessons: [
+          { title: "تعريف المتغيرات" },
+          { title: "الأرقام والسلاسل النصية" },
+          { title: "المسافات البيضاء" },
+          { title: "تمرين تطبيقي" },
+        ],
+      },
+      {
+        title: "الكود الشرطي",
+        lessons: [
+          { title: "جمل if / else" },
+          { title: "العمليات المنطقية" },
+          { title: "تمرين تطبيقي" },
+        ],
+      },
+      {
+        title: "الكود المعياري (الدوال)",
+        lessons: [
+          { title: "إنشاء دالة واستدعاؤها" },
+          { title: "المعاملات والقيم المُرجعة" },
+          { title: "التسليم النهائي للدورة" },
+        ],
+      },
+    ],
+    features: [
+      "شهادة موثقة عند إتمام الدورة",
+      "قياس مستوى التقدم والإنجاز عبر الدورة",
+      "إجابة من مشرفي الطلاب على كل الأسئلة",
+      "اشتراك مدى الحياة",
+    ],
+    faqs: [
+      {
+        question: "كيف أبدأ تعلم البرمجة باستخدام بايثون؟",
+        answer:
+          "تبدأ هذه الدورة معك من الصفر: المتغيرات، أنواع البيانات، وتركيب جمل البرمجة، وصولًا إلى كتابة برامج بسيطة بنفسك.",
+      },
+      {
+        question: "هل أحتاج خبرة سابقة في البرمجة؟",
+        answer:
+          "لا، الدورة مصممة للمبتدئين تمامًا ولا تفترض أي خلفية برمجية مسبقة.",
+      },
+      {
+        question: "ما هي استخدامات لغة بايثون؟",
+        answer:
+          "تطوير الويب، تحليل البيانات، الأتمتة، والذكاء الاصطناعي — من أكثر اللغات استخدامًا في هذه المجالات.",
+      },
+    ],
   },
   {
     id: "frontend",
@@ -211,6 +325,11 @@ export const courses: Course[] = [
 
 export function getCoursesBySubject(subject: CourseSubject): Course[] {
   return courses.filter((course) => course.subject === subject);
+}
+
+/** Bir eğitmenin verdiği tüm kursları döndürür (instructor detay sayfasında kullanılır). */
+export function getCoursesByInstructor(instructorId: string): Course[] {
+  return courses.filter((course) => course.instructorId === instructorId);
 }
 
 /** Bir kursu, bağlı olduğu eğitmen kaydıyla birlikte döndürür (join). */

@@ -182,7 +182,7 @@ function CourseCard({ courseId }: { courseId: string }) {
 
   return (
     <a
-  href={`/quran/courses/${course.id}`}
+  href={`/courses/${course.id}`}
   className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-800 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
 >
   <AnimatedBorder />

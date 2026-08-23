@@ -4,36 +4,13 @@ import { SectionContainer } from "../components/layout/SectionContainer";
 import { SectionLede } from "../components/layout/SectionLede";
 import Button from "../components/ui/Button";
 import { motion } from "framer-motion";
+import { instructors } from "../data/instructors";
 
-const instructors = [
-  {
-    name: "ياسر الراوي",
-    role: "مهندس حاسوب ومدرب برمجة",
-    companies: [
-      "Bayraktar Solar Enerji",
-      "KKÜ Information Technology Department",
-    ],
-    quote:
-      "قضى سنواتٍ في بناء أنظمةٍ حقيقية قبل أن يتفرّغ لتعليم الجيل القادم كيف يفكّر كمبرمج، لا كيف يحفظ الأكواد فقط.",
-    image: "/instructors/yasiralrawi.png",
-  },
-  {
-    name: "منصور سلام",
-    role: "معلّم الرياضيات وعلوم الحاسب",
-    companies: ["Google", "Cairo University"],
-    quote:
-      "خبرة تمتد لسنوات في تبسيط المفاهيم المعقّدة، وتحويلها إلى دروسٍ يفهمها الطالب من أول مرة دون أن يشعر أنه يتلقّى محاضرة.",
-    image: "/instructors/mansurselam.png",
-  },
-  {
-    name: "حسين الخفاجي",
-    role: "معلّم اللغة الإنجليزية",
-    companies: ["Microsoft", "British Council"],
-    quote:
-      "تؤمن أن تعلّم لغةٍ جديدة رحلة وليس اختبارًا، فبَنَت أسلوبًا يجعل الطالب يفكّر باللغة قبل أن يتقنها.",
-    image: "/instructors/huseyinkhafaji.png",
-  },
-];
+// TeamSection sadece öne çıkan (featured: true) eğitmenleri gösterir.
+// Kimin öne çıkacağını değiştirmek için tek yapman gereken
+// app/src/data/instructors.ts içindeki ilgili kaydın `featured` alanını
+// true/false yapmak — burada başka bir şey değiştirmene gerek yok.
+const featuredInstructors = instructors.filter((person) => person.featured);
 
 export default function TeamSection() {
   return (
@@ -45,11 +22,11 @@ export default function TeamSection() {
           className="mb-16"
         />
         <div className="divide-y divide-neutral-200">
-          {instructors.map((person, i) => {
+          {featuredInstructors.map((person, i) => {
             const isReversed = i % 2 === 1;
             return (
               <div
-                key={person.name}
+                key={person.id}
                 className="group relative py-16 overflow-hidden"
               >
                 {/* Arkaplan: Framer Motion'ın tamamen dışında, düz img, sabit görünür */}
@@ -80,7 +57,7 @@ export default function TeamSection() {
                   <div className="shrink-0 w-55 sm:w-85">
                     <div className="relative w-full rounded-2xl overflow-hidden bg-neutral-100 ring-1 ring-neutral-200 transition-shadow duration-500 group-hover:ring-primary/25">
                       <img
-                        src={person.image}
+                        src={person.avatar}
                         alt={person.name}
                         className="w-full h-full object-cover"
                       />
@@ -95,7 +72,7 @@ export default function TeamSection() {
                       “
                     </span>
                     <p className="font-thmanyah-text text-body leading-9 text-neutral-700 max-w-xl mx-auto sm:mx-0">
-                      {person.quote}
+                      {person.bio}
                     </p>
 
                     <div className="mt-8">
@@ -103,25 +80,27 @@ export default function TeamSection() {
                         {person.name}
                       </p>
                       <p className="font-thmanyah-text text-body text-primary mt-1">
-                        {person.role}
+                        {person.role ?? person.title}
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-center sm:justify-start gap-3 mt-5">
-                      {person.companies.map((company, idx) => (
-                        <span key={company} className="flex items-center gap-3">
-                          {idx > 0 && (
-                            <span
-                              aria-hidden="true"
-                              className="w-1 h-1 rounded-full bg-neutral-300"
-                            />
-                          )}
-                          <span className="font-thmanyah-text text-micro tracking-wider uppercase text-neutral-500">
-                            {company}
+                    {person.companies && person.companies.length > 0 && (
+                      <div className="flex items-center justify-center sm:justify-start gap-3 mt-5">
+                        {person.companies.map((company, idx) => (
+                          <span key={company} className="flex items-center gap-3">
+                            {idx > 0 && (
+                              <span
+                                aria-hidden="true"
+                                className="w-1 h-1 rounded-full bg-neutral-300"
+                              />
+                            )}
+                            <span className="font-thmanyah-text text-micro tracking-wider uppercase text-neutral-500">
+                              {company}
+                            </span>
                           </span>
-                        </span>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               </div>

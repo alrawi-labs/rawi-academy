@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import Button from "../components/ui/Button";
+import { LINKS } from "../lib/links";
 
 // lucide-react marka ikonlarını kaldırdığı için minimal custom SVG'ler
 function InstagramIcon({ size = 15 }: { size?: number }) {
@@ -52,24 +53,31 @@ function YoutubeIcon({ size = 15 }: { size?: number }) {
 }
 
 const pillars = [
-  { label: "القرآن الكريم", href: "#" },
-  { label: "البرمجة", href: "#" },
-  { label: "اللغات", href: "#" },
-  { label: "العلوم", href: "#" },
+  { label: "القرآن الكريم", href: LINKS.courses.quran },
+  { label: "البرمجة", href: LINKS.courses.code },
+  { label: "اللغات", href: LINKS.courses.languages },
+  { label: "الرياضيات", href: LINKS.courses.math },
 ];
 
 const company = [
-  { label: "عن راوي", href: "#" },
-  { label: "لأولياء الأمور", href: "#" },
-  { label: "للمعلّمين", href: "#" },
-  { label: "الأسعار", href: "#" },
+  { label: "عن راوي", href: LINKS.about },
+  { label: "منهجنا", href: LINKS.curriculum },
+  { label: "معلمينا", href: LINKS.instructors },
+  { label: "كيف تعمل المنصة؟", href: LINKS.howItWorks },
 ];
 
 const support = [
-  { label: "الأسئلة الشائعة", href: "#" },
-  { label: "تواصل معنا", href: "#" },
-  { label: "سياسة الخصوصية", href: "#" },
-  { label: "الشروط والأحكام", href: "#" },
+  { label: "الأسئلة الشائعة", href: LINKS.faq },
+  { label: "استشارات", href: LINKS.consultations },
+  { label: "تواصل معنا", href: LINKS.support },
+  { label: "سياسة الخصوصية", href: LINKS.privacy },
+  { label: "الشروط والأحكام", href: LINKS.terms },
+];
+
+const socials = [
+  { label: "Instagram", href: LINKS.social.instagram, Icon: InstagramIcon },
+  { label: "Twitter", href: LINKS.social.twitter, Icon: TwitterIcon },
+  { label: "Youtube", href: LINKS.social.youtube, Icon: YoutubeIcon },
 ];
 
 export default function Footer() {
@@ -103,7 +111,7 @@ export default function Footer() {
 
           <Button
             variant="primary-alt"
-            href="#"
+            href={LINKS.register}
             size="md"
             className="font-bold shrink-0 w-full md:w-auto"
           >
@@ -179,11 +187,11 @@ export default function Footer() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <Button
                   variant="outline"
-                  href="#"
+                  href={LINKS.exploreCourses}
                   size="lg"
                   className="font-bold text-7xl"
                 >
-                  استكشف مساراتنا{" "}
+                  استكشف دوراتنا{" "}
                 </Button>
               </div>
             </div>
@@ -192,27 +200,16 @@ export default function Footer() {
               تابعنا
             </p>
             <div className="flex items-center gap-3">
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="w-9 h-9 rounded-full border border-neutral-0/10 flex items-center justify-center text-neutral-400 hover:text-neutral-0 hover:border-neutral-0/30 transition-colors"
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="w-9 h-9 rounded-full border border-neutral-0/10 flex items-center justify-center text-neutral-400 hover:text-neutral-0 hover:border-neutral-0/30 transition-colors"
-              >
-                <TwitterIcon />
-              </a>
-              <a
-                href="#"
-                aria-label="Youtube"
-                className="w-9 h-9 rounded-full border border-neutral-0/10 flex items-center justify-center text-neutral-400 hover:text-neutral-0 hover:border-neutral-0/30 transition-colors"
-              >
-                <YoutubeIcon />
-              </a>
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-9 h-9 rounded-full border border-neutral-0/10 flex items-center justify-center text-neutral-400 hover:text-neutral-0 hover:border-neutral-0/30 transition-colors"
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
         </div>

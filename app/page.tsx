@@ -12,12 +12,10 @@ import ExploreTracksSection from "./src/sections/ExploreTracksSection";
 import FinalCTASection from "./src/sections/FinalCTASection";
 import HowToStartSection from "./src/sections/HowToStartSection";
 import FAQSection from "./src/sections/FAQSection";
-import Footer from "./src/sections/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-neutral-100" >
-
+    <div className="bg-neutral-100">
       <Hero />
       <CoursesSection />
       <ExperiencesSection />
@@ -29,7 +27,6 @@ export default function Home() {
       {/* <HowToStartSection /> */}
       <FinalCTASection />
       <FAQSection />
-
     </div>
   );
 }

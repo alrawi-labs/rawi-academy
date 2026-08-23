@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Button from "../components/ui/Button";
 import NavLink from "../components/ui/NavLink";
 import { useNavbarVariant } from "../context/NavbarVariantContext";
+import { LINKS } from "../lib/links";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -18,42 +19,22 @@ export default function Navbar() {
   const isDark = variant === "dark";
 
   const links = [
-    {
-      key: "curriculum",
-      label: "منهجنا",
-      href: "/curriculum",
-    },
-    {
-      key: "courses",
-      label: "المواد الدراسية",
-      href: "#",
-      children: [
-        { key: "quran", label: "القرآن الكريم", href: "/courses/quran" },
-        { key: "code", label: "البرمجة", href: "/courses/code" },
-        { key: "languages", label: "اللغات", href: "/courses/languages" },
-        { key: "math", label: "الرياضيات", href: "/courses/math" },
-      ],
-    },
-    {
-      key: "parents",
-      label: "لأولياء الأمور",
-      href: "#",
-      children: [
-        {
-          key: "how-it-works",
-          label: "كيف تعمل المنصة",
-          href: "/parents/how-it-works",
-        },
-        { key: "pricing", label: "الأسعار والباقات", href: "/parents/pricing" },
-        { key: "faq", label: "الأسئلة الشائعة", href: "/parents/faq" },
-      ],
-    },
-    {
-      key: "teachers",
-      label: "للمعلّمين",
-      href: "#",
-    },
-  ];
+  { key: "curriculum", label: "منهجنا", href: LINKS.curriculum },
+  { key: "consultations", label: "استشارات", href: LINKS.consultations },
+  {
+    key: "courses",
+    label: "المواد الدراسية",
+    href: LINKS.courses,
+    children: [
+      { key: "quran", label: "القرآن الكريم", href: LINKS.courses.quran },
+      { key: "code", label: "البرمجة", href: LINKS.courses.code },
+      { key: "languages", label: "اللغات", href: LINKS.courses.languages },
+      { key: "math", label: "الرياضيات", href: LINKS.courses.math },
+    ],
+  },
+  { key: "how-it-works", label: "كيف تعمل المنصة", href: LINKS.howItWorks },
+  { key: "faq", label: "الأسئلة الشائعة", href: LINKS.faq },
+];
 
   // Portal için: component client'ta mount olduktan sonra document.body erişilebilir
   useEffect(() => {
@@ -184,13 +165,7 @@ export default function Navbar() {
                   );
                 })}
 
-                <a
-                  href="#"
-                  onClick={() => setMobileOpen(false)}
-                  className="py-3.5 text-h3-sm font-thmanyah-display font-semibold text-neutral-900 border-b border-neutral-200"
-                >
-                  الأسعار
-                </a>
+
 
                 <a
                   href="#"
@@ -207,7 +182,7 @@ export default function Navbar() {
             <div className="flex flex-col gap-3 px-5 sm:px-6 py-6 border-t border-neutral-200 shrink-0">
               <Button
                 variant="orange"
-                href="#"
+                href={LINKS.courses}
                 size="md"
                 className="w-full justify-center"
               >
@@ -215,7 +190,7 @@ export default function Navbar() {
               </Button>
               <Button
                 variant="primary-alt"
-                href="#"
+                href={LINKS.support}
                 icon={<ChevronDown size={13} className="rotate-90" />}
                 className="font-bold w-full justify-center"
                 size="md"
@@ -239,23 +214,23 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between h-[64px] sm:h-[70px] lg:h-[76px]">
           {/* الشعار */}
-            <a className="flex items-center shrink-0" href="/">
-              <Image
-                src="/logos/cropped_logo.png"
-                alt="راوي"
-                width={2048}
-                height={2048}
-                className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 object-contain"
-                priority
-              />
-              <span
-                className={`font-extrabold text-body sm:text-h3-sm tracking-tight whitespace-nowrap ${
-                  isDark ? "text-neutral-0" : "text-neutral-900"
-                }`}
-              >
-                أكاديمية راوي
-              </span>
-            </a>
+          <a className="flex items-center shrink-0" href={LINKS.home}>
+            <Image
+              src="/logos/cropped_logo.png"
+              alt="راوي"
+              width={2048}
+              height={2048}
+              className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 object-contain"
+              priority
+            />
+            <span
+              className={`font-extrabold text-body sm:text-h3-sm tracking-tight whitespace-nowrap ${
+                isDark ? "text-neutral-0" : "text-neutral-900"
+              }`}
+            >
+              أكاديمية راوي
+            </span>
+          </a>
 
           {/* الروابط — sadece geniş ekranlarda */}
           <div className={`hidden lg:flex items-center gap-5 xl:gap-7`}>
@@ -270,9 +245,6 @@ export default function Navbar() {
               </NavLink>
             ))}
 
-            <NavLink context={isDark ? "navbar-dark" : "navbar"} href="#">
-              الأسعار
-            </NavLink>
 
             <span
               className={`w-px h-4 ${
@@ -290,13 +262,17 @@ export default function Navbar() {
 
           {/* الأزرار — geniş ekran */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <Button variant={(isDark? "orange-solid": "orange")} href="#" size="sm">
+            <Button
+              variant={isDark ? "orange-solid" : "orange"}
+              href={LINKS.courses}
+              size="sm"
+            >
               سجل الان{" "}
             </Button>
 
             <Button
               variant="primary-alt"
-              href="#"
+              href={LINKS.support}
               icon={<ChevronDown size={13} className="rotate-90" />}
               className="font-bold"
               size="sm"

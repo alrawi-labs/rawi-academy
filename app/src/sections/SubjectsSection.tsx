@@ -25,10 +25,10 @@ const SUBJECTS: SubjectMeta[] = [
     color: "teal",
   },
   {
-    key: "programming",
+    key: "code",
     label: "البرمجة",
     tagline: "منطق · تطبيق · بناء",
-    href: "/courses/programming",
+    href: "/courses/code",
     color: "purple",
   },
   {
@@ -136,7 +136,7 @@ function SubjectSection({
 
           <div className="flex items-center gap-3 shrink-0">
             <Button href={subject.href} variant="outline" size="sm">
-              عرض المسار
+              عرض الدروات
             </Button>
 
             <div className="flex items-center gap-1.5">

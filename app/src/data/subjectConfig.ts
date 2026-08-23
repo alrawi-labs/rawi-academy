@@ -27,7 +27,7 @@ export const subjectConfig: Record<CourseSubject, SubjectStyle> = {
     photoOverlayClass: "bg-orange/20",
     buttonVariant: "orange-solid",
   },
-  programming: {
+  code: {
     borderHoverClass: "hover:border-primary",
     photoOverlayClass: "bg-primary/20",
     buttonVariant: "primary",
