@@ -135,7 +135,7 @@ export function CourseDetailPage({
               )}
 
               <Button
-                href={LINKS.enroll(course.id)}
+                href={LINKS.enroll(course.subject, course.id)}
                 variant={COURSE_SUBJECT_BUTTON_VARIANT[course.subject]}
                 size="lg"
                 className="mt-5 w-full justify-center"

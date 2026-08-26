@@ -74,7 +74,7 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
 
   return (
     <a
-      href={LINKS.course(course.id)}
+      href={LINKS.course(course.subject ,course.id)}
       className={`group relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-lg border border-neutral-200 bg-neutral-0 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
     >
       <AnimatedBorder />
@@ -152,7 +152,7 @@ function CourseCard({ courseId }: { courseId: string }) {
 
   return (
     <a
-      href={LINKS.course(course.id)}
+      href={LINKS.course(course.subject ,course.id)}
       className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-200 bg-neutral-0 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
     >
       <AnimatedBorder />

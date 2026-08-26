@@ -1,8 +1,8 @@
-import { CourseDetailPage } from "../../_shared/CourseDetailPage";
+import { EnrollPage } from "../../../_shared/EnrollPage";
 import { getCoursesBySubject } from "@/app/src/data/courses";
 
 export function generateStaticParams() {
-  return getCoursesBySubject("code").map((course) => ({ id: course.id }));
+  return getCoursesBySubject("quran").map((course) => ({ id: course.id }));
 }
 
 export default async function Page({
@@ -11,5 +11,5 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  return <CourseDetailPage id={id} expectedSubject="code" />;
+  return <EnrollPage id={id} expectedSubject="quran" />;
 }

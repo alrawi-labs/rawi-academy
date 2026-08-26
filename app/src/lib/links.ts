@@ -1,3 +1,5 @@
+import { CourseSubject } from "../data/courses";
+
 const courses = Object.assign("/courses", {
   quran: "/courses/quran",
   code: "/courses/code",
@@ -19,11 +21,11 @@ export const LINKS = {
   instructor: (instructorId: string) => `/instructors/${instructorId}`,
   
   // --- Enroll ---
-  enroll: (courseId : string) => `enroll/${courseId}`,
+  enroll: (subject: CourseSubject, id: string) => `/courses/${subject}/enroll/${id}`,
   
   // --- Courses ---
   courses,
-  course: (courseId: string) => `/courses/${courseId}`,
+  course: (subject: CourseSubject, id: string) => `/courses/${subject}/${id}`,
   courseTrack: (trackId: string) => `/courses/${trackId}`,
   
   // --- Consultations ---

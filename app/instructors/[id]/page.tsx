@@ -129,7 +129,7 @@ export default async function InstructorDetailPage({
                   {instructorCourses.map((course) => (
                     <Link
                       key={course.id}
-                      href={LINKS.course(course.id)}
+                      href={LINKS.course(course.subject, course.id)}
                       className="group flex items-center gap-4 rounded-2xl border border-neutral-200 p-3 transition-colors hover:border-neutral-300 hover:bg-neutral-50"
                     >
                       <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl">
