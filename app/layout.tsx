@@ -99,10 +99,92 @@ const thmanyahSans = localFont({
   variable: "--font-thmanyah-sans",
 });
 
+// --------------- MetaData and SEO ---------------
+
 export const metadata: Metadata = {
-  title: "أكاديمية راوي",
-  description: "منصة تعليمية عربية",
+  metadataBase: new URL("https://rawi-academy.vercel.app"),
+
+  title: {
+    default: "أكاديمية راوي | منصة تعليمية عربية",
+    template: "%s | أكاديمية راوي",
+  },
+  description:
+    "أكاديمية راوي منصة تعليمية عربية تقدّم مسارات تعلّم واضحة في الرياضيات واللغات وغيرها، مصممة لمساعدتك على التقدّم خطوة بخطوة من الأساس إلى الإتقان.",
+  keywords: [
+    "أكاديمية راوي",
+    "منصة تعليمية عربية",
+    "تعلم اونلاين",
+    "دورات عربية",
+    "تعلم الرياضيات",
+    "تعلم اللغات",
+    "Rawi Academy",
+  ],
+  authors: [{ name: "أكاديمية راوي" }],
+  creator: "أكاديمية راوي",
+  publisher: "أكاديمية راوي",
+
+  applicationName: "أكاديمية راوي",
+  category: "education",
+
+  icons: {
+    icon: "/logos/favicon.png",
+    apple: "/logos/favicon.png",
+  },
+
+  manifest: "/manifest.json",
+
+  openGraph: {
+    type: "website",
+    locale: "ar_AR",
+    url: "https://rawi-academy.vercel.app",
+    siteName: "أكاديمية راوي",
+    title: "أكاديمية راوي | منصة تعليمية عربية",
+    description:
+      "منصة تعليمية عربية تقدّم مسارات تعلّم واضحة في الرياضيات واللغات وغيرها، من الأساس إلى الإتقان.",
+    images: [
+      {
+        url: "/logos/favicon.png",
+        width: 512,
+        height: 512,
+        alt: "أكاديمية راوي",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "أكاديمية راوي | منصة تعليمية عربية",
+    description:
+      "منصة تعليمية عربية تقدّم مسارات تعلّم واضحة في الرياضيات واللغات وغيرها.",
+    images: ["/logos/favicon.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "/",
+    languages: {
+      ar: "/",
+    },
+  },
+
+  formatDetection: {
+    telephone: false,
+  },
 };
+
+// ------------------------------------------------
+
 
 export default function RootLayout({
   children,

@@ -1,0 +1,20 @@
+{
+  "name": "أكاديمية راوي",
+  "short_name": "راوي",
+  "description": "منصة تعليمية عربية تقدّم مسارات تعلّم واضحة من الأساس إلى الإتقان.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/logos/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
