@@ -148,23 +148,23 @@ export default function Globe({ className = "" }: { className?: string }) {
     world.add(buildArc([-77, 39], [103, 1], "#2DD4BF"));   // DC-ish -> Singapore-ish
     scene.add(world);
 
-    function resize() {
+        const resize = () => {
       const { clientWidth: w, clientHeight: h } = mount;
       if (!w || !h) return;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
-    }
+    };
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(mount);
 
     let raf: number;
-    function tick() {
+    const tick = () => {
       world.rotation.y += 0.0022;
       renderer.render(scene, camera);
       raf = requestAnimationFrame(tick);
-    }
+    };
     tick();
 
     return () => {
