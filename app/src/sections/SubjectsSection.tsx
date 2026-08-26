@@ -7,6 +7,7 @@ import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button from "@/app/src/components/ui/Button";
 import { courses, type CourseSubject } from "@/app/src/data/courses";
 import { getInstructorById, getInstructorDisplayName } from "@/app/src/data/instructors";
+import { LINKS } from "../lib/links";
 
 type SubjectMeta = {
   key: CourseSubject;
@@ -21,38 +22,31 @@ const SUBJECTS: SubjectMeta[] = [
     key: "quran",
     label: "القرآن",
     tagline: "حفظ · فهم · مراجعة",
-    href: "/courses/quran",
+    href: `${LINKS.courses.quran}`,
     color: "teal",
   },
   {
     key: "code",
     label: "البرمجة",
     tagline: "منطق · تطبيق · بناء",
-    href: "/courses/code",
+    href: `${LINKS.courses.code}`,
     color: "purple",
   },
   {
     key: "languages",
     label: "اللغات",
     tagline: "فهم · ممارسة · تواصل",
-    href: "/courses/languages",
+    href: `${LINKS.courses.languages}`,
     color: "pink",
   },
   {
     key: "math",
     label: "الرياضيات",
     tagline: "فهم · تحليل · حل",
-    href: "/courses/math",
+    href: `${LINKS.courses.math}`,
     color: "orange",
   },
 ];
-
-const accentText: Record<SubjectMeta["color"], string> = {
-  teal: "text-visual-teal",
-  purple: "text-primary",
-  orange: "text-orange",
-  pink: "text-visual-pink",
-};
 
 const accentBg: Record<SubjectMeta["color"], string> = {
   teal: "bg-visual-teal",

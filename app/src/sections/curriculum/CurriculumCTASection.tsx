@@ -2,6 +2,7 @@
 "use client";
 
 import CTAPanelSection from "@/app/src/components/CTAPanelSection";
+import { LINKS } from "../../lib/links";
 
 export default function CurriculumCTASection() {
   return (
@@ -9,7 +10,7 @@ export default function CurriculumCTASection() {
       backgroundImage="/backgrounds/dark/bg-1.png"
       title="الخطوة الأولى تبدأ باختيار ما يستحق أن تتعلمه."
       description="اختر المجال الذي يناسب أهدافك، وابدأ مسارك التعليمي مع راوي."
-      buttonHref="/courses"
+      buttonHref={LINKS.courses}
       buttonText="استكشف المسارات"
     />
   );

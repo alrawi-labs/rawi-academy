@@ -2,6 +2,7 @@
 import Button from "@/app/src/components/ui/Button";
 import {SectionContainer} from "@/app/src/components/layout/SectionContainer";
 import { CONSULTANTS } from "@/app/src/data/consultants";
+import { LINKS } from "../../lib/links";
 
 const HOOK_QUESTION = "هل تعمل على مشروع ذكاء اصطناعي ولا تعرف من أين تبدأ؟";
 
@@ -64,7 +65,7 @@ export default function FeaturedConsultant() {
                   </p>
 
                   <div className="mt-5">
-                    <Button href={`/consultations/${consultant.slug}`} variant="primary" size="md">
+                    <Button href={LINKS.consultation(consultant.slug)} variant="primary" size="md">
                       احجز استشارة
                     </Button>
                   </div>

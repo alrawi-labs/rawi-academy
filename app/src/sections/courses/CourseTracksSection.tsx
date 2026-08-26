@@ -436,7 +436,7 @@ function CourseTile({
 
   const body = (
     <a
-      href={`/courses/${track.id}`}
+      href={LINKS.courseTrack(track.id)}
       className={
         "course-tile group relative isolate flex w-full min-w-0 overflow-hidden rounded-lg border border-neutral-100 transition-transform duration-300 hover:-translate-y-1 " +
         layoutClasses

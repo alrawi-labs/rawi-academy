@@ -3,6 +3,7 @@
 import { ChevronLeft } from "lucide-react";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button  from "@/app/src/components/ui/Button";
+import { LINKS } from "../../lib/links";
 
 /**
  * WhyMathSection — "لماذا الرياضيات، ولماذا راوي"
@@ -155,7 +156,7 @@ export default function WhyMathSection() {
             <p className="font-thmanyah-text text-h3-sm text-neutral-700 max-w-md">
               ابدأ من حيث أنت، ودعنا نأخذك خطوة بخطوة نحو فهم حقيقي 
             </p>
-            <Button href="/math" variant="orange-solid" size="md">
+            <Button href={LINKS.support} variant="orange-solid" size="md">
            تواصل معنا
             </Button>
           </div>

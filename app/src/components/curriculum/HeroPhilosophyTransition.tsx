@@ -10,6 +10,7 @@ import Reveal from "@/app/src/components/curriculum/Reveal";
 import HeroGlassRibbons from "../3D/HeroGlassRibbons";
 import Button from "../ui/Button";
 import { SUBJECTS } from "./SubjectCardStack";
+import { LINKS } from "../../lib/links";
 
 const PHILOSOPHY_STEPS = ["معرفة", "فهم", "تطبيق", "تقييم", "إتقان"];
 
@@ -102,7 +103,7 @@ export default function HeroPhilosophyTransition() {
                 المتعلم من بناء الأساس، إلى الفهم، ثم التطبيق، وصولًا إلى مهارة
                 يستطيع استخدامها بثقة.
               </p>
-              <Button className="mt-10" variant="outline">
+              <Button href={LINKS.support} className="mt-10" variant="outline">
                 تواصل معنا
               </Button>
             </Reveal>

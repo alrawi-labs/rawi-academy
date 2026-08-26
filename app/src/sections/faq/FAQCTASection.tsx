@@ -1,6 +1,7 @@
 "use client";
 
 import CTAPanelSection from "@/app/src/components/CTAPanelSection";
+import { LINKS } from "../../lib/links";
 
 export default function FAQCTASection() {
   return (
@@ -9,7 +10,7 @@ export default function FAQCTASection() {
         backgroundImage="/backgrounds/bg-1.png"
         title="لم تجد ما تبحث عنه؟"
         description="لا تتردد في سؤالنا. اكتب لنا ما يدور في بالك، وسيساعدك فريق راوي في الحصول على الإجابة التي تحتاجها."
-        buttonHref="/contact"
+        buttonHref={LINKS.support}
         buttonText="اسأل فريق راوي"
         buttonVariant="primary"
         panelTone="dark"

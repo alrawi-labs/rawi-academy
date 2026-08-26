@@ -10,16 +10,29 @@ export const LINKS = {
   support: "/support", // tek yerden değiştirirsin: "/support" -> "/contact"
   register: "#", // henüz sayfa yoksa
   curriculum: "/curriculum",
-  consultations: "/consultations",
   howItWorks: "/how-it-works",
   faq: "/faq",
-  courses,
-
-
-  // --- Footer'a özgü ---
-  about: "#",
-  parents: "#",
+  guide: "/guide",
+  
+  // --- Instructors ---
   instructors: "/instructors",
+  instructor: (instructorId: string) => `/instructors/${instructorId}`,
+  
+  // --- Enroll ---
+  enroll: (courseId : string) => `enroll/${courseId}`,
+  
+  // --- Courses ---
+  courses,
+  course: (courseId: string) => `/courses/${courseId}`,
+  courseTrack: (trackId: string) => `/courses/${trackId}`,
+  
+  // --- Consultations ---
+  consultations: "/consultations",
+  consultation: (consultationSlug: string) => `/consultations/${consultationSlug}`,
+  
+  // --- Footer'a özgü ---
+  about: "/about",
+  parents: "#",
   pricing: "#",
   privacy: "#",
   terms: "#",

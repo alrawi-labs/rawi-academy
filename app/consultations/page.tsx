@@ -25,6 +25,7 @@ export default function ConsultationsPage() {
 
       {/* 05 — المدرسين */}
       <InstructorsSection />
+      {/* <FeaturedConsultant /> */}
     </main>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "@/app/src/components/ui/Button";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
+import { LINKS } from "../../lib/links";
 
 type FaqItem = {
   question: string;
@@ -148,7 +149,7 @@ export default function QuranFAQSection() {
               </p>
 
               <div className="mt-5">
-                <Button className="bg-teal-400 hover:bg-teal-500" href="/contact" variant="primary" size="sm">
+                <Button className="bg-teal-400 hover:bg-teal-500" href={LINKS.support} variant="primary" size="sm">
                   تواصل معنا
                 </Button>
               </div>

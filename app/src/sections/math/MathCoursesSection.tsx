@@ -8,6 +8,7 @@ import {
 } from "@/app/src/data/instructors";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import { CardHeader } from "@/app/src/components/courses/CardHeader";
+import { LINKS } from "../../lib/links";
 
 const ELASTIC_EASE = "ease-[cubic-bezier(0.34,1.56,0.64,1)]";
 const CARD_BG = "/backgrounds/bg-19.png";
@@ -71,7 +72,7 @@ function FeaturedCourseCard({ courseId }: { courseId: string }) {
   const instructor = getInstructorById(course.instructorId);
   return (
     <a
-      href={`/math/courses/${course.id}`}
+      href={LINKS.course(course.id)}
       className={`group relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-lg border border-neutral-200 bg-neutral-0 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
     >
       <AnimatedBorder />
@@ -143,7 +144,7 @@ function CourseCard({ courseId }: { courseId: string }) {
   const instructor = getInstructorById(course.instructorId);
   return (
     <a
-      href={`/math/courses/${course.id}`}
+      href={LINKS.course(course.id)}
       className={`group relative flex flex-col min-h-[26rem] overflow-hidden rounded-lg border border-neutral-200 bg-neutral-0 transition-transform duration-500 ${ELASTIC_EASE} hover:scale-[1.01]`}
     >
       <AnimatedBorder />

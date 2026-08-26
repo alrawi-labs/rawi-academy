@@ -5,6 +5,7 @@ import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import { PremiumGradientBar } from "@/app/src/components/3D/PremiumGradientBar";
 
 import { FAQAskInput } from "@/app/src/components/3D/QuestionMarkPanel";
+import { LINKS } from "../../lib/links";
 
 export default function FAQHero() {
   const handleScrollToFaq = (e: React.MouseEvent) => {
@@ -33,7 +34,7 @@ export default function FAQHero() {
               <Button href="#faq" variant="primary" size="lg" onClick={handleScrollToFaq}>
                 استعرض الأسئلة
               </Button>
-              <Button href="/contact" variant="outline" size="lg">
+              <Button href={LINKS.support} variant="outline" size="lg">
                 تواصل معنا
               </Button>
             </div>

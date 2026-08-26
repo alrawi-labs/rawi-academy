@@ -60,7 +60,7 @@ export function PhoneInput({
         {label}
       </label>
 
-      <div className="flex gap-2">
+      <div dir="ltr" className="flex gap-2">
         <div className="w-[136px] shrink-0">
           <Select
             aria-label="مفتاح الدولة"

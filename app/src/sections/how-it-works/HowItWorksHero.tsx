@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button from "@/app/src/components/ui/Button";
 import { UltraPremiumGradientBar } from "../../components/3D/UltraPremiumGradientBar";
+import { LINKS } from "../../lib/links";
 
 /**
  * لا ثلاث بطاقات عائمة. سطح تفاعل واحد ("بيئة التعلّم") يقصّه الإطار من
@@ -55,10 +56,10 @@ function HeroCopy({
 function HeroActions() {
   return (
     <div className="mt-10 flex flex-wrap items-center gap-4">
-      <Button variant="primary" size="md" href="/paths">
+      {/* <Button variant="primary" size="md" href="/paths">
         ابدأ رحلتك
-      </Button>
-      <Button variant="primary" size="md" href="/paths">
+      </Button> */}
+      <Button variant="primary" size="md" href={LINKS.courses}>
         استكشف المسارات
       </Button>
     </div>

@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button from "@/app/src/components/ui/Button";
 import CTAPanelSection from "../../components/CTAPanelSection";
+import { LINKS } from "../../lib/links";
 
 /**
  * "العالم أكبر من لغة واحدة."
@@ -124,7 +125,7 @@ export function LanguageClosingCta() {
             backgroundImage="/backgrounds//bg-45.png"
             title="لا تعرف من أين تبدأ؟ نحن هنا لنساعدك"
             description="اختيار اللغة والمستوى المناسب قد لا يكون واضحًا دائمًا. إذا كنت بحاجة إلى مساعدة، فلا تتردد في التواصل معنا، وسنساعدك على اختيار ما يناسب أهدافك ومستواك."
-            buttonHref="/contact"
+            buttonHref={LINKS.support}
             buttonText="تواصل معنا"
             panelTone="dark"
             buttonVariant="pink"

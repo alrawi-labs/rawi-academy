@@ -168,7 +168,7 @@ export default function Navbar() {
 
 
                 <a
-                  href="#"
+                  href={LINKS.guide}
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center gap-1.5 py-4 text-body font-medium text-primary-alt"
                 >
@@ -252,7 +252,7 @@ export default function Navbar() {
               }`}
             />
             <a
-              href="#"
+              href={LINKS.guide}
               className="flex items-center gap-1.5 text-body font-medium text-primary-alt hover:text-primary-alt-hover transition-colors whitespace-nowrap"
             >
               <Sparkles size={14} />

@@ -71,14 +71,14 @@ export default function ConsultationsHero() {
               body="سواء كنت عالقًا في مشكلة تقنية، محتارًا في اختيار مسارك، تحتاج إلى توجيه في مشروعك، أو تبحث عن رأي خبير، يمكنك حجز جلسة خاصة مع أحد خبراء راوي والحصول على توجيه عملي يناسب حالتك."
             />
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            {/* <div className="mt-9 flex flex-wrap items-center gap-4">
               <Button href="/consultations/book" variant="primary" size="lg">
                 احجز استشارتك
               </Button>
               <Button href="#experts" variant="outline" size="lg">
                 استكشف الخبراء
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* العمود الأيسر: التركيب البصري */}

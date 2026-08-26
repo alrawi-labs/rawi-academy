@@ -6,43 +6,9 @@ import {
   instructors,
   getInstructorDisplayName,
   type Instructor,
-  type Subject,
 } from "@/app/src/data/instructors";
-
-const SUBJECT_STYLES: Record<
-  Subject,
-  {
-    badgeBg: string;
-    badgeText: string;
-    ring: string;
-    photoTint: string;
-  }
-> = {
-  "القرآن والسنة": {
-    badgeBg: "bg-visual-teal/15",
-    badgeText: "text-visual-teal",
-    ring: "ring-visual-teal/25",
-    photoTint: "from-visual-teal/35 via-visual-teal/5 to-transparent",
-  },
-  "البرمجة": {
-    badgeBg: "bg-visual-purple/15",
-    badgeText: "text-visual-purple",
-    ring: "ring-visual-purple/25",
-    photoTint: "from-visual-purple/35 via-visual-purple/5 to-transparent",
-  },
-  "الرياضيات": {
-    badgeBg: "bg-visual-orange/15",
-    badgeText: "text-visual-orange",
-    ring: "ring-visual-orange/25",
-    photoTint: "from-visual-orange/35 via-visual-orange/5 to-transparent",
-  },
-  "اللغات": {
-    badgeBg: "bg-visual-pink/15",
-    badgeText: "text-visual-pink",
-    ring: "ring-visual-pink/25",
-    photoTint: "from-visual-pink/35 via-visual-pink/5 to-transparent",
-  },
-};
+import { ACCENT_STYLES, SUBJECT_COLOR } from "@/app/src/lib/subject-colors";
+import { LINKS } from "../../lib/links";
 
 export function InstructorsSection() {
   // Öne çıkan (featured: true) eğitmenler grid'de en başta gösterilir.
@@ -64,7 +30,7 @@ export function InstructorsSection() {
             <InstructorCard
               key={person.id}
               instructor={person}
-              style={SUBJECT_STYLES[person.subject]}
+              style={ACCENT_STYLES[SUBJECT_COLOR[person.subject]]}
             />
           ))}
         </div>
@@ -78,7 +44,7 @@ function InstructorCard({
   style,
 }: {
   instructor: Instructor;
-  style: (typeof SUBJECT_STYLES)[Subject];
+  style: (typeof ACCENT_STYLES)[keyof typeof ACCENT_STYLES];
 }) {
   return (
     <article className="w-[272px] shrink-0">
@@ -121,7 +87,7 @@ function InstructorCard({
         </p>
 
         <Button
-          href={`/instructors/${instructor.id}`}
+          href={LINKS.instructor(instructor.id)}
           variant="outline"
           size="sm"
           className={`relative mt-3 w-full justify-center border-current bg-white/50 hover:bg-white/80 ${style.badgeText}`}

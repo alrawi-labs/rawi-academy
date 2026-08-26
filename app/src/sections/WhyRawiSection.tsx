@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../components/ui/Button";
+import { LINKS } from "../lib/links";
 
 const LOGO_SRC = "/logos/cropped_logo.png"; // uploaded logo'yu public/ altına koyup burayı güncelleyin
 
@@ -375,7 +376,7 @@ export default function WhyRawiSection() {
               </p>
 
               <Button
-                href="/masarat"
+                href={LINKS.courses}
                 variant="primary"
                 size="md"
                 className="!px-8 !py-3 tracking-[0.02em] text-caption sm:text-h3-sm"
@@ -510,7 +511,7 @@ export default function WhyRawiSection() {
               </p>
 
               <Button
-                href="/masarat"
+                href={LINKS.courses}
                 variant="primary"
                 size="md"
                 className="!px-9 !py-3.5 tracking-[0.02em] text-[20px]"

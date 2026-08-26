@@ -15,6 +15,7 @@ type BaseProps = {
    * - "orange": subtle translucent background with orange text.
    * - "pink": solid brand pink, white text.
    * - "orange-solid": solid brand orange, white text.
+   * - "teal": solid brand teal, white text.
    */
   variant?:
     | "primary"
@@ -22,7 +23,8 @@ type BaseProps = {
     | "outline"
     | "orange"
     | "pink"
-    | "orange-solid";
+    | "orange-solid"
+    | "teal";
 
   /** Controls padding and font size. Defaults to "md". */
   size?: "sm" | "md" | "lg";
@@ -88,6 +90,7 @@ const variantStyles: Record<NonNullable<BaseProps["variant"]>, string> = {
     "text-orange bg-white/70 hover:border-outline-hover hover:text-outline-hover rounded-sm",
   pink: "text-white bg-visual-pink hover:opacity-90 rounded-sm",
   "orange-solid": "text-white bg-orange hover:opacity-90 rounded-sm",
+  teal: "text-white bg-visual-teal hover:opacity-90 rounded-sm",
 };
 
 // Varyanta göre varsayılan border davranışı (gerekirse `border` prop'u ile override edilir)
@@ -98,6 +101,7 @@ const defaultBorder: Record<NonNullable<BaseProps["variant"]>, boolean> = {
   orange: false,
   pink: false,
   "orange-solid": false,
+  teal: false,
 };
 
 /**
@@ -111,6 +115,7 @@ const defaultBorder: Record<NonNullable<BaseProps["variant"]>, boolean> = {
  * 4. "orange" — subtle translucent accent button
  * 5. "pink" — solid brand pink call-to-action
  * 6. "orange-solid" — solid brand orange call-to-action
+ * 7. "teal" — solid brand teal call-to-action
  *
  * Automatically renders as an <a> when `href` is passed, and as a
  * <button> otherwise — no separate `as` prop needed, the element

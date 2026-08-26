@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button from "@/app/src/components/ui/Button";
+import { LINKS } from "../../lib/links";
 
 /**
  * قسم مختلف تمامًا عمدًا: طباعة ضخمة، فراغ هائل، بلا شبكة بطاقات. خط
@@ -72,7 +73,7 @@ export function FinalJourneyCTA() {
           </p>
 
           <div className="fj-line mt-12">
-            <Button variant="primary" size="md" href="/paths">
+            <Button variant="primary" size="md" href={LINKS.courses}>
               ابدأ رحلتك الآن
             </Button>
           </div>

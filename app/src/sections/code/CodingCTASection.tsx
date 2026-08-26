@@ -2,6 +2,7 @@
 "use client";
 
 import CTAPanelSection from "@/app/src/components/CTAPanelSection";
+import { LINKS } from "../../lib/links";
 
 export default function CodingCTASection() {
   return (
@@ -10,7 +11,7 @@ export default function CodingCTASection() {
         backgroundImage="/backgrounds/dark/bg-9.png"
         title="دربك في البرمجة يبدأ من هنا"
         description="تواصل معنا لنساعدك تختار المسار الذي يناسب عمر ابنك وأهدافه، خطوة بخطوة"
-        buttonHref="/contact"
+        buttonHref={LINKS.support}
         buttonText="تواصل معنا"
         buttonVariant="primary"
       />

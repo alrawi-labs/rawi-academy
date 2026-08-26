@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import Button from "@/app/src/components/ui/Button";
 import {
-  courses,
   getCourseWithInstructor,
+  type CourseSubject,
 } from "@/app/src/data/courses";
 import { getInstructorDisplayName } from "@/app/src/data/instructors";
 import { CourseTabs } from "./CourseTabs";
@@ -20,20 +20,22 @@ const SUBJECT_LABELS: Record<string, string> = {
   languages: "اللغات",
 };
 
-export function generateStaticParams() {
-  return courses.map((course) => ({ id: course.id }));
-}
-
-export default async function CourseDetailPage({
-  params,
+export function CourseDetailPage({
+  id,
+  expectedSubject,
 }: {
-  params: Promise<{ id: string }>;
+  id: string;
+  expectedSubject: CourseSubject;
 }) {
-  const { id } = await params;
   const result = getCourseWithInstructor(id);
   if (!result) notFound();
 
   const { course, instructor } = result;
+
+  // URL'deki subject segmenti kursun gerçek subject'iyle uyuşmuyorsa 404 —
+  // örn. birisi elle /courses/math/hifz yazarsa (hifz aslında quran kursu).
+  if (course.subject !== expectedSubject) notFound();
+
   const style = ACCENT_STYLES[COURSE_SUBJECT_COLOR[course.subject]];
   const label = SUBJECT_LABELS[course.subject];
   const lessonsCount = course.curriculum?.reduce((sum, s) => sum + s.lessons.length, 0);

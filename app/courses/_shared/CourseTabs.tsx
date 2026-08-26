@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { Course, CourseSection } from "@/app/src/data/courses";
 import type { Instructor } from "@/app/src/data/instructors";
 import { getInstructorDisplayName } from "@/app/src/data/instructors";
+import { LINKS } from "@/app/src/lib/links";
 
 type Tab = "overview" | "curriculum" | "instructor";
 
@@ -158,7 +159,7 @@ export function CourseTabs({
                 {instructor.bio}
               </p>
               <Link
-                href={`/instructors/${instructor.id}`}
+                href={LINKS.instructor(instructor.id)}
                 className={`mt-3 inline-block text-caption font-medium ${accentText}`}
               >
                 عرض الملف الكامل ←

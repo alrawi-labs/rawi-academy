@@ -6,44 +6,10 @@ import {
   instructors,
   getInstructorById,
   getInstructorDisplayName,
-  type Subject,
 } from "@/app/src/data/instructors";
 import { getCoursesByInstructor } from "@/app/src/data/courses";
-
-const SUBJECT_STYLES: Record<
-  Subject,
-  {
-    badgeBg: string;
-    badgeText: string;
-    ring: string;
-    photoTint: string;
-  }
-> = {
-  "القرآن والسنة": {
-    badgeBg: "bg-visual-teal/15",
-    badgeText: "text-visual-teal",
-    ring: "ring-visual-teal/25",
-    photoTint: "from-visual-teal/35 via-visual-teal/5 to-transparent",
-  },
-  "البرمجة": {
-    badgeBg: "bg-visual-purple/15",
-    badgeText: "text-visual-purple",
-    ring: "ring-visual-purple/25",
-    photoTint: "from-visual-purple/35 via-visual-purple/5 to-transparent",
-  },
-  "الرياضيات": {
-    badgeBg: "bg-visual-orange/15",
-    badgeText: "text-visual-orange",
-    ring: "ring-visual-orange/25",
-    photoTint: "from-visual-orange/35 via-visual-orange/5 to-transparent",
-  },
-  "اللغات": {
-    badgeBg: "bg-visual-pink/15",
-    badgeText: "text-visual-pink",
-    ring: "ring-visual-pink/25",
-    photoTint: "from-visual-pink/35 via-visual-pink/5 to-transparent",
-  },
-};
+import { ACCENT_STYLES, SUBJECT_COLOR } from "@/app/src/lib/subject-colors";
+import { LINKS } from "@/app/src/lib/links";
 
 export function generateStaticParams() {
   return instructors.map((instructor) => ({ id: instructor.id }));
@@ -58,7 +24,7 @@ export default async function InstructorDetailPage({
   const instructor = getInstructorById(id);
   if (!instructor) notFound();
 
-  const style = SUBJECT_STYLES[instructor.subject];
+  const style = ACCENT_STYLES[SUBJECT_COLOR[instructor.subject]];
   const instructorCourses = getCoursesByInstructor(instructor.id);
   const peers = instructors
     .filter((p) => p.subject === instructor.subject && p.id !== instructor.id)
@@ -163,7 +129,7 @@ export default async function InstructorDetailPage({
                   {instructorCourses.map((course) => (
                     <Link
                       key={course.id}
-                      href={`/courses/${course.id}`}
+                      href={LINKS.course(course.id)}
                       className="group flex items-center gap-4 rounded-2xl border border-neutral-200 p-3 transition-colors hover:border-neutral-300 hover:bg-neutral-50"
                     >
                       <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl">
@@ -210,11 +176,11 @@ export default async function InstructorDetailPage({
 
             <div className="mt-8 flex flex-wrap gap-6">
               {peers.map((peer) => {
-                const peerStyle = SUBJECT_STYLES[peer.subject];
+                const peerStyle = ACCENT_STYLES[SUBJECT_COLOR[peer.subject]];
                 return (
                   <Link
                     key={peer.id}
-                    href={`/instructors/${peer.id}`}
+                    href={LINKS.instructor(peer.id)}
                     className="group w-44 shrink-0"
                   >
                     <div

@@ -4,6 +4,7 @@ import HeroGlassRibbons from "../../components/3D/HeroGlassRibbons";
 import SubjectCardStack from "../../components/curriculum/SubjectCardStack";
 import Button from "../../components/ui/Button";
 import MarqueeStrip from "../../components/MarqueeStrip";
+import { LINKS } from "../../lib/links";
 
 export default function CurriculumHero() {
   return (
@@ -88,7 +89,7 @@ export default function CurriculumHero() {
               يستطيع استخدامها بثقة.
             </p>
 
-            <Button className="mt-10" variant="outline">
+            <Button href={LINKS.support} className="mt-10" variant="outline">
               تواصل معنا
             </Button>
           </Reveal>

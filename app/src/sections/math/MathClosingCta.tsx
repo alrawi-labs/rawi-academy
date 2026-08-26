@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import CTAPanelSection from "../../components/CTAPanelSection";
+import { LINKS } from "../../lib/links";
 
 /**
  * "الأرقام أوضح مما تظن."
@@ -123,7 +124,7 @@ export function MathClosingCta() {
             backgroundImage="/backgrounds//bg-46.png"
             title="لا تعرف من أين تبدأ في الرياضيات؟ نحن هنا لنساعدك"
             description="اختيار المسار والمستوى المناسب قد لا يكون واضحًا دائمًا. إذا كنت بحاجة إلى مساعدة، فلا تتردد في التواصل معنا، وسنساعدك على اختيار ما يناسب أهدافك ومستواك."
-            buttonHref="/contact"
+            buttonHref={LINKS.support}
             buttonText="تواصل معنا"
             panelTone="dark"
             buttonVariant="orange-solid"

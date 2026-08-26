@@ -5,6 +5,7 @@ import { SectionLede } from "../components/layout/SectionLede";
 import Button from "../components/ui/Button";
 import { motion } from "framer-motion";
 import { instructors } from "../data/instructors";
+import { LINKS } from "../lib/links";
 
 // TeamSection sadece öne çıkan (featured: true) eğitmenleri gösterir.
 // Kimin öne çıkacağını değiştirmek için tek yapman gereken
@@ -115,7 +116,7 @@ export default function TeamSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex justify-center mt-16"
         >
-          <Button href="/about_us" variant="primary" size="lg">
+          <Button href={LINKS.instructors} variant="primary" size="lg">
             تعلم من الأفضل
           </Button>
         </motion.div>
