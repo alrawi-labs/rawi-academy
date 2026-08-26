@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 import { getCoursesBySubject, type CourseSubject } from "@/app/src/data/courses";
 import { getInstructorById, getInstructorDisplayName } from "@/app/src/data/instructors";
 import { subjectConfig } from "@/app/src/data/subjectConfig";
+import { LINKS } from "../../lib/links";
 
 export default function SubjectCoursesList({
   subject,
@@ -73,9 +74,9 @@ export default function SubjectCoursesList({
                     {course.price}
                   </span>
                   {style.buttonVariant ? (
-                    <Button variant={style.buttonVariant}>تفاصيل الدورة</Button>
+                    <Button href={LINKS.course(course.subject, course.id)} variant={style.buttonVariant}>تفاصيل الدورة</Button>
                   ) : (
-                    <Button className={style.buttonClassName}>تفاصيل الدورة</Button>
+                    <Button href={LINKS.course(course.subject, course.id)} className={style.buttonClassName}>تفاصيل الدورة</Button>
                   )}
                 </div>
               </div>
