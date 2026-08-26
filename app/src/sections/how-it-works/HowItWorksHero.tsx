@@ -27,8 +27,8 @@ function HeroCopy({
   headingRef,
   bodyRef,
 }: {
-  headingRef: RefObject<HTMLHeadingElement>;
-  bodyRef: RefObject<HTMLDivElement>;
+  headingRef: RefObject<HTMLHeadingElement | null>;
+  bodyRef: RefObject<HTMLDivElement | null>;
 }) {
   return (
     <>
