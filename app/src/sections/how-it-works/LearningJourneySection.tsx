@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
-import { useJourneyScrollProgress } from "@/app/src/components/how-it-works/three/useJourneyScrollProgress.ts";
+import { useJourneyScrollProgress } from "@/app/src/components/how-it-works/three/useJourneyScrollProgress";
 import { LearningJourneyMobileFallback } from "@/app/src/components/how-it-works/three/LearningJourneyMobileFallback";
 
 // الـCanvas يُحمَّل على العميل فقط — three.js يحتاج window، ولا داعي لحمل
