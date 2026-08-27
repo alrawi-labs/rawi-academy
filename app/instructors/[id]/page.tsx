@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -13,6 +14,41 @@ import { LINKS } from "@/app/src/lib/links";
 
 export function generateStaticParams() {
   return instructors.map((instructor) => ({ id: instructor.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const instructor = getInstructorById(id);
+
+  if (!instructor) {
+    return {
+      title: "المعلم غير موجود",
+      description: "لم يتم العثور على هذا المعلم في أكاديمية راوي.",
+    };
+  }
+
+  const displayName = getInstructorDisplayName(instructor);
+  const description = instructor.position
+    ? `${displayName}، ${instructor.position} في أكاديمية راوي. ${instructor.bio}`
+    : `${displayName}، معلّم ${instructor.subject} في أكاديمية راوي. ${instructor.bio}`;
+
+  return {
+    title: displayName,
+    description,
+    openGraph: {
+      title: displayName,
+      description,
+      images: instructor.avatar ? [instructor.avatar] : undefined,
+    },
+    twitter: {
+      title: displayName,
+      description,
+    },
+  };
 }
 
 export default async function InstructorDetailPage({
