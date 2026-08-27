@@ -9,6 +9,9 @@ import QuranInstructorsSection from "@/app/src/sections/quran/QuranInstructorsSe
 import QuranLearningExperienceSection from "@/app/src/sections/quran/QuranLearningExperienceSection";
 import QuranLearningPathSection from "@/app/src/sections/quran/QuranLearningPathSection";
 import TajweedSection from "@/app/src/sections/quran/TajweedSection";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("courses/quran");
 
 export default function QuranExperiencePage() {
   return (

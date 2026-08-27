@@ -9,6 +9,9 @@ import OutcomesSection from "@/app/src/sections/curriculum/OutcomesSection";
 import CurriculumCTASection from "@/app/src/sections/curriculum/CurriculumCTASection";
 import { SubjectSections } from "../src/sections/SubjectsSection";
 import { SetNavbarVariant } from "../src/context/NavbarVariantContext";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("curriculum");
 
 export default function CurriculumPage() {
   return (

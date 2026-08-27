@@ -7,8 +7,11 @@ import LanguageLearningDifferenceSection from "@/app/src/sections/languages/Lang
 import LanguageLearningPathSection from "@/app/src/sections/languages/LanguageLearningPathSection";
 import LanguageOpportunitiesSection from "@/app/src/sections/languages/LanguageOpportunitiesSection";
 import LanguagesHero from "@/app/src/sections/languages/LanguagesHero";
+import { buildMetadata } from "@/app/src/lib/seo";
 
-export default function CodePage() {
+export const metadata = buildMetadata("courses/languages");
+
+export default function LanguagesPage() {
   return (
     <main dir="rtl" lang="ar" className="overflow-x-clip bg-neutral-100">
       <LanguagesHero />

@@ -4,6 +4,9 @@ import { SectionContainer } from "@/app/src/components/layout/SectionContainer";
 import { PremiumGradientBar } from "@/app/src/components/3D/PremiumGradientBar";
 import { LINKS } from "@/app/src/lib/links";
 import GuideBuildVisual from "../src/components/3D/GuideBuildVisual";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("guide");
 
 export default function GuidePage() {
   return (

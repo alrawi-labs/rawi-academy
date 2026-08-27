@@ -7,6 +7,10 @@ import ConsultantDirectory from "@/app/src/sections/consultations/ConsultantDire
 import ConsultantFilters from "@/app/src/sections/consultations/ConsultantFilters";
 import InstructorsSpotlightSection from '@/app/src/sections/languages/InstructorsSpotlightSection';
 import { InstructorsSection } from "../src/sections/consultations/InstructorsSection";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+
+export const metadata = buildMetadata("consultations");
 
 export default function ConsultationsPage() {
   return (

@@ -3,6 +3,9 @@
 import { useState } from "react";
 import SupportHero from "@/app/src/sections/support/SupportHero";
 import type { SupportTicketData } from "@/app/src/components/support/SupportTicketForm";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("support");
 
 const STORAGE_KEY = "rawi_support_tickets";
 

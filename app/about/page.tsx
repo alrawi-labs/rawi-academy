@@ -11,12 +11,9 @@ import { AISection } from "@/app/src/sections/about/AISection";
 import { VisionSection } from "@/app/src/sections/about/VisionSection";
 import { FutureSection } from "@/app/src/sections/about/FutureSection";
 import { AboutCTA } from "@/app/src/sections/about/AboutCTA";
+import { buildMetadata } from "@/app/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "عن راوي — لماذا وُجدت راوي، وما الذي تؤمن به",
-  description:
-    "راوي أكاديمية تؤمن أن التعلم الحقيقي لا يُقاس بعدد الدروس التي أنهيتها، بل بما أصبحت قادرًا على فهمه وتطبيقه وبنائه.",
-};
+export const metadata = buildMetadata("about");
 
 /**
  * /about — "عن راوي"

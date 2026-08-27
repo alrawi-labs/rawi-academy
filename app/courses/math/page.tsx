@@ -6,6 +6,9 @@ import WhyMathSection from "@/app/src/sections/math/WhyMathSection";
 import {MathInstructorsSection} from "@/app/src/sections/math/MathInstructorsSection";
 import MathFAQSection from "@/app/src/sections/math/MathFAQSection";
 import MathClosingCta from "@/app/src/sections/math/MathClosingCta";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("courses/math");
 
 export default function MathPage() {
   return (

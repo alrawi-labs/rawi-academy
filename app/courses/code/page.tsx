@@ -7,6 +7,9 @@ import CodingCTASection from "@/app/src/sections/code/CodingCTASection";
 import CodingFaqSection from "@/app/src/sections/code/CodingFaqSection";
 import CodingLearningExperienceSection from "@/app/src/sections/code/CodingLearningExperienceSection";
 import LanguagesShowcase from "@/app/src/sections/code/LanguagesShowcase";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("courses/code");
 
 
 export default function CodePage() {

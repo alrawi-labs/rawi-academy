@@ -15,6 +15,9 @@ import LearningRecord from "@/app/src/sections/how-it-works/LearningRecord";
 import ProgressTracking from "@/app/src/sections/how-it-works/ProgressTracking";
 import SmartLearningSupport from "@/app/src/sections/how-it-works/SmartLearningSupport";
 import StartFromWhereYouAre from "@/app/src/sections/how-it-works/StartFromWhereYouAre";
+import { buildMetadata } from "@/app/src/lib/seo";
+
+export const metadata = buildMetadata("how-it-works");
 
 export default function HowItWorksPage() {
   return (
