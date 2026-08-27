@@ -521,7 +521,7 @@ export function CourseTracksSection() {
           title="لا تعرف أي مجال يناسبك؟"
           description="اختر هدفك وسنساعدك في تحديد المسار الأنسب لك"
           buttonText="ساعدني في الاختيار"
-          onButtonClick={() => router.push(LINKS.support)}
+          href={LINKS.support}
         />
       </SectionContainer>
     </section>

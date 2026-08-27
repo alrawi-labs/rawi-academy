@@ -2,23 +2,25 @@
 
 import { ChevronLeft } from "lucide-react";
 import { SectionContainer } from "../components/layout/SectionContainer";
+import Button from "./ui/Button";
 
 export interface PromoBannerProps {
   title?: string;
   description?: string;
   buttonText?: string;
+  href?: string;
   backgroundImage?: string;
   flipBackground?: boolean;
-  onButtonClick?: () => void;
 }
 
 export default function PromoBanner({
   title = "ليس كل ما يُدرَّس يستحق أن يُتعلَّم",
   description = "كل معرفةٍ تتعلّمها تمنحها جزءًا من عمرك، فاختر ما يستحق أن تمنحه سنواتك.",
   buttonText = "ابدأ بما يستحق",
+  href = "",
   backgroundImage = "/backgrounds/bg-10.png",
   flipBackground = true,
-  onButtonClick,
+
 }: PromoBannerProps) {
   return (
     <section dir="rtl" className="relative pt-28">
@@ -44,13 +46,12 @@ export default function PromoBanner({
               </p>
             </div>
 
-            <button
-              onClick={onButtonClick}
+            <Button
+            href={href}
               className="shrink-0 inline-flex items-center gap-2 font-thmanyah-text font-semibold text-body text-neutral-0 bg-primary hover:bg-primary-hover hover:cursor-pointer transition-colors rounded-sm px-6 py-3"
             >
               {buttonText}
-              <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
-            </button>
+            </Button>
           </div>
         </div>
       </SectionContainer>

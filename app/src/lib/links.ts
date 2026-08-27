@@ -1,6 +1,23 @@
 import { CourseSubject } from "../data/courses";
 
-const courses = Object.assign("/courses", {
+function createLinkGroup<T extends Record<string, string>>(
+  base: string,
+  children: T
+): string & T {
+  return new Proxy(children, {
+    get(target, prop, receiver) {
+      if (prop === Symbol.toPrimitive || prop === "toString" || prop === "valueOf") {
+        return () => base;
+      }
+      if (prop === "toJSON") {
+        return () => base;
+      }
+      return Reflect.get(target, prop, receiver);
+    },
+  }) as unknown as string & T;
+}
+
+const courses = createLinkGroup("/courses", {
   quran: "/courses/quran",
   code: "/courses/code",
   languages: "/courses/languages",
