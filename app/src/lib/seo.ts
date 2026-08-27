@@ -157,10 +157,20 @@ export function buildMetadata(key: keyof typeof PAGE_SEO): Metadata {
       title: page.title,
       description: page.description,
       siteName: SITE_NAME,
+      images: [
+        {
+          url: "/og/default.png",
+          width: 1200,
+          height: 630,
+          alt: page.title,
+        },
+      ],
     },
     twitter: {
+      card: "summary_large_image",
       title: page.title,
       description: page.description,
+      images: ["/og/default.png"],
     },
   };
 }
