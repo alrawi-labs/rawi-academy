@@ -117,7 +117,7 @@ export function SupportTicketForm({
       <div className={isEmbedded ? "flex flex-col gap-4" : "mt-6 flex flex-col gap-5"}>
         <Input
           label="الاسم الكامل"
-          placeholder="اكتب اسمك الكامل"
+          placeholder="الاسم الكامل"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           error={touched ? errors.fullName ?? undefined : undefined}
@@ -144,7 +144,7 @@ export function SupportTicketForm({
 
           <Input
             label="عنوان الطلب"
-            placeholder="اكتب عنوانًا مختصرًا"
+            placeholder="عنوانًا مختصرًا"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             error={touched ? errors.title ?? undefined : undefined}
