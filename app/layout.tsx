@@ -143,9 +143,9 @@ export const metadata: Metadata = {
       "منصة تعليمية عربية تقدّم مسارات تعلّم واضحة في الرياضيات واللغات وغيرها، من الأساس إلى الإتقان.",
     images: [
       {
-        url: "/logos/favicon.png",
-        width: 512,
-        height: 512,
+        url: "/og/default.png",
+        width: 1200,
+        height: 630,
         alt: "أكاديمية راوي",
       },
     ],
@@ -156,7 +156,7 @@ export const metadata: Metadata = {
     title: "أكاديمية راوي | منصة تعليمية عربية",
     description:
       "منصة تعليمية عربية تقدّم مسارات تعلّم واضحة في الرياضيات واللغات وغيرها.",
-    images: ["/logos/favicon.png"],
+    images: ["/og/default.png"],
   },
 
   robots: {
