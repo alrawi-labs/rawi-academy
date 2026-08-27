@@ -109,14 +109,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* <Button
+          <Button
             variant="primary-alt"
             href={LINKS.register}
             size="md"
             className="font-bold shrink-0 w-full md:w-auto"
           >
-            ابدأ رحلتك الآن
-          </Button> */}
+           تواصل معنا
+          </Button>
         </div>
 
         {/* Bağlantı sütunları */}
