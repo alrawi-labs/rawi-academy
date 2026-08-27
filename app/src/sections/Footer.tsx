@@ -69,7 +69,7 @@ const company = [
 const support = [
   { label: "الأسئلة الشائعة", href: LINKS.faq },
   { label: "استشارات", href: LINKS.consultations },
-  { label: "تواصل معنا", href: LINKS.support },
+  // { label: "تواصل معنا", href: LINKS.support },
   { label: "سياسة الخصوصية", href: LINKS.privacy },
   { label: "الشروط والأحكام", href: LINKS.terms },
 ];
